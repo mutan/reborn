@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Session;
 use App\Card;
-use Illuminate\Http\Request;
+use App\Liquid;
+use App\Http\Requests\StoreCardRequest;
 
 class CardController extends Controller
 {

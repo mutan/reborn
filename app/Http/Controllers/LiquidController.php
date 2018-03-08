@@ -4,30 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Liquid;
 use Session;
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreLiquidRequest;
 
 class LiquidController extends Controller
 {
-
-    /**
-     * Validation rules.
-     *
-     * @var array
-     */
-    protected $rules = [
-        'name' => 'required|unique:liquids|max:50',
-    ];
-
-    /**
-     * Validation error messages.
-     *
-     * @var array
-     */
-    protected $messages = [
-        'required' => 'Это поле не может быть пустым.',
-        'unique' => 'Введенное название уже существует.',
-        'max' => 'Максимум 50 символов.',            
-    ];
 
     /**
      * Display a listing of the resource.
@@ -54,19 +34,17 @@ class LiquidController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreLiquidRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) // liquid
+    public function store(StoreLiquidRequest $request) // liquids
     {
-        $request->validate($this->rules, $this->messages);
-
         $liquid = new Liquid( $request->only(['name']) );
         $liquid->save();
 
         Session::flash('message', 'Запись "' . $liquid->name . '" успешно добавлена');
 
-        return redirect('/liquid');
+        return redirect('/liquids');
     }
 
     /**
@@ -75,9 +53,10 @@ class LiquidController extends Controller
      * @param  \App\Liquid  $liquid
      * @return \Illuminate\Http\Response
      */
-    public function show(Liquid $liquid) // liquid/{liquid}
+    public function show(Liquid $liquid) // liquids/{liquid}
     {
-        return view('liquids.show', compact('liquid'));
+        abort(404);
+        //return view('liquids.show', compact('liquid'));
     }
 
     /**
@@ -86,7 +65,7 @@ class LiquidController extends Controller
      * @param  \App\Liquid  $liquid
      * @return \Illuminate\Http\Response
      */
-    public function edit(Liquid $liquid) // liquid/{liquid}/edit
+    public function edit(Liquid $liquid) // liquids/{liquid}/edit
     {
         return view('liquids.edit', compact('liquid'));
     }
@@ -94,20 +73,18 @@ class LiquidController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreLiquidRequest  $request
      * @param  \App\Liquid  $liquid
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Liquid $liquid) // liquid/{liquid}
+    public function update(StoreLiquidRequest $request, Liquid $liquid) // liquids/{liquid}
     {
-        $request->validate($this->rules, $this->messages);
-
         $liquid->name = $request->name;
         $liquid->save();
 
         Session::flash('message', 'Запись "' . $liquid->name . '" успешно обновлена');
 
-        return redirect('/liquid');
+        return redirect('/liquids');
     }
 
     /**
@@ -116,12 +93,12 @@ class LiquidController extends Controller
      * @param  \App\Liquid  $liquid
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Liquid $liquid) // liquid/{liquid}
+    public function destroy(Liquid $liquid) // liquids/{liquid}
     {
         $liquid->delete();
 
         Session::flash('message', 'Запись "' . $liquid->name . '" успешно удалена');
 
-        return redirect('/liquid');
+        return redirect('/liquids');
     }
 }

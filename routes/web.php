@@ -15,10 +15,9 @@ Auth::routes();
 
 Route::resource('cards', 'CardController');
 
-// liquids, elements, supertypes, types, subtypes, rarities, artists, editions
-Route::resource('liquid', 'LiquidController', ['except' => [
-	'show',
-]]);
+// может быть только один: edition, rarity
+// может быть несколько: liquids, elements, supertypes, types, subtypes, artists
+Route::resource('liquids', 'LiquidController');
 
 
 
