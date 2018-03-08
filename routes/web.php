@@ -11,20 +11,19 @@
 |
 */
 
-// liquids, elements, supertypes, types, subtypes, rarities, artists, editions
+Auth::routes();
 
 Route::resource('cards', 'CardController');
-Route::resource('liquids', 'LiquidController');
 
-
-
+// liquids, elements, supertypes, types, subtypes, rarities, artists, editions
+Route::resource('liquid', 'LiquidController', ['except' => [
+	'show',
+]]);
 
 
 
 Route::get('/', function () {
-    return view('liquid.index');
+    return view('welcome');
 });
-
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -3,18 +3,42 @@
 namespace App\Http\Controllers;
 
 use App\Liquid;
+use Session;
 use Illuminate\Http\Request;
 
 class LiquidController extends Controller
 {
+
+    /**
+     * Validation rules.
+     *
+     * @var array
+     */
+    protected $rules = [
+        'name' => 'required|unique:liquids|max:50',
+    ];
+
+    /**
+     * Validation error messages.
+     *
+     * @var array
+     */
+    protected $messages = [
+        'required' => 'Это поле не может быть пустым.',
+        'unique' => 'Введенное название уже существует.',
+        'max' => 'Максимум 50 символов.',            
+    ];
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index() // liquid
     {
-        //
+        $liquids = Liquid::all();
+
+        return view('liquids.index', compact('liquids'));
     }
 
     /**
@@ -22,9 +46,9 @@ class LiquidController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create() // liquid/create
     {
-        //
+        return view('liquids.create');
     }
 
     /**
@@ -33,9 +57,16 @@ class LiquidController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request) // liquid
     {
-        //
+        $request->validate($this->rules, $this->messages);
+
+        $liquid = new Liquid( $request->only(['name']) );
+        $liquid->save();
+
+        Session::flash('message', 'Запись "' . $liquid->name . '" успешно добавлена');
+
+        return redirect('/liquid');
     }
 
     /**
@@ -44,9 +75,9 @@ class LiquidController extends Controller
      * @param  \App\Liquid  $liquid
      * @return \Illuminate\Http\Response
      */
-    public function show(Liquid $liquid)
+    public function show(Liquid $liquid) // liquid/{liquid}
     {
-        //
+        return view('liquids.show', compact('liquid'));
     }
 
     /**
@@ -55,9 +86,9 @@ class LiquidController extends Controller
      * @param  \App\Liquid  $liquid
      * @return \Illuminate\Http\Response
      */
-    public function edit(Liquid $liquid)
+    public function edit(Liquid $liquid) // liquid/{liquid}/edit
     {
-        //
+        return view('liquids.edit', compact('liquid'));
     }
 
     /**
@@ -67,9 +98,16 @@ class LiquidController extends Controller
      * @param  \App\Liquid  $liquid
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Liquid $liquid)
+    public function update(Request $request, Liquid $liquid) // liquid/{liquid}
     {
-        //
+        $request->validate($this->rules, $this->messages);
+
+        $liquid->name = $request->name;
+        $liquid->save();
+
+        Session::flash('message', 'Запись "' . $liquid->name . '" успешно обновлена');
+
+        return redirect('/liquid');
     }
 
     /**
@@ -78,8 +116,12 @@ class LiquidController extends Controller
      * @param  \App\Liquid  $liquid
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Liquid $liquid)
+    public function destroy(Liquid $liquid) // liquid/{liquid}
     {
-        //
+        $liquid->delete();
+
+        Session::flash('message', 'Запись "' . $liquid->name . '" успешно удалена');
+
+        return redirect('/liquid');
     }
 }
