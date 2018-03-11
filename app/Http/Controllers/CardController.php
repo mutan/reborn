@@ -7,6 +7,11 @@ use App\Card;
 use App\Edition;
 use App\Rarity;
 use App\Liquid;
+use App\Element;
+use App\Artist;
+use App\Supertype;
+use App\Type;
+use App\Subtype;
 use App\Http\Requests\StoreCardRequest;
 
 class CardController extends Controller
@@ -32,8 +37,9 @@ class CardController extends Controller
     {
         $editions = Edition::all();
         $rarities = Rarity::all();
+        $artists = Artist::all();
 
-        return view('cards.create', compact('editions', 'rarities'));
+        return view('cards.create', compact('editions', 'rarities', 'artists'));
     }
 
     /**
@@ -50,6 +56,7 @@ class CardController extends Controller
             'name', 'image', 'edition_id', 'rarity_id', 'cost', 'number', 'lives', 'movement', 'power_weak', 'power_medium', 'power_strong', 'text', 'flavor', 'erratas', 'comments'
         ]) );
         $card->save();
+        $card->artists()->sync($request->artist);
 
         Session::flash('message', 'Запись "' . $card->name . '" успешно добавлена');
 

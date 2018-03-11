@@ -65,6 +65,27 @@
 						@endif
 					</div>
 
+					<div class="form-group col-md-4">
+						<label for="artist">Художник</label>
+						<select multiple name="artist[]" class="form-control {{ $errors->has('artist') ? ' is-invalid' : '' }}" id="artist">
+							@foreach($artists as $artist)
+							<option value="{{ $artist->id }}" @if( in_array($artist->id, (old('artist')) ? old('artist') : []) ) selected="selected" @endif>{{ $artist->name }}</option>
+							@endforeach
+						</select>
+						@if ($errors->has('artist'))
+						<div class="invalid-feedback">{{ $errors->first('artist') }}</div>
+						@else
+						<small id="artistHelpBlock" class="form-text text-muted">Выберите из списка.</small>
+						@endif
+					</div>
+
+		
+
+
+
+
+
+
 				</div>
 
 				<div class="form-row">

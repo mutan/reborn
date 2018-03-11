@@ -17,37 +17,31 @@ class Card extends Model
 
 	public function liquids()
 	{
-		return $this->belongsToMany(Liquids::class)
-		->withTimestamps();
+		return $this->belongsToMany(Liquid::class);
 	}
 
 	public function elements()
 	{
-		return $this->belongsToMany(Elements::class)
-		->withTimestamps();
+		return $this->belongsToMany(Element::class);
 	}
 
 	public function supertypes()
 	{
-		return $this->belongsToMany(Supertypes::class)
-		->withTimestamps();
+		return $this->belongsToMany(Supertype::class);
 	}
 
 	public function types()
 	{
-		return $this->belongsToMany(Types::class)
-		->withTimestamps();
+		return $this->belongsToMany(Type::class);
 	}
 
 	public function subtypes()
 	{
-		return $this->belongsToMany(Subtypes::class)
-		->withTimestamps();
+		return $this->belongsToMany(Subtype::class);
 	}
 
 	public function artists()
 	{
-		return $this->belongsToMany(Artists::class)
-		->withTimestamps();
+		return $this->belongsToMany(Artist::class);
 	}
 }

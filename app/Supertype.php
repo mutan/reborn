@@ -2,7 +2,7 @@
 
 namespace App;
 
-class Liquid extends Model
+class Supertype extends Model
 {
 	public function cards()
 	{

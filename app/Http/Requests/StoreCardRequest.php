@@ -38,8 +38,8 @@ class StoreCardRequest extends FormRequest
 			'element' => ['required'],
 			'supertype' => ['required'],
 			'type' => ['required'],
-			'subtype' => ['required'],
-			'artist' => ['required'],*/
+			'subtype' => ['required'],*/
+			'artist' => ['required'],
 		];
 	}
 
@@ -71,8 +71,8 @@ class StoreCardRequest extends FormRequest
 			'element.required'  => $required_ru,
 			'supertype.required'  => $required_ru,
 			'type.required'  => $required_ru,
-			'subtype.required'  => $required_ru,
-			'artist.required'  => $required_ru,*/
+			'subtype.required'  => $required_ru,*/
+			'artist.required'  => $required_ru,
 		];
 	}
 }

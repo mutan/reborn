@@ -2,7 +2,7 @@
 
 namespace App;
 
-class Liquid extends Model
+class Artist extends Model
 {
 	public function cards()
 	{
