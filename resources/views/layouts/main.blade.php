@@ -25,33 +25,58 @@
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
     <div class="container">
       <a class="navbar-brand" href="#">Reborn Cards Database</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarsExample07">
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+        <form class="form-inline my-2 my-md-0">
+          <input class="form-control" type="text" placeholder="Поиск карт" aria-label="Search">
+        </form>
+
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item dropdown active">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Колоды</a>
-            <div class="dropdown-menu" aria-labelledby="dropdown01">
-              <a class="dropdown-item" href="#">Метагейм турниров</a>
-              <a class="dropdown-item" href="#">Стейплы</a>
-              <a class="dropdown-item" href="#">Колоды пользователей</a>
-            </div>  
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Колоды</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Карты</a>
           </li>
         </ul>
-        <form class="form-inline my-2 my-md-0">
-          <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-        </form>
+
+        <ul class="navbar-nav">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Ред.
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="/cards">Карты</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/editions">Выпуски</a>
+              <a class="dropdown-item" href="/rarities">Редкости</a>
+              <a class="dropdown-item" href="/liquids">Жидкости</a>
+              <a class="dropdown-item" href="/elements">Стихии</a>
+              <a class="dropdown-item" href="/supertypes">Супертипы</a>
+              <a class="dropdown-item" href="/types">Типы</a>
+              <a class="dropdown-item" href="/subtypes">Подтипы</a>
+              <a class="dropdown-item" href="/artists">Художники</a>
+            </div>
+          </li>
+        </ul>
+
       </div>
     </div>
   </nav>
 
   <div class="container">
     <main role="main">
+
+<!--       <span class="d-block d-sm-none">xs</span>
+<span class="d-none d-sm-block d-md-none">sm</span>
+<span class="d-none d-md-block d-lg-none">md</span>
+<span class="d-none d-lg-block d-xl-none">lg</span>
+<span class="d-none d-xl-block">xl</span> -->
+      
       @include('layouts.messages')
       @yield('content')
     </main>
@@ -65,8 +90,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <!-- Custom js -->
-    <script src="/js/app.js"></script>
+    <!-- <script src="/js/app.js"></script> -->
     <script src="/js/delete.js"></script>
     
-</body>
-</html>
+  </body>
+  </html>

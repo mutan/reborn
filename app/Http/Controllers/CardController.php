@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Session;
 use App\Card;
+use App\Edition;
+use App\Rarity;
 use App\Liquid;
 use App\Http\Requests\StoreCardRequest;
 
@@ -16,7 +18,9 @@ class CardController extends Controller
      */
     public function index()
     {
-        //
+        $cards = Card::all();
+
+        return view('cards.index', compact('cards'));
     }
 
     /**
@@ -26,18 +30,30 @@ class CardController extends Controller
      */
     public function create()
     {
-        //
+        $editions = Edition::all();
+        $rarities = Rarity::all();
+
+        return view('cards.create', compact('editions', 'rarities'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreCardRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCardRequest $request)
     {
-        //
+        //dd($request->all());
+
+        $card  = new Card( $request->only([
+            'name', 'image', 'edition_id', 'rarity_id', 'cost', 'number', 'lives', 'movement', 'power_weak', 'power_medium', 'power_strong', 'text', 'flavor', 'erratas', 'comments'
+        ]) );
+        $card->save();
+
+        Session::flash('message', 'Запись "' . $card->name . '" успешно добавлена');
+
+        return redirect('/cards');
     }
 
     /**
@@ -65,7 +81,7 @@ class CardController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreCardRequest  $request
      * @param  \App\Card  $card
      * @return \Illuminate\Http\Response
      */

@@ -17,8 +17,15 @@ Route::resource('cards', 'CardController');
 
 // может быть только один: edition, rarity
 // может быть несколько: liquids, elements, supertypes, types, subtypes, artists
+Route::resource('editions', 'EditionController');
+Route::resource('rarities', 'RarityController');
 Route::resource('liquids', 'LiquidController');
 
+Route::resource('elements', 'LiquidController');
+Route::resource('supertypes', 'LiquidController');
+Route::resource('types', 'LiquidController');
+Route::resource('subtypes', 'LiquidController');
+Route::resource('artists', 'LiquidController');
 
 
 Route::get('/', function () {

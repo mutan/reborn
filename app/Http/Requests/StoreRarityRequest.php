@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class StoreLiquidRequest extends FormRequest
+class StoreRarityRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,11 @@ class StoreLiquidRequest extends FormRequest
      */
     public function rules()
     {
-        $liquid_id = $this->route('liquid') ? $this->route('liquid')->id : null;
+        $rarity_id = $this->route('rarity') ? $this->route('rarity')->id : null;
 
         return [
             'name' => [
-                'required', 'max:50', Rule::unique('liquids')->ignore($liquid_id)
+                'required', 'max:50', Rule::unique('rarities')->ignore($rarity_id)
             ]
         ];
     }
