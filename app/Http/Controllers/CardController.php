@@ -71,7 +71,9 @@ class CardController extends Controller
      */
     public function show(Card $card)
     {
-        //
+        $cards = Card::with(['edition', 'rarity'])->get();
+
+        return view('cards.show', compact('card'));
     }
 
     /**

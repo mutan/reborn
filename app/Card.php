@@ -5,6 +5,11 @@ namespace App;
 class Card extends Model
 {
 
+/*	public function getImage()
+	{
+		return $this->image;
+	}*/
+
 	public function edition()
 	{
 		return $this->belongsTo(Edition::class);
