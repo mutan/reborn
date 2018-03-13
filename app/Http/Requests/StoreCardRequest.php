@@ -34,11 +34,11 @@ class StoreCardRequest extends FormRequest
 			'power_weak' => ['integer', 'nullable'],
 			'power_medium' => ['integer', 'nullable'],
 			'power_strong' => ['integer', 'nullable'],
-			/*'liquid' => ['required'],
+			'liquid' => ['required'],
 			'element' => ['required'],
 			'supertype' => ['required'],
 			'type' => ['required'],
-			'subtype' => ['required'],*/
+			'subtype' => ['required'],
 			'artist' => ['required'],
 		];
 	}
@@ -67,11 +67,11 @@ class StoreCardRequest extends FormRequest
 			'power_weak.integer'  => $integer_ru,
 			'power_medium.integer'  => $integer_ru,
 			'power_strong.integer'  => $integer_ru,
-			/*'liquid.required'  => $required_ru,
+			'liquid.required'  => $required_ru,
 			'element.required'  => $required_ru,
 			'supertype.required'  => $required_ru,
 			'type.required'  => $required_ru,
-			'subtype.required'  => $required_ru,*/
+			'subtype.required'  => $required_ru,
 			'artist.required'  => $required_ru,
 		];
 	}

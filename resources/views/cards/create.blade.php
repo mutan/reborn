@@ -3,8 +3,8 @@
 @section('content')
 
 <div class="container">
-	<div class="row justify-content-center">
-		<div class="col-12 justify-content-center">
+		<div class="row justify-content-center">
+			<div class="col-12 justify-content-center">
 
 			<a class="btn btn-sm btn-outline-secondary" href="{{ url('cards')}}" role="button"><i class="fa fa-btn fa-arrow-left"></i> Назад к списку</a>
 
@@ -79,12 +79,75 @@
 						@endif
 					</div>
 
-		
+					<div class="form-group col-md-4">
+						<label for="liquid">Жидкости</label>
+						<select multiple name="liquid[]" class="form-control {{ $errors->has('liquid') ? ' is-invalid' : '' }}" id="liquid">
+							@foreach($liquids as $liquid)
+							<option value="{{ $liquid->id }}" @if( in_array($liquid->id, (old('liquid')) ? old('liquid') : []) ) selected="selected" @endif>{{ $liquid->name }}</option>
+							@endforeach
+						</select>
+						@if ($errors->has('liquid'))
+						<div class="invalid-feedback">{{ $errors->first('liquid') }}</div>
+						@else
+						<small id="liquidHelpBlock" class="form-text text-muted">Выберите из списка.</small>
+						@endif
+					</div>
 
+					<div class="form-group col-md-4">
+						<label for="element">Стихии</label>
+						<select multiple name="element[]" class="form-control {{ $errors->has('element') ? ' is-invalid' : '' }}" id="element">
+							@foreach($elements as $element)
+							<option value="{{ $element->id }}" @if( in_array($element->id, (old('element')) ? old('element') : []) ) selected="selected" @endif>{{ $element->name }}</option>
+							@endforeach
+						</select>
+						@if ($errors->has('element'))
+						<div class="invalid-feedback">{{ $errors->first('element') }}</div>
+						@else
+						<small id="elementHelpBlock" class="form-text text-muted">Выберите из списка.</small>
+						@endif
+					</div>
 
+					<div class="form-group col-md-4">
+						<label for="supertype">Супертипы</label>
+						<select multiple name="supertype[]" class="form-control {{ $errors->has('supertype') ? ' is-invalid' : '' }}" id="supertype" size="2">
+							@foreach($supertypes as $supertype)
+							<option value="{{ $supertype->id }}" @if( in_array($supertype->id, (old('supertype')) ? old('supertype') : []) ) selected="selected" @endif>{{ $supertype->name }}</option>
+							@endforeach
+						</select>
+						@if ($errors->has('supertype'))
+						<div class="invalid-feedback">{{ $errors->first('supertype') }}</div>
+						@else
+						<small id="supertypeHelpBlock" class="form-text text-muted">Выберите из списка.</small>
+						@endif
+					</div>
 
+					<div class="form-group col-md-4">
+						<label for="type">Типы</label>
+						<select multiple name="type[]" class="form-control {{ $errors->has('type') ? ' is-invalid' : '' }}" id="type" size="2">
+							@foreach($types as $type)
+							<option value="{{ $type->id }}" @if( in_array($type->id, (old('type')) ? old('type') : []) ) selected="selected" @endif>{{ $type->name }}</option>
+							@endforeach
+						</select>
+						@if ($errors->has('type'))
+						<div class="invalid-feedback">{{ $errors->first('type') }}</div>
+						@else
+						<small id="typeHelpBlock" class="form-text text-muted">Выберите из списка.</small>
+						@endif
+					</div>
 
-
+					<div class="form-group col-md-4">
+						<label for="subtype">Подтипы</label>
+						<select multiple name="subtype[]" class="form-control {{ $errors->has('subtype') ? ' is-invalid' : '' }}" id="subtype">
+							@foreach($subtypes as $subtype)
+							<option value="{{ $subtype->id }}" @if( in_array($subtype->id, (old('subtype')) ? old('subtype') : []) ) selected="selected" @endif>{{ $subtype->name }}</option>
+							@endforeach
+						</select>
+						@if ($errors->has('type'))
+						<div class="invalid-feedback">{{ $errors->first('type') }}</div>
+						@else
+						<small id="subtypeHelpBlock" class="form-text text-muted">Выберите из списка.</small>
+						@endif
+					</div>
 
 				</div>
 

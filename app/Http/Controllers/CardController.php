@@ -8,10 +8,10 @@ use App\Edition;
 use App\Rarity;
 use App\Liquid;
 use App\Element;
-use App\Artist;
 use App\Supertype;
 use App\Type;
 use App\Subtype;
+use App\Artist;
 use App\Http\Requests\StoreCardRequest;
 
 class CardController extends Controller
@@ -37,9 +37,14 @@ class CardController extends Controller
     {
         $editions = Edition::all();
         $rarities = Rarity::all();
+        $liquids = Liquid::all();
+        $elements = Element::all();
+        $supertypes = Supertype::all();
+        $types = Type::all();
+        $subtypes = Subtype::all();
         $artists = Artist::all();
 
-        return view('cards.create', compact('editions', 'rarities', 'artists'));
+        return view('cards.create', compact('editions', 'rarities', 'liquids', 'elements', 'supertypes', 'types', 'subtypes', 'artists'));
     }
 
     /**
@@ -57,6 +62,11 @@ class CardController extends Controller
         ]) );
         $card->save();
         $card->artists()->sync($request->artist);
+        $card->liquids()->sync($request->liquid);
+        $card->elements()->sync($request->element);
+        $card->supertypes()->sync($request->supertype);
+        $card->types()->sync($request->type);
+        $card->subtypes()->sync($request->subtype);
 
         Session::flash('message', 'Запись "' . $card->name . '" успешно добавлена');
 
@@ -71,8 +81,6 @@ class CardController extends Controller
      */
     public function show(Card $card)
     {
-        $cards = Card::with(['edition', 'rarity'])->get();
-
         return view('cards.show', compact('card'));
     }
 
@@ -84,7 +92,18 @@ class CardController extends Controller
      */
     public function edit(Card $card)
     {
-        //
+        $card->load('edition', 'rarity', 'liquids', 'elements', 'supertypes', 'types', 'subtypes', 'artists');
+
+        $editions = Edition::all();
+        $rarities = Rarity::all();
+        $liquids = Liquid::all();
+        $elements = Element::all();
+        $supertypes = Supertype::all();
+        $types = Type::all();
+        $subtypes = Subtype::all();
+        $artists = Artist::all();
+
+        return view('cards.edit', compact('card', 'editions', 'rarities', 'liquids', 'elements', 'supertypes', 'types', 'subtypes', 'artists'));
     }
 
     /**
@@ -94,9 +113,21 @@ class CardController extends Controller
      * @param  \App\Card  $card
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Card $card)
+    public function update(StoreCardRequest $request, Card $card)
     {
-        //
+        $card->update($request->only([
+            'name', 'image', 'edition_id', 'rarity_id', 'cost', 'number', 'lives', 'movement', 'power_weak', 'power_medium', 'power_strong', 'text', 'flavor', 'erratas', 'comments'
+        ]));
+        $card->artists()->sync($request->artist);
+        $card->liquids()->sync($request->liquid);
+        $card->elements()->sync($request->element);
+        $card->supertypes()->sync($request->supertype);
+        $card->types()->sync($request->type);
+        $card->subtypes()->sync($request->subtype);
+
+        Session::flash('message', 'Запись "' . $card->name . '" успешно обновлена');
+
+        return redirect('/cards');
     }
 
     /**
@@ -107,6 +138,10 @@ class CardController extends Controller
      */
     public function destroy(Card $card)
     {
-        //
+        $card->delete();
+
+        Session::flash('message', 'Запись "' . $card->name . '" успешно удалена');
+
+        return redirect('/cards');
     }
 }
