@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Element;
-use Illuminate\Http\Request;
+use Session;
+use App\Http\Requests\StoreElementRequest;
 
 class ElementController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +16,9 @@ class ElementController extends Controller
      */
     public function index()
     {
-        //
+        $elements = Element::all();
+
+        return view('elements.index', compact('elements'));
     }
 
     /**
@@ -24,18 +28,23 @@ class ElementController extends Controller
      */
     public function create()
     {
-        //
+        return view('elements.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreElementRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreElementRequest $request)
     {
-        //
+        $element = new Element( $request->only(['name']) );
+        $element->save();
+
+        Session::flash('message', 'Запись "' . $element->name . '" успешно добавлена');
+
+        return redirect('/elements');
     }
 
     /**
@@ -46,30 +55,36 @@ class ElementController extends Controller
      */
     public function show(Element $element)
     {
-        //
+        abort(404);
+        //return view('elements.show', compact('element'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Element  $element
+     * @param  \App\Element $element
      * @return \Illuminate\Http\Response
      */
     public function edit(Element $element)
     {
-        //
+        return view('elements.edit', compact('element'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreElementRequest  $request
      * @param  \App\Element  $element
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Element $element)
+    public function update(StoreElementRequest $request, Element $element)
     {
-        //
+        $element->name = $request->name;
+        $element->save();
+
+        Session::flash('message', 'Запись "' . $element->name . '" успешно обновлена');
+
+        return redirect('/elements');
     }
 
     /**
@@ -80,6 +95,10 @@ class ElementController extends Controller
      */
     public function destroy(Element $element)
     {
-        //
+        $element->delete();
+
+        Session::flash('message', 'Запись "' . $element->name . '" успешно удалена');
+
+        return redirect('/elements');
     }
 }

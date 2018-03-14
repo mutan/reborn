@@ -39,7 +39,7 @@ class LiquidController extends Controller
 	 */
 	public function store(StoreLiquidRequest $request)// liquids
 	{
-		 $liquid = new Liquid( $request->only(['name']) );
+		$liquid = new Liquid( $request->only(['name']) );
 		$liquid->save();
 
 		Session::flash('message', 'Запись "' . $liquid->name . '" успешно добавлена');

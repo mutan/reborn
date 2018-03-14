@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Type;
-use Illuminate\Http\Request;
+use Session;
+use App\Http\Requests\StoreTypeRequest;
 
 class TypeController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +16,9 @@ class TypeController extends Controller
      */
     public function index()
     {
-        //
+        $types = Type::all();
+
+        return view('types.index', compact('types'));
     }
 
     /**
@@ -24,18 +28,23 @@ class TypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('types.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreTypeRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTypeRequest $request)
     {
-        //
+        $type = new Type( $request->only(['name']) );
+        $type->save();
+
+        Session::flash('message', 'Запись "' . $type->name . '" успешно добавлена');
+
+        return redirect('/types');
     }
 
     /**
@@ -46,7 +55,8 @@ class TypeController extends Controller
      */
     public function show(Type $type)
     {
-        //
+        abort(404);
+        //return view('types.show', compact('type'));
     }
 
     /**
@@ -57,19 +67,24 @@ class TypeController extends Controller
      */
     public function edit(Type $type)
     {
-        //
+        return view('types.edit', compact('type'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreTypeRequest  $request
      * @param  \App\Type  $type
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Type $type)
+    public function update(StoreTypeRequest $request, Type $type)
     {
-        //
+        $type->name = $request->name;
+        $type->save();
+
+        Session::flash('message', 'Запись "' . $type->name . '" успешно обновлена');
+
+        return redirect('/types');
     }
 
     /**
@@ -80,6 +95,10 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
-        //
+        $type->delete();
+
+        Session::flash('message', 'Запись "' . $type->name . '" успешно удалена');
+
+        return redirect('/types');
     }
 }

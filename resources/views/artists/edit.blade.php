@@ -6,17 +6,17 @@
 	<div class="row justify-content-center">
 		<div class="col-xl-6 justify-content-center">
 
-			<a class="btn btn-sm btn-outline-secondary" href="{{ url('liquids')}}" role="button"><i class="fa fa-btn fa-arrow-left"></i> Назад к списку</a>
+			<a class="btn btn-sm btn-outline-secondary" href="{{ url('artists')}}" role="button"><i class="fa fa-btn fa-arrow-left"></i> Назад к списку</a>
 
-			<h3 class="text-center mt-3">Редактировать жидкость</h3>
+			<h3 class="text-center mt-3">Редактировать художника</h3>
 
-			<form action="{{ url('liquids/' . $liquid->id) }}" method="POST" class="form-horizontal">
+			<form action="{{ url('artists/' . $artist->id) }}" method="POST" class="form-horizontal">
 				{{ method_field('PATCH') }}
 				{{ csrf_field() }}
 
 				<div class="form-group">
 					<label for="name">Название</label>
-					<input type="text" name="name" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" id="name" value="{{ $liquid->name }}">
+					<input type="text" name="name" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" id="name" value="{{ $artist->name }}">
 					@if ($errors->has('name'))
 					<div class="invalid-feedback">{{ $errors->first('name') }}</div>
 					@else

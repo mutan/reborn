@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Supertype;
-use Illuminate\Http\Request;
+use Session;
+use App\Http\Requests\StoreSupertypeRequest;
 
 class SupertypeController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +16,9 @@ class SupertypeController extends Controller
      */
     public function index()
     {
-        //
+        $supertypes = Supertype::all();
+
+        return view('supertypes.index', compact('supertypes'));
     }
 
     /**
@@ -24,18 +28,23 @@ class SupertypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('supertypes.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreSupertypeRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSupertypeRequest $request)
     {
-        //
+        $supertype = new Supertype( $request->only(['name']) );
+        $supertype->save();
+
+        Session::flash('message', 'Запись "' . $supertype->name . '" успешно добавлена');
+
+        return redirect('/supertypes');
     }
 
     /**
@@ -46,7 +55,8 @@ class SupertypeController extends Controller
      */
     public function show(Supertype $supertype)
     {
-        //
+        abort(404);
+        //return view('supertypes.show', compact('supertype'));
     }
 
     /**
@@ -57,19 +67,24 @@ class SupertypeController extends Controller
      */
     public function edit(Supertype $supertype)
     {
-        //
+        return view('supertypes.edit', compact('supertype'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreSupertypeRequest  $request
      * @param  \App\Supertype  $supertype
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Supertype $supertype)
+    public function update(StoreSupertypeRequest $request, Supertype $supertype)
     {
-        //
+        $supertype->name = $request->name;
+        $supertype->save();
+
+        Session::flash('message', 'Запись "' . $supertype->name . '" успешно обновлена');
+
+        return redirect('/supertypes');
     }
 
     /**
@@ -80,6 +95,10 @@ class SupertypeController extends Controller
      */
     public function destroy(Supertype $supertype)
     {
-        //
+        $supertype->delete();
+
+        Session::flash('message', 'Запись "' . $supertype->name . '" успешно удалена');
+
+        return redirect('/supertypes');
     }
 }

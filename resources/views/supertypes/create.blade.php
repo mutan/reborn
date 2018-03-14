@@ -6,11 +6,11 @@
 	<div class="row justify-content-center">
 		<div class="col-xl-6 justify-content-center">
 
-			<a class="btn btn-sm btn-outline-secondary" href="{{ url('liquids')}}" role="button"><i class="fa fa-btn fa-arrow-left"></i> Назад к списку</a>
+			<a class="btn btn-sm btn-outline-secondary" href="{{ url('supertypes')}}" role="button"><i class="fa fa-btn fa-arrow-left"></i> Назад к списку</a>
 
-			<h3 class="text-center mt-3">Добавить жидкость</h3>
+			<h3 class="text-center mt-3">Добавить супертип</h3>
 
-			<form action="{{ url('liquids')}}" method="POST" class="form-horizontal">
+			<form action="{{ url('supertypes')}}" method="POST" class="form-horizontal">
 				{{ csrf_field() }}
 
 				<div class="form-group">

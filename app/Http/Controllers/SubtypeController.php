@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Subtype;
-use Illuminate\Http\Request;
+use Session;
+use App\Http\Requests\StoreSubtypeRequest;
 
 class SubtypeController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +16,9 @@ class SubtypeController extends Controller
      */
     public function index()
     {
-        //
+        $subtypes = Subtype::all();
+
+        return view('subtypes.index', compact('subtypes'));
     }
 
     /**
@@ -24,62 +28,76 @@ class SubtypeController extends Controller
      */
     public function create()
     {
-        //
+        return view('subtypes.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreSubtypeRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSubtypeRequest $request)
     {
-        //
+        $subtype = new Subtype( $request->only(['name']) );
+        $subtype->save();
+
+        Session::flash('message', 'Запись "' . $subtype->name . '" успешно добавлена');
+
+        return redirect('/subtypes');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\subtype  $subtype
+     * @param  \App\Subtype  $subtype
      * @return \Illuminate\Http\Response
      */
-    public function show(subtype $subtype)
+    public function show(Subtype $subtype)
     {
-        //
+        abort(404);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\subtype  $subtype
+     * @param  \App\Subtype  $subtype
      * @return \Illuminate\Http\Response
      */
-    public function edit(subtype $subtype)
+    public function edit(Subtype $subtype)
     {
-        //
+        return view('subtypes.edit', compact('subtype'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\subtype  $subtype
+     * @param  \App\Http\Requests\StoreSubtypeRequest  $request
+     * @param  \App\Subtype  $subtype
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, subtype $subtype)
+    public function update(StoreSubtypeRequest $request, Subtype $subtype)
     {
-        //
+        $subtype->name = $request->name;
+        $subtype->save();
+
+        Session::flash('message', 'Запись "' . $subtype->name . '" успешно обновлена');
+
+        return redirect('/subtypes');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\subtype  $subtype
+     * @param  \App\Subtype  $subtype
      * @return \Illuminate\Http\Response
      */
-    public function destroy(subtype $subtype)
+    public function destroy(Subtype $subtype)
     {
-        //
+        $subtype->delete();
+
+        Session::flash('message', 'Запись "' . $subtype->name . '" успешно удалена');
+
+        return redirect('/subtypes');
     }
 }

@@ -21,11 +21,11 @@ Route::resource('editions', 'EditionController');
 Route::resource('rarities', 'RarityController');
 
 Route::resource('liquids', 'LiquidController');
-Route::resource('elements', 'LiquidController');
-Route::resource('supertypes', 'LiquidController');
-Route::resource('types', 'LiquidController');
-Route::resource('subtypes', 'LiquidController');
-Route::resource('artists', 'LiquidController');
+Route::resource('elements', 'ElementController');
+Route::resource('supertypes', 'SupertypeController');
+Route::resource('types', 'TypeController');
+Route::resource('subtypes', 'SubtypeController');
+Route::resource('artists', 'ArtistController');
 
 
 

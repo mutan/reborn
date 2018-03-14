@@ -26,7 +26,6 @@
             <td class="text-muted">{{ $liquid->id }}</td>
             <td>{{ $liquid->name }}</td>
             <td class="text-center">
-              <!-- <a class="btn btn-sm btn-outline-secondary" alt="Посмотреть" title="Посмотреть" href="{{ url('liquids/' . $liquid->id) }}"><i class="fa fa-btn fa-eye"></i></a> -->
               <a class="btn btn-sm btn-outline-secondary" alt="Редактировать" title="Редактировать" href="{{ url('liquids/' . $liquid->id . '/edit') }}"><i class="fa fa-btn fa-edit"></i></a>
               <a class="btn btn-sm btn-outline-secondary" alt="Удалить" title="Удалить" href="{{ url('liquids/' . $liquid->id) }}" data-method="delete" data-token="{{csrf_token()}}" data-confirm="Действительно удалить?"><i class="fa fa-btn fa-trash"></i></a>
             </td>

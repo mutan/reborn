@@ -74,5 +74,44 @@ class DatabaseSeeder extends Seeder
 				['name' => 'Чидоа'],
 			]);
 
+			DB::table('cards')->insert([
+				[
+					'name' => 'Ледяной Титан',
+					'rarity_id' => 1,
+					'edition_id' => 1,
+					'cost' => 1,
+					'number' => 1,
+					'lives' => 1,
+					'movement' => 1,
+					'power_weak' => 1,
+					'power_weak' => 1,
+					'power_medium' => 1,
+					'power_strong' => 1,
+					'image' => '111',
+					'text' => '111',
+					'flavor' => '111',
+					'erratas' => '111',
+					'comments' => '111',
+				],
+				[
+					'name' => 'Новый Титан',
+					'rarity_id' => 2,
+					'edition_id' => 2,
+					'cost' => 2,
+					'number' => 2,
+					'lives' => 2,
+					'movement' => 2,
+					'power_weak' => 2,
+					'power_weak' => 2,
+					'power_medium' => 2,
+					'power_strong' => 2,
+					'image' => '222',
+					'text' => '222',
+					'flavor' => '222',
+					'erratas' => '222',
+					'comments' => '222',
+				],
+			]);
+
 		}
 	}
