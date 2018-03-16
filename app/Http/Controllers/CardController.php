@@ -81,6 +81,8 @@ class CardController extends Controller
      */
     public function show(Card $card)
     {
+        $card->image = "/images/" . $card->image;
+
         return view('cards.show', compact('card'));
     }
 

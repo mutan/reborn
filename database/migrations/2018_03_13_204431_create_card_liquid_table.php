@@ -20,7 +20,7 @@ class CreateCardLiquidTable extends Migration
             $table->foreign('card_id')->references('id')->on('cards')->onDelete('cascade');
 
             $table->integer('liquid_id')->unsigned()->index();
-            $table->foreign('liquid_id')->references('id')->on('liquids')->onDelete('cascade');
+            $table->foreign('liquid_id')->references('id')->on('liquids')->onDelete('no action');
         });
     }
 

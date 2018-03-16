@@ -95,10 +95,14 @@ class LiquidController extends Controller
 	 */
 	public function destroy(Liquid $liquid) // liquids/{liquid}
 	{
-		$liquid->delete();
-
-		Session::flash('message', 'Запись "' . $liquid->name . '" успешно удалена');
-
-		return redirect('/liquids');
+		try {
+			$liquid->delete();
+			Session::flash('message', 'Запись "' . $liquid->name . '" успешно удалена');
+			return redirect('/liquids');
+		} catch (\Illuminate\Database\QueryException $e) {
+			return back()->withErrors([
+				"Удаление невозможно: запись \"" . $liquid->name . "\" используется в одной из карт."
+			]);
+		}
 	}
 }

@@ -20,7 +20,7 @@ class CreateCardElementTable extends Migration
             $table->foreign('card_id')->references('id')->on('cards')->onDelete('cascade');
 
             $table->integer('element_id')->unsigned()->index();
-            $table->foreign('element_id')->references('id')->on('elements')->onDelete('cascade');
+            $table->foreign('element_id')->references('id')->on('elements')->onDelete('no action');
         });
     }
 

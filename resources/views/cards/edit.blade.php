@@ -8,7 +8,7 @@
 
 			<a class="btn btn-sm btn-outline-secondary" href="{{ url('cards')}}" role="button"><i class="fa fa-btn fa-arrow-left"></i> Назад к списку</a>
 
-			<h3 class="text-center mt-3">Добавить карту</h3>
+			<h3 class="text-center mt-3">Редактировать карту</h3>
 
 			<form action="{{ url('cards/' . $card->id) }}" method="POST" class="form-horizontal">
 				{{ method_field('PATCH') }}

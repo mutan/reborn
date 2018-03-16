@@ -95,10 +95,14 @@ class ArtistController extends Controller
      */
     public function destroy(Artist $artist)
     {
-        $artist->delete();
-
-        Session::flash('message', 'Запись "' . $artist->name . '" успешно удалена');
-
-        return redirect('/artists');
+        try {
+            $artist->delete();
+            Session::flash('message', 'Запись "' . $artist->name . '" успешно удалена');
+            return redirect('/artists');
+        } catch (\Illuminate\Database\QueryException $e) {
+            return back()->withErrors([
+                "Удаление невозможно: запись \"" . $artist->name . "\" используется в одной из карт."
+            ]);
+        }
     }
 }

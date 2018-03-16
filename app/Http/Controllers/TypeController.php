@@ -95,10 +95,14 @@ class TypeController extends Controller
      */
     public function destroy(Type $type)
     {
-        $type->delete();
-
-        Session::flash('message', 'Запись "' . $type->name . '" успешно удалена');
-
-        return redirect('/types');
+        try {
+            $type->delete();
+            Session::flash('message', 'Запись "' . $type->name . '" успешно удалена');
+            return redirect('/types');
+        } catch (\Illuminate\Database\QueryException $e) {
+            return back()->withErrors([
+                "Удаление невозможно: запись \"" . $type->name . "\" используется в одной из карт."
+            ]);
+        }
     }
 }

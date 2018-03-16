@@ -20,7 +20,7 @@ class CreateCardSupertypeTable extends Migration
             $table->foreign('card_id')->references('id')->on('cards')->onDelete('cascade');
 
             $table->integer('supertype_id')->unsigned()->index();
-            $table->foreign('supertype_id')->references('id')->on('supertypes')->onDelete('cascade');
+            $table->foreign('supertype_id')->references('id')->on('supertypes')->onDelete('no action');
         });
     }
 

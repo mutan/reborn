@@ -95,10 +95,14 @@ class SupertypeController extends Controller
      */
     public function destroy(Supertype $supertype)
     {
-        $supertype->delete();
-
-        Session::flash('message', 'Запись "' . $supertype->name . '" успешно удалена');
-
-        return redirect('/supertypes');
+        try {
+            $supertype->delete();
+            Session::flash('message', 'Запись "' . $supertype->name . '" успешно удалена');
+            return redirect('/supertypes');
+        } catch (\Illuminate\Database\QueryException $e) {
+            return back()->withErrors([
+                "Удаление невозможно: запись \"" . $supertype->name . "\" используется в одной из карт."
+            ]);
+        }
     }
 }

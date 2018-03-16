@@ -17,9 +17,9 @@ class CreateCardsTable extends Migration
 			$table->increments('id');
 
 			$table->integer('rarity_id')->unsigned();
-			$table->foreign('rarity_id')->references('id')->on('rarities')->onDelete('cascade');
+			$table->foreign('rarity_id')->references('id')->on('rarities')->onDelete('NO ACTION');
 			$table->integer('edition_id')->unsigned();
-			$table->foreign('edition_id')->references('id')->on('editions')->onDelete('cascade');
+			$table->foreign('edition_id')->references('id')->on('editions')->onDelete('NO ACTION');
 
 			// liquids: many-to-many
 			// elements: many-to-many

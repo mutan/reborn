@@ -113,5 +113,33 @@ class DatabaseSeeder extends Seeder
 				],
 			]);
 
+			// seeding many-to-many pivot tables
+			App\Card::all()->each(function ($card) {
+				$card->liquids()->attach(
+					App\Liquid::all()->random(1)->pluck('id')->toArray()
+				);
+
+				$card->elements()->attach(
+					App\Element::all()->random(1)->pluck('id')->toArray()
+				);
+
+				$card->supertypes()->attach(
+					App\Supertype::all()->random(1)->pluck('id')->toArray()
+				);
+
+				$card->types()->attach(
+					App\Type::all()->random(1)->pluck('id')->toArray()
+				);
+
+				$card->subtypes()->attach(
+					App\Subtype::all()->random(rand(1, 2))->pluck('id')->toArray()
+				);
+
+				$card->artists()->attach(
+					App\Artist::all()->random(rand(1, 3))->pluck('id')->toArray()
+				);				
+			});
+
+
 		}
 	}

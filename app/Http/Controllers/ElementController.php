@@ -95,10 +95,14 @@ class ElementController extends Controller
      */
     public function destroy(Element $element)
     {
-        $element->delete();
-
-        Session::flash('message', 'Запись "' . $element->name . '" успешно удалена');
-
-        return redirect('/elements');
+        try {
+            $element->delete();
+            Session::flash('message', 'Запись "' . $element->name . '" успешно удалена');
+            return redirect('/elements');
+        } catch (\Illuminate\Database\QueryException $e) {
+            return back()->withErrors([
+                "Удаление невозможно: запись \"" . $element->name . "\" используется в одной из карт."
+            ]);
+        }
     }
 }

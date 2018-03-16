@@ -94,10 +94,14 @@ class SubtypeController extends Controller
      */
     public function destroy(Subtype $subtype)
     {
-        $subtype->delete();
-
-        Session::flash('message', 'Запись "' . $subtype->name . '" успешно удалена');
-
-        return redirect('/subtypes');
+        try {
+            $subtype->delete();
+            Session::flash('message', 'Запись "' . $subtype->name . '" успешно удалена');
+            return redirect('/subtypes');
+        } catch (\Illuminate\Database\QueryException $e) {
+            return back()->withErrors([
+                "Удаление невозможно: запись \"" . $subtype->name . "\" используется в одной из карт."
+            ]);
+        }
     }
 }

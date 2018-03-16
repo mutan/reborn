@@ -16,7 +16,7 @@
 
       <div class="row">
 
-        <div class="col-4">{{ $card->image }}
+        <div class="col-4">
           <img src="{{ $card->image }}" class="img-fluid" alt="Responsive image">
         </div>
 

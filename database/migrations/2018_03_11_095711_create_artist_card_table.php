@@ -20,7 +20,7 @@ class CreateArtistCardTable extends Migration
             $table->foreign('card_id')->references('id')->on('cards')->onDelete('cascade');
 
             $table->integer('artist_id')->unsigned()->index();
-            $table->foreign('artist_id')->references('id')->on('artists')->onDelete('cascade');
+            $table->foreign('artist_id')->references('id')->on('artists')->onDelete('no action');
         });
     }
 
