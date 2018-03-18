@@ -15,8 +15,6 @@ Auth::routes();
 
 Route::resource('cards', 'CardController');
 
-// может быть только один: edition, rarity
-// может быть несколько: liquids, elements, supertypes, types, subtypes, artists
 Route::resource('editions', 'EditionController');
 Route::resource('rarities', 'RarityController');
 

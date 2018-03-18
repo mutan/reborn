@@ -47,7 +47,7 @@
         <ul class="navbar-nav">
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown01" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Ред.
+              Редактировать
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
               <a class="dropdown-item" href="/cards">Карты</a>
@@ -62,7 +62,23 @@
               <a class="dropdown-item" href="/artists">Художники</a>
             </div>
           </li>
-        </ul>
+
+          @if (Route::has('login'))
+          @auth
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('/home') }}">Home</a>
+          </li>
+          @else
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('login') }}">Вход</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('register') }}">Регистрация</a>
+          </li>
+          @endauth
+        </div>
+        @endif
+      </ul>
 
       </div>
     </div>
