@@ -13,6 +13,16 @@ class DatabaseSeeder extends Seeder
 		{
 			// $this->call(UsersTableSeeder::class);
 
+  		// Role comes before User seeder here.
+			DB::table('roles')->insert([
+				['name' => 'player', 'description' => 'Может создавать колоды ...'],
+				['name' => 'admin', 'description' => 'Может редактировать карты ...'],
+			]);
+
+  		// User seeder will use the roles above created.
+			$this->call(UserTableSeeder::class);
+
+
 			DB::table('editions')->insert([
 				['name' => 'Кровавый туман', 'code' => 'КТМ', 'quantity' => 180],
 				['name' => 'Падение Гваингварда', 'code' => 'ПГВ', 'quantity' => 180],

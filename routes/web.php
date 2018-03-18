@@ -13,17 +13,21 @@
 
 Auth::routes();
 
+Route::group(['middleware' => 'can:access-cards'], function () {
+	Route::resource('editions', 'EditionController');
+	Route::resource('rarities', 'RarityController');
+
+	Route::resource('liquids', 'LiquidController');
+	Route::resource('elements', 'ElementController');
+	Route::resource('supertypes', 'SupertypeController');
+	Route::resource('types', 'TypeController');
+	Route::resource('subtypes', 'SubtypeController');
+	Route::resource('artists', 'ArtistController');
+});
+
 Route::resource('cards', 'CardController');
 
-Route::resource('editions', 'EditionController');
-Route::resource('rarities', 'RarityController');
 
-Route::resource('liquids', 'LiquidController');
-Route::resource('elements', 'ElementController');
-Route::resource('supertypes', 'SupertypeController');
-Route::resource('types', 'TypeController');
-Route::resource('subtypes', 'SubtypeController');
-Route::resource('artists', 'ArtistController');
 
 
 
