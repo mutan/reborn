@@ -9,6 +9,7 @@
 			<a class="btn btn-sm btn-outline-secondary" href="{{ url('artists')}}" role="button"><i class="fa fa-btn fa-arrow-left"></i> Назад к списку</a>
 
 			<h3 class="text-center mt-3">Редактировать художника</h3>
+			<hr>
 
 			<form action="{{ url('artists/' . $artist->id) }}" method="POST" class="form-horizontal">
 				{{ method_field('PATCH') }}
@@ -19,8 +20,6 @@
 					<input type="text" name="name" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" id="name" value="{{ $artist->name }}">
 					@if ($errors->has('name'))
 					<div class="invalid-feedback">{{ $errors->first('name') }}</div>
-					@else
-					<small id="nameHelpBlock" class="form-text text-muted">Максимум 50 символов.</small>
 					@endif
 				</div>	
 

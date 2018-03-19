@@ -17,7 +17,7 @@
       <div class="row">
 
         <div class="col-4">
-          <img src="{{ $card->image }}" class="img-fluid" alt="Responsive image">
+          <img src="{{ $card->image }}" class="img-fluid" alt="{{ $card->name }}">
         </div>
 
         <div class="col-4">
@@ -65,7 +65,7 @@
           <p><b>Средний ОУ:</b> {{ $card->power_medium }}</p>
           <p><b>Сильный ОУ:</b> {{ $card->power_strong }}</p>
 
-          <p><b>Текст:</b> {{ $card->text }}</p>
+          <p><b>Текст:</b> {!! $card->text !!}</p>
           <p><b>Художественный текст:</b> {{ $card->flavor }}</p>
           <p><b>Эррата:</b> {{ $card->erratas }}</p>
           <p><b>Комментарии:</b> {{ $card->comments }}</p>

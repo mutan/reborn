@@ -38,9 +38,9 @@ class User extends Authenticatable
 	public function hasRoles($roles)
 	{
 		if (is_array($roles)) {
-			return $this->checkAnyRole($roles) || abort(401, 'Доступ закрыт.');
+			return $this->checkAnyRole($roles)/* || abort(401, 'Доступ закрыт.')*/;
 		}
-		return $this->checkRole($roles) || abort(401, 'Доступ закрыт.');
+		return $this->checkRole($roles)/* || abort(401, 'Доступ закрыт.')*/;
 	}
 
 	/**

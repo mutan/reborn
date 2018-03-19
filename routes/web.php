@@ -11,12 +11,16 @@
 |
 */
 
+Route::get('/', 'MainpageController@index')->name('mainpage');
+Route::get('/home', 'HomeController@index')->name('home');
+
 Auth::routes();
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::group(['middleware' => 'can:access-cards'], function () {
+	Route::resource('cards', 'CardController');
 	Route::resource('editions', 'EditionController');
 	Route::resource('rarities', 'RarityController');
-
 	Route::resource('liquids', 'LiquidController');
 	Route::resource('elements', 'ElementController');
 	Route::resource('supertypes', 'SupertypeController');
@@ -25,14 +29,6 @@ Route::group(['middleware' => 'can:access-cards'], function () {
 	Route::resource('artists', 'ArtistController');
 });
 
-Route::resource('cards', 'CardController');
 
 
 
-
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/home', 'HomeController@index')->name('home');

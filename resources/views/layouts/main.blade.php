@@ -9,6 +9,9 @@
 
   <title>Reborn Cards Database</title>
 
+  <!-- tinyMCE Scripts -->
+  @yield('tinyMCE')
+
   <!-- Font Awesome Free CDN -->
   <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
 
@@ -44,7 +47,10 @@
           </li>
         </ul>
 
+        <!-- Правый навбар НАЧАЛО -->
         <ul class="navbar-nav">
+          @auth
+          @if ( auth()->user()->hasRoles('admin') )
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="dropdown01" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Редактировать
@@ -62,23 +68,28 @@
               <a class="dropdown-item" href="/artists">Художники</a>
             </div>
           </li>
+          @endif
+          @endauth
 
           @if (Route::has('login'))
           @auth
-          <li class="nav-item">
-            <a class="nav-link" href="{{ url('/home') }}">Home</a>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="dropdown02" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{ auth()->user()->name }}
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdown02">
+              <a class="dropdown-item" href="/home">Мои колоды</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="{{ url('/logout') }}">Выйти</a>
+            </div>
           </li>
           @else
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('login') }}">Вход</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('register') }}">Регистрация</a>
-          </li>
+          <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Вход</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Регистрация</a></li>
           @endauth
-        </div>
-        @endif
-      </ul>
+          @endif
+        </ul>
+        <!-- Правый навбар КОНЕЦ -->
 
       </div>
     </div>
@@ -106,7 +117,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <!-- Custom js -->
-    <!-- <script src="/js/app.js"></script> -->
+    <script src="/js/app.js"></script>
     <script src="/js/delete.js"></script>
     
   </body>
