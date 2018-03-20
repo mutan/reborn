@@ -94,10 +94,14 @@ class RarityController extends Controller
 	 */
 	public function destroy(Rarity $rarity)
 	{
-		$rarity->delete();
-
-		Session::flash('message', 'Запись "' . $rarity->name . '" успешно удалена');
-
-		return redirect('/rarities');
+		try {
+			$rarity->delete();
+			Session::flash('message', 'Запись "' . $rarity->name . '" успешно удалена');
+			return redirect('/raritys');
+		} catch (\Illuminate\Database\QueryException $e) {
+			return back()->withErrors([
+				"Удаление невозможно: запись \"" . $rarity->name . "\" используется в одной из карт."
+			]);
+		}
 	}
 }

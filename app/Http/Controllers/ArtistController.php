@@ -39,7 +39,7 @@ class ArtistController extends Controller
      */
     public function store(StoreArtistRequest $request)
     {
-         $artist = new Artist( $request->only(['name']) );
+        $artist = new Artist( $request->only(['name']) );
         $artist->save();
 
         Session::flash('message', 'Запись "' . $artist->name . '" успешно добавлена');

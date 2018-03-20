@@ -96,10 +96,14 @@ class EditionController extends Controller
 	 */
 	public function destroy(Edition $edition)
 	{
-		$edition->delete();
-
-		Session::flash('message', 'Запись "' . $edition->name . '" успешно удалена');
-
-		return redirect('/editions');
+		try {
+			$edition->delete();
+			Session::flash('message', 'Запись "' . $edition->name . '" успешно удалена');
+			return redirect('/editions');
+		} catch (\Illuminate\Database\QueryException $e) {
+			return back()->withErrors([
+				"Удаление невозможно: запись \"" . $edition->name . "\" используется в одной из карт."
+			]);
+		}
 	}
 }
