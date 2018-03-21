@@ -11,14 +11,9 @@ label {
 }
 
 
-
-
-
-#screenshot{
-	position:absolute;
-	border:1px solid #ccc;
-	background:#333;
-	padding:5px;
-	/* display:none; */
-	color:#fff;
+.popover {
+	max-width: 300px;
+}
+.popover-body {
+	padding: 5px;
 }

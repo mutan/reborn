@@ -4,7 +4,7 @@ use Illuminate\Database\Seeder;
 use App\User;
 use App\Role;
 
-class UserTableSeeder extends Seeder
+class UsersTableSeeder extends Seeder
 {
   /**
    * Run the database seeds.
@@ -13,6 +13,14 @@ class UserTableSeeder extends Seeder
    */
   public function run()
   {
+
+    DB::table('roles')->insert([
+      ['name' => 'player', 'description' => 'Может создавать колоды ...'],
+      ['name' => 'admin', 'description' => 'Может редактировать карты ...'],
+    ]);
+
+    DB::table('users')->truncate();
+
   	$role_player = Role::where('name', 'player')->first();
   	$role_admin  = Role::where('name', 'admin')->first();
 

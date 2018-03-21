@@ -15,30 +15,28 @@
       <table class="table table-sm">
         <thead>
           <tr>
-            <th class="text-muted">id</th>
-            <th>Изобр.</th>
+            <th>Номер</th>
             <th>Название</th>
+            <th>Типы</th>
+            <th>Стоимость</th>
+            <th>Редкость</th>
+            <th>Выпуск</th>
             <th class="text-center">Действия</th>
           </tr>
         </thead>
         <tbody>
           @foreach($cards as $card)
           <tr>
-            <td class="text-muted">{{ $card->id }}</td>
-            <td class="col-1" ><img src="/images/{{ $card->image }}" width="100px" class="img-fluid img-thumbnail" alt="{{ $card->name }}"></td>
+            <td>{{ $card->number }}</td>
             <td>
-
-
-
-     <div>
-          <a class="card_image" href="#" data-image="/images/{{ $card->image }}">{{ $card->name }}</td></a>
-      </div>
-
-  <p>In order to test screenshot preview roll over the <a href="http://www.cssglobe.com" class="screenshot" rel="/images/01-001.jpg">Css Globe</a> link.</p>
-  <p>If you want to see screenshot with caption, roll over this <a href="http://www.cssglobe.com" class="screenshot" rel="/images/{{ $card->image }}" title="Web Standards Magazine">Css Globe</a> link.</p>
-
-
-
+              <a href="/cards/{{ $card->id }}" data-toggle="card-popover"
+                data-content="<img src='/images/{{ $card->image }}' class='img-fluid' alt='{{ $card->name }}'>"
+                >{{ $card->name }}</a>
+            </td>
+            <td>{{ $card->fulltype() }}</td>
+            <td>{{ $card->cost }}</td>
+            <td>{{ $card->rarity->name }}</td>
+            <td>{{ $card->edition->name }}</td>
             <td class="text-center">
               <a class="btn btn-sm btn-outline-secondary" alt="Посмотреть" title="Посмотреть" href="{{ url('cards/' . $card->id) }}"><i class="fa fa-btn fa-eye"></i></a>
               <a class="btn btn-sm btn-outline-secondary" alt="Редактировать" title="Редактировать" href="{{ url('cards/' . $card->id . '/edit') }}"><i class="fa fa-btn fa-edit"></i></a>

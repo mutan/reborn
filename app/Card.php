@@ -5,11 +5,15 @@ namespace App;
 class Card extends Model
 {
 
-/*	public function getImage()
+	public function fulltype()
 	{
-		return $this->image;
+		$supertypes = implode(" ", $this->supertypes()->pluck('name')->toArray() );
+		$types = implode(" ", $this->types()->pluck('name')->toArray() );
+		$subtypes = implode(" ", $this->subtypes()->pluck('name')->toArray() );
+
+		return $supertypes . " " . $types . " – " . $subtypes;
 	}
-*/
+
 	public function edition()
 	{
 		return $this->belongsTo(Edition::class);
