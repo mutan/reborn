@@ -12,7 +12,7 @@
 
       @include('layouts.errors')
 
-      <table class="table table-sm">
+      <table class="table table-striped table-sm">
         <thead>
           <tr>
             <th>Номер</th>

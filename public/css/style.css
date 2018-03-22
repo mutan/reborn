@@ -10,10 +10,30 @@ label {
 	font-weight: 700;
 }
 
-
+/* Вывод изображения карты при наведении на название-ссылку карты. */
 .popover {
 	max-width: 300px;
 }
 .popover-body {
 	padding: 5px;
+}
+
+
+/* Карточки колод. */
+.card {
+	margin-bottom: 1rem;
+}
+
+.card-body {
+	padding: 0.5rem;
+}
+.card-body h5 {
+	margin-bottom: 0.2rem;
+}
+.card-body p {
+	/*font-size: 0.9rem;
+	line-height: 1.4;*/
+}
+.card-body table {
+	margin-bottom: 0rem;
 }
