@@ -6,7 +6,7 @@
 		menubar : false,
 		branding: false,
 		plugins : 'advlist autolink link code image lists charmap print preview',
-		toolbar: "undo redo | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist | adddate tap insttap lives movement flying power counter | code removeformat",
+		toolbar: "undo redo | bold italic underline strikethrough | alignleft aligncenter alignright alignjustify | bullist numlist | adddate | tap insttap counter | lives movement flying power | code removeformat",
 
 		setup : function(ed) {
 

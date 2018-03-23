@@ -21,6 +21,7 @@ label {
 
 /* Карточки колод. */
 .card {
+	min-width: 18rem;
 	margin-bottom: 1rem;
 }
 
@@ -29,10 +30,6 @@ label {
 }
 .card-body h5 {
 	margin-bottom: 0.2rem;
-}
-.card-body p {
-	/*font-size: 0.9rem;
-	line-height: 1.4;*/
 }
 .card-body table {
 	margin-bottom: 0rem;

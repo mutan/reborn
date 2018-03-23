@@ -1,2 +1,35 @@
 @import "vars";
 @import "~bootstrap/scss/bootstrap";
+
+body {
+	padding-bottom: 20px;
+}
+
+.navbar {
+	margin-bottom: 20px;
+}
+
+label {
+	font-weight: 700;
+}
+
+/* Вывод изображения карты при наведении на название-ссылку карты. */
+.popover {
+	max-width: 300px;
+}
+.popover-body {
+	padding: 0.2rem;
+}
+
+/* Карточки колод. */
+.archetype {
+	margin-left: -0.5rem;
+	margin-right: -0.5rem;
+}
+
+/* Таблица с картами. */
+/* .table-xs {
+	th, td {
+		padding: 0.3rem;
+	}
+} */

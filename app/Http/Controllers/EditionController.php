@@ -38,7 +38,7 @@ class EditionController extends Controller
 	 */
 	public function store(StoreEditionRequest $request)
 	{
-		$edition = new Edition( $request->only(['name', 'code', 'quantity']) );
+		$edition = new Edition( $request->only(['name', 'code', 'quantity', 'description']) );
 		$edition->save();
 
 		Session::flash('message', 'Запись "' . $edition->name . '" успешно добавлена');
@@ -81,6 +81,7 @@ class EditionController extends Controller
 		$edition->name = $request->name;
 		$edition->code = $request->code;
 		$edition->quantity = $request->quantity;
+		$edition->description = $request->description;
 		$edition->save();
 
 		Session::flash('message', 'Запись "' . $edition->name . '" успешно обновлена');

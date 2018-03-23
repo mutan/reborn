@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEditionsTable extends Migration
+class CreateDecksTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateEditionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('editions', function (Blueprint $table) {
+        Schema::create('decks', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 50)->unique();
-            $table->string('code', 5)->unique();
-            $table->integer('quantity')->unsigned();
-            $table->text('description');
+            $table->string('name', 50);
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateEditionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('editions');
+        Schema::dropIfExists('decks');
     }
 }

@@ -22,7 +22,8 @@ class EditionsTableSeeder extends Seeder
 				'id' => $obj->id,
 				'name' => $obj->name,
 				'code' => $obj->code,
-				'quantity' => $obj->quantity
+				'quantity' => $obj->quantity,
+				'description' => $obj->description
 			]);
 		}
 	}

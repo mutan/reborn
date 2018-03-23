@@ -1,5 +1,9 @@
 @extends('layouts.main')
 
+@section('tinyMCE')
+@include('layouts.tinymce')
+@endsection
+
 @section('content')
 
 <div class="container">
@@ -45,6 +49,16 @@
 						@endif
 					</div>
 
+				</div>
+
+				<div class="form-group">
+					<label for="description">Описание</label>
+					<textarea type="description" name="description" class="form-control {{ $errors->has('description') ? ' is-invalid' : '' }}" id="description" rows="3">{{ $edition->description }}</textarea>
+					@if ($errors->has('description'))
+					<div class="invalid-feedback">{{ $errors->first('description') }}</div>
+					@else
+					<small id="descriptionHelpBlock" class="form-text text-muted">Одинарный перенос – Shift+Enter</small>
+					@endif
 				</div>
 
 				<div class="form-group">
