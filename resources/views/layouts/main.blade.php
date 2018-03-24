@@ -12,11 +12,8 @@
   <!-- tinyMCE Scripts -->
   @yield('tinyMCE')
 
-  <!-- Font Awesome Free CDN -->
-  <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
-
   <!-- Custom styles for this template -->
-  <!-- <link href="/css/style.css" rel="stylesheet"> -->
+  <link href="/css/app.min.css" rel="stylesheet">
 
 </head>
 
@@ -31,8 +28,13 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-        <form class="form-inline my-2 my-md-0">
-          <input class="form-control" type="text" placeholder="Поиск карт" aria-label="Search">
+        <form action="{{ url('search') }}" method="GET" class="form-inline my-2 my-md-0">
+          <div class="input-group">
+            <input id="search" name="name" class="form-control" type="text" placeholder="Поиск карт" aria-label="Search">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="submit"><i class="fa fa-btn fa-search"></i></button>
+            </div>
+          </div>
         </form>
 
         <ul class="navbar-nav mr-auto">
@@ -95,19 +97,13 @@
   <div class="container">
     <main role="main">
 
-<!--       <span class="d-block d-sm-none">xs</span>
-<span class="d-none d-sm-block d-md-none">sm</span>
-<span class="d-none d-md-block d-lg-none">md</span>
-<span class="d-none d-lg-block d-xl-none">lg</span>
-<span class="d-none d-xl-block">xl</span> -->
-      
       @include('layouts.messages')
       @yield('content')
     </main>
   </div>
 
-    <!-- webpack -->
-    <script src="/js/app.js"></script>
-    
-  </body>
-  </html>
+  <!-- webpack -->
+  <script src="/js/app.min.js"></script>
+
+</body>
+</html>

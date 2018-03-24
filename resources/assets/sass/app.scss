@@ -1,5 +1,21 @@
-@import "vars";
-@import "~bootstrap/scss/bootstrap";
+/* Custom vars */
+
+/* $body-bg: #000;
+$body-color: #111; */
+$fa-font-path: "../fonts";
+
+@import "node_modules/bootstrap/scss/bootstrap";
+@import "node_modules/font-awesome/scss/font-awesome";
+@import "node_modules/jquery-ui-dist/jquery-ui.min";
+
+
+/* Расширенный поиск */
+#extended-search-header {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+
 
 body {
 	padding-bottom: 20px;
