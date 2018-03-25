@@ -1,14 +1,48 @@
 
+/* Clear form button */
+function clearForm(form) {
 
+  var elements = form.elements; 
+
+  form.reset();
+
+  for(i=0; i<elements.length; i++) {
+
+    field_type = elements[i].type.toLowerCase();
+
+    //alert(field_type);
+
+    switch(field_type) {
+      case "text": 
+      case "password": 
+      case "textarea":
+      case "hidden":
+        elements[i].value = ""; 
+        break;
+      case "radio":
+      case "checkbox":
+        if (elements[i].checked) {
+        elements[i].checked = false; 
+        }
+        break;
+      case "select-one":
+      case "select-multiple":
+        elements[i].selectedIndex = -1;
+        break;
+      default: 
+        break;
+    }
+  }
+}
 
 /* Расширенный поиск */
-$('#extended-search').hide();
+// $('#extended-search').hide();
 
 $('#extended-search-header').click(function(){
   $('#extended-search').slideToggle(250);
 });
 
-/*  */
+/* Disable form after submit press */
 $(function(){
   $('form').submit(function(){
     $('select').each(function(){
@@ -24,19 +58,16 @@ $(function(){
   });
 });
 
-
-
-
 /* Автодополнение поля поиска */
 /* http://api.jqueryui.com/autocomplete/ */
 
 $(function() {
-  var availableTags = [ "ActionScript", "AppleScript", "Asp", "BASIC", "C" ];
-  $("#search").autocomplete({
+  $("#search-field").autocomplete({
     minLength: 2,
     source: '/search/autocomplete',
     select: function(event, ui) {
-      $('#search').val(ui.item.value); // ???
+      $('#search-field').val(ui.item.value);
+      $('#search-form').submit();
     }
   })
 });
