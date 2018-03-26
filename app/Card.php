@@ -7,11 +7,16 @@ class Card extends Model
 
 	public function fulltype()
 	{
-		$supertypes = implode(" ", $this->supertypes()->pluck('name')->toArray() );
-		$types = implode(" ", $this->types()->pluck('name')->toArray() );
-		$subtypes = implode(" ", $this->subtypes()->pluck('name')->toArray() );
+		$supertypes = implode(" ", $this->supertypes->pluck('name')->toArray() );
+		$types = implode(" ", $this->types->pluck('name')->toArray() );
+		$subtypes = implode(" ", $this->subtypes->pluck('name')->toArray() );
 
 		return $supertypes . " " . $types . " – " . $subtypes;
+	}
+
+	public function imagelink()
+	{
+		return "/images/" . $this->image;
 	}
 
 	public function edition()

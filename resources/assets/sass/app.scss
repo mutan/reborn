@@ -17,6 +17,10 @@ $fa-font-path: "../fonts";
 
 
 
+.pagination {
+   justify-content: center;
+}
+
 body {
 	padding-bottom: 20px;
 }
@@ -27,6 +31,8 @@ body {
 
 label {
 	font-weight: 400;
+	font-size: 0.9rem;
+	margin-bottom: 0.2rem;
 }
 
 /* Вывод изображения карты при наведении на название-ссылку карты. */

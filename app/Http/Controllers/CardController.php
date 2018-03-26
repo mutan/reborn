@@ -23,7 +23,7 @@ class CardController extends Controller
      */
     public function index()
     {
-        $cards = Card::all();
+        $cards = Card::with(['edition', 'rarity', 'supertypes', 'types', 'subtypes'])->get();
 
         return view('cards.index', compact('cards'));
     }
@@ -55,8 +55,6 @@ class CardController extends Controller
      */
     public function store(StoreCardRequest $request)
     {
-        //dd($request->all());
-
         $card  = new Card( $request->only([
             'name', 'image', 'edition_id', 'rarity_id', 'cost', 'number', 'lives', 'movement', 'power_weak', 'power_medium', 'power_strong', 'text', 'flavor', 'erratas', 'comments'
         ]) );
@@ -81,7 +79,7 @@ class CardController extends Controller
      */
     public function show(Card $card)
     {
-        $card->image = "/images/" . $card->image;
+        $card->load('edition', 'rarity', 'liquids', 'elements', 'supertypes', 'types', 'subtypes', 'artists');
 
         return view('cards.show', compact('card'));
     }

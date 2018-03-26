@@ -17,6 +17,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/search/autocomplete', 'SearchController@autocomplete');
 Route::get('/search', 'SearchController@index');
+Route::get('/search/advanced', 'SearchController@advanced');
 
 Auth::routes();
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');

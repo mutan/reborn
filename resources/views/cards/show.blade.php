@@ -16,11 +16,11 @@
 
       <div class="row">
 
-        <div class="col-4">
-          <img src="{{ $card->image }}" class="img-fluid" alt="{{ $card->name }}">
+        <div class="col-md-4">
+          <img src="{{ $card->imagelink() }}" class="img-fluid" alt="{{ $card->name }}">
         </div>
 
-        <div class="col-4">
+        <div class="col-md-4">
           <p><b>Название:</b> {{ $card->name }}</p>
           <p><b>Выпуск:</b> {{ $card->edition->name }}</p>
           <p><b>Редкость:</b> {{ $card->rarity->name }}</p>
@@ -57,7 +57,7 @@
           <p><b>Стоимость:</b> {{ $card->cost }}</p>
         </div>
 
-        <div class="col-4">
+        <div class="col-md-4">
           <p><b>Номер:</b> {{ $card->number }}</p>
           <p><b>Жизни:</b> {{ $card->lives }}</p>
           <p><b>Движение:</b> {{ $card->movement }}</p>
@@ -72,9 +72,6 @@
         </div>
 
       </div>
-
-
-
 
     </div>
   </div>

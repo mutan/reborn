@@ -71,7 +71,7 @@
 
 				<div class="col-sm-4 col-md-3">
 					<div class="card archetype mb-3">
-						<img class="card-img-top" src="/images/01-001-crop.jpg">
+						<img class="card-img-top" src="/images/01-003-crop.jpg">
 						<div class="card-body p-2">
 							<a href=""><h5 class="card-title mb-1">Архетип</h5></a>
 							<img src="/icons/lives-16x16.png" class="img-fluid">
@@ -97,7 +97,7 @@
 
 				<div class="col-sm-4 col-md-3">
 					<div class="card archetype mb-3">
-						<img class="card-img-top" src="/images/01-001-crop.jpg">
+						<img class="card-img-top" src="/images/01-004-crop.jpg">
 						<div class="card-body p-2">
 							<a href=""><h5 class="card-title mb-1">Архетип</h5></a>
 							<img src="/icons/lives-16x16.png" class="img-fluid">
@@ -123,7 +123,7 @@
 
 				<div class="col-sm-4 col-md-3">
 					<div class="card archetype mb-3">
-						<img class="card-img-top" src="/images/01-001-crop.jpg">
+						<img class="card-img-top" src="/images/01-005-crop.jpg">
 						<div class="card-body p-2">
 							<a href=""><h5 class="card-title mb-1">Архетип</h5></a>
 							<img src="/icons/lives-16x16.png" class="img-fluid">
