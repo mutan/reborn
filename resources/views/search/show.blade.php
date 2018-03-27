@@ -11,10 +11,10 @@
 
 			@if( ! isset($cards) || 0 == count($cards) )
 
-				<p class="text-center">Ничего не найдено.</p>
+				<p class="text-center">Ничего не найдено. Уточните условия поиска.</p>
 
 			@else
-			
+
 				<p class="text-center">Найдено {{ $cards->total() }} карт.</p>
 
 				@includeIf('search._' .  $view)

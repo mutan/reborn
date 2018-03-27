@@ -20,7 +20,17 @@
 					@if ($errors->has('name'))
 					<div class="invalid-feedback">{{ $errors->first('name') }}</div>
 					@endif
-				</div>	
+				</div>
+
+				<div class="form-group">
+					<label for="image">Изображение</label>
+					<input type="text" name="image" class="form-control {{ $errors->has('image') ? ' is-invalid' : '' }}" id="image" value="{{ old('image') }}">
+					@if ($errors->has('image'))
+					<div class="invalid-feedback">{{ $errors->first('image') }}</div>
+					@else
+					<small id="imageHelpBlock" class="form-text text-muted">XX-NNN.jpg, где XX номер выпуска, NNN номер карты</small>
+					@endif
+				</div>
 
 				<div class="form-group">
 					<button type="submit" class="btn btn-block btn-outline-secondary">

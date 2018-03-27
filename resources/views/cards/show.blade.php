@@ -17,7 +17,7 @@
       <div class="row">
 
         <div class="col-md-4">
-          <img src="{{ $card->imagelink() }}" class="img-fluid" alt="{{ $card->name }}">
+          <img src="{{ $card->imagePath() }}" class="img-fluid" alt="{{ $card->name }}">
         </div>
 
         <div class="col-md-4">

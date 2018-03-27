@@ -4,8 +4,7 @@ namespace App;
 
 class Card extends Model
 {
-
-	public function fulltype()
+	public function fullType()
 	{
 		$supertypes = implode(" ", $this->supertypes->pluck('name')->toArray() );
 		$types = implode(" ", $this->types->pluck('name')->toArray() );
@@ -14,7 +13,7 @@ class Card extends Model
 		return $supertypes . " " . $types . " – " . $subtypes;
 	}
 
-	public function imagelink()
+	public function imagePath()
 	{
 		return "/images/" . $this->image;
 	}

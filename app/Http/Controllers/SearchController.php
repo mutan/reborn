@@ -30,7 +30,7 @@ class SearchController extends Controller
 		$term = $request->input('term');
 
 		$cards = Card::where('name', 'LIKE', '%'.$term.'%')
-			->take(5)->pluck('name')->toArray();
+			->take(5)->orderBy('name')->pluck('name')->toArray();
 
 		return response()->json($cards);
 	}

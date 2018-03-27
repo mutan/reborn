@@ -17,6 +17,7 @@
           <tr>
             <th class="text-muted">id</th>
             <th>Название</th>
+            <th>Изображение</th>
             <th class="text-center">Действия</th>
           </tr>
         </thead>
@@ -25,6 +26,7 @@
           <tr>
             <td class="text-muted">{{ $element->id }}</td>
             <td>{{ $element->name }}</td>
+            <td>{{ $element->image }}</td>
             <td class="text-center">
               <a class="btn btn-sm btn-outline-secondary" alt="Редактировать" title="Редактировать" href="{{ url('elements/' . $element->id . '/edit') }}"><i class="fa fa-btn fa-edit"></i></a>
               <a class="btn btn-sm btn-outline-secondary" alt="Удалить" title="Удалить" href="{{ url('elements/' . $element->id) }}" data-method="delete" data-token="{{csrf_token()}}" data-confirm="Действительно удалить?"><i class="fa fa-btn fa-trash"></i></a>

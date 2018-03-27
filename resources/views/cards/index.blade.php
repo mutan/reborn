@@ -33,7 +33,7 @@
                 data-content="<img src='/images/{{ $card->image }}' class='img-fluid' alt='{{ $card->name }}'>"
                 >{{ $card->name }}</a>
             </td>
-            <td>{{ $card->fulltype() }}</td>
+            <td>{{ $card->fullType() }}</td>
             <td>{{ $card->cost }}</td>
             <td>{{ $card->rarity->name }}</td>
             <td>{{ $card->edition->name }}</td>

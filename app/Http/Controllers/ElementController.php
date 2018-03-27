@@ -39,7 +39,7 @@ class ElementController extends Controller
      */
     public function store(StoreElementRequest $request)
     {
-        $element = new Element( $request->only(['name']) );
+        $element = new Element( $request->only(['name', 'image']) );
         $element->save();
 
         Session::flash('message', 'Запись "' . $element->name . '" успешно добавлена');
@@ -80,6 +80,7 @@ class ElementController extends Controller
     public function update(StoreElementRequest $request, Element $element)
     {
         $element->name = $request->name;
+        $element->image = $request->image;
         $element->save();
 
         Session::flash('message', 'Запись "' . $element->name . '" успешно обновлена');

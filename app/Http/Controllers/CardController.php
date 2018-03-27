@@ -23,7 +23,9 @@ class CardController extends Controller
      */
     public function index()
     {
-        $cards = Card::with(['edition', 'rarity', 'supertypes', 'types', 'subtypes'])->get();
+        $cards = Card::with(['edition', 'rarity', 'supertypes', 'types', 'subtypes'])
+            ->orderBy('name')
+            ->get();
 
         return view('cards.index', compact('cards'));
     }
@@ -37,12 +39,12 @@ class CardController extends Controller
     {
         $editions = Edition::all();
         $rarities = Rarity::all();
-        $liquids = Liquid::all();
-        $elements = Element::all();
-        $supertypes = Supertype::all();
-        $types = Type::all();
-        $subtypes = Subtype::all();
-        $artists = Artist::all();
+        $liquids = Liquid::orderBy('name')->get();
+        $elements = Element::orderBy('name')->get();
+        $supertypes = Supertype::orderBy('name')->get();
+        $types = Type::orderBy('name')->get();
+        $subtypes = Subtype::orderBy('name')->get();
+        $artists = Artist::orderBy('name')->get();
 
         return view('cards.create', compact('editions', 'rarities', 'liquids', 'elements', 'supertypes', 'types', 'subtypes', 'artists'));
     }
@@ -96,12 +98,12 @@ class CardController extends Controller
 
         $editions = Edition::all();
         $rarities = Rarity::all();
-        $liquids = Liquid::all();
-        $elements = Element::all();
-        $supertypes = Supertype::all();
-        $types = Type::all();
-        $subtypes = Subtype::all();
-        $artists = Artist::all();
+        $liquids = Liquid::orderBy('name')->get();
+        $elements = Element::orderBy('name')->get();
+        $supertypes = Supertype::orderBy('name')->get();
+        $types = Type::orderBy('name')->get();
+        $subtypes = Subtype::orderBy('name')->get();
+        $artists = Artist::orderBy('name')->get();
 
         return view('cards.edit', compact('card', 'editions', 'rarities', 'liquids', 'elements', 'supertypes', 'types', 'subtypes', 'artists'));
     }
@@ -115,6 +117,9 @@ class CardController extends Controller
      */
     public function update(StoreCardRequest $request, Card $card)
     {
+        //dd( $request->input('lives', '') );
+
+
         $card->update($request->only([
             'name', 'image', 'edition_id', 'rarity_id', 'cost', 'number', 'lives', 'movement', 'power_weak', 'power_medium', 'power_strong', 'text', 'flavor', 'erratas', 'comments'
         ]));
