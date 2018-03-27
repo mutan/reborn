@@ -4,17 +4,17 @@
 
 <div class="container"><!-- container START -->
 
-
-	@include('layouts.errors')
-
-
 	<!-- Расширенный поиск НАЧАЛО -->
-	<div class="row border border-secondary rounded">
+	<div class="row">
 		<div class="col-md-12 ">
 
-			<h5 id="extended-search-header" class="text-center">Расширенный поиск</h5>
+			<h3 class="text-center mt-2">Расширенный поиск</h3>
 
-			<form action="{{ url('search/advanced') }}" method="GET">
+			<p class="">Выбираются карты, удовлетворяющие каждому выбранному условию. Например, если отметить супертип «Уникальный» и тип «Артефакт», будут найдены все карты, одновременно являющиеся уникальными и артефактами.</p>
+
+			<hr>
+
+			<form action="{{ url('search/show') }}" method="GET">
 
 				<div class="row" id="extended-search">
 
@@ -59,7 +59,7 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text">Стоимость</span>
 							</div>
-							<select name="cost-condition" class="form-control" id="cost-condition">
+							<select name="cost-op" class="form-control" id="cost-op">
 								<option> = </option>
 								<option> > </option>
 								<option> >= </option>
@@ -73,7 +73,7 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text">Жизни</span>
 							</div>
-							<select name="lives-condition" class="form-control" id="lives-condition">
+							<select name="lives-op" class="form-control" id="lives-op">
 								<option selected> = </option>
 								<option value=""> > </option>
 								<option value=""> >= </option>
@@ -87,7 +87,7 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text">Движение</span>
 							</div>
-							<select name="movement-condition" class="form-control" id="movement-condition">
+							<select name="movement-op" class="form-control" id="movement-op">
 								<option selected> = </option>
 								<option value=""> > </option>
 								<option value=""> >= </option>
@@ -101,7 +101,7 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text">Слабый ОУ</span>
 							</div>
-							<select name="power-weak-condition" class="form-control" id="power-weak-condition">
+							<select name="power-weak-op" class="form-control" id="power-weak-op">
 								<option selected> = </option>
 								<option value=""> > </option>
 								<option value=""> >= </option>
@@ -115,7 +115,7 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text">Средний ОУ</span>
 							</div>
-							<select name="power-medium-condition" class="form-control" id="power-medium-condition">
+							<select name="power-medium-op" class="form-control" id="power-medium-op">
 								<option selected> = </option>
 								<option value=""> > </option>
 								<option value=""> >= </option>
@@ -129,7 +129,7 @@
 							<div class="input-group-prepend">
 								<span class="input-group-text">Сильный ОУ</span>
 							</div>
-							<select name="power-strong-condition" class="form-control" id="power-strong-condition">
+							<select name="power-strong-op" class="form-control" id="power-strong-op">
 								<option selected> = </option>
 								<option value=""> > </option>
 								<option value=""> >= </option>
@@ -144,9 +144,14 @@
 					<div class="col-md-4">
 
 						<div class="form-group">
+							<label for="text">Текст карты</label>
+							<input type="text" name="text" class="form-control form-control-sm" id="search" value="{{ old('text') }}">
+						</div>
+
+						<div class="form-group">
 							<label for="supertypes">Супертипы</label>
 							<select multiple name="supertypes[]" class="form-control form-control-sm" id="supertypes" size="3">
-								<option value="0" @if( in_array("0", (old('supertypes')) ? old('supertypes') : []) ) selected="selected" @endif>Нет</option>
+								<option value="0" @if( in_array("0", (old('supertypes')) ? old('supertypes') : []) ) selected="selected" @endif>(без супертипа)</option>
 								@foreach($supertypes as $supertype)
 								<option value="{{ $supertype->id }}" @if( in_array($supertype->id, (old('supertypes')) ? old('supertypes') : []) ) selected="selected" @endif>{{ $supertype->name }}</option>
 								@endforeach
@@ -166,7 +171,7 @@
 
 						<div class="form-group">
 							<label for="subtypes">Подтипы</label>
-							<select multiple name="subtypes[]" class="form-control form-control-sm" id="subtypes" size="4">
+							<select multiple name="subtypes[]" class="form-control form-control-sm" id="subtypes" size="6">
 								@foreach($subtypes as $subtype)
 								<option value="{{ $subtype->id }}" @if( in_array($subtype->id, (old('subtypes')) ? old('subtypes') : []) ) selected="selected" @endif>{{ $subtype->name }}</option>
 								@endforeach
@@ -179,8 +184,13 @@
 					<div class="col-md-4">
 
 						<div class="form-group">
+							<label for="flavor">Художественный текст</label>
+							<input type="text" name="flavor" class="form-control form-control-sm" id="search" value="{{ old('flavor') }}">
+						</div>
+
+						<div class="form-group">
 							<label for="elements">Стихии</label>
-							<select multiple name="elements[]" class="form-control form-control-sm" id="element" size="3">
+							<select multiple name="elements[]" class="form-control form-control-sm" id="element" size="4">
 								@foreach($elements as $element)
 								<option value="{{ $element->id }}" @if( in_array($element->id, (old('elements')) ? old('elements') : []) ) selected="selected" @endif>{{ $element->name }}</option>
 								@endforeach
@@ -190,7 +200,7 @@
 
 						<div class="form-group">
 							<label for="liquids">Жидкости</label>
-							<select multiple name="liquids[]" class="form-control form-control-sm" id="liquids" size="3">
+							<select multiple name="liquids[]" class="form-control form-control-sm" id="liquids" size="4">
 								@foreach($liquids as $liquid)
 								<option value="{{ $liquid->id }}" @if( in_array($liquid->id, (old('liquids')) ? old('liquids') : []) ) selected="selected" @endif>{{ $liquid->name }}</option>
 								@endforeach
@@ -208,25 +218,29 @@
 							<small class="form-text text-muted">Можно выбрать несколько с зажатым Ctrl</small>
 						</div>
 
-						<div class="form-group">
-							<label for="text">Текст карты</label>
-							<input type="text" name="text" class="form-control form-control-sm" id="search" value="{{ old('text') }}">
-						</div>
+					</div>
+
+					<div class="offset-md-4 col-md-4 text-center mb-3">
 
 						<div class="form-group">
-							<label for="flavor">Художественный текст</label>
-							<input type="text" name="flavor" class="form-control form-control-sm" id="search" value="{{ old('flavor') }}">
+							<label for="view">Показать результат в виде</label>
+							<select name="view" class="form-control form-control-sm" id="view" required>
+								<option value="image" selected>Иллюстрации</option>
+								<option value="table">Таблица</option>
+							</select>
 						</div>
 
 					</div>
 
 					<div class="col-md-12 text-center mb-3">
+
 						<button type="submit" class="btn btn-sm btn-outline-secondary">
 							<i class="fa fa-btn fa-search"></i> Искать
 						</button>
 						<button class="btn btn-sm btn-outline-secondary" type="button" onclick="clearForm(this.form);">
 							<i class="fa fa-btn fa-refresh"></i> Очистить
 						</button>
+
 					</div>
 
 				</div>
@@ -236,46 +250,6 @@
 		</div>
 	</div>
 	<!-- Расширенный поиск КОНЕЦ -->
-
-	<div class="row justify-content-center">
-		<div class="col-12 justify-content-center">
-
-			<h3 class="text-center mt-3">Результаты поиска</h3>
-			<hr>
-			@if(! isset($cards) )      
-			<p>Ничего не найдено.</p>
-			@else
-			<table class="table table-striped table-sm">
-				<thead>
-					<tr>
-						<th>Номер</th>
-						<th>Название</th>
-						<th>Типы</th>
-						<th>Стоимость</th>
-						<th>Редкость</th>
-						<th>Выпуск</th>
-					</tr>
-				</thead>
-				<tbody>
-					@foreach($cards as $card)
-					<tr>
-						<td>{{ $card->number }}</td>
-						<td>
-							<a href="/cards/{{ $card->id }}" data-toggle="card-popover"	data-content="<img src='/images/{{ $card->image }}' class='img-fluid' alt='{{ $card->name }}'>">{{ $card->name }}</a>
-						</td>
-						<td>{{ $card->fulltype() }}</td>
-						<td>{{ $card->cost }}</td>
-						<td>{{ $card->rarity->name }}</td>
-						<td>{{ $card->edition->name }}</td>
-					</tr>
-					@endforeach
-				</tbody>
-			</table>
-			@endif
-
-		</div>
-	</div>
-
 
 </div><!-- container END -->
 

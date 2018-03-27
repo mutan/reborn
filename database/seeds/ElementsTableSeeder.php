@@ -20,7 +20,8 @@ class ElementsTableSeeder extends Seeder
 		foreach ($data as $obj) {
 			Element::create([
 				'id' => $obj->id,
-				'name' => $obj->name
+				'name' => $obj->name,
+				'image' => $obj->image
 			]);
 		}
 	}

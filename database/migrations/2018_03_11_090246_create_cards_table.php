@@ -33,19 +33,19 @@ class CreateCardsTable extends Migration
 			$table->integer('number')->unsigned();
 
 			$table->integer('lives')->nullable();
-      $table->integer('movement')->nullable(); // 0+ у существ, NULL у артефактов, -1 у летающих
-      $table->integer('power_weak')->nullable(); // [0-20], NULL
-      $table->integer('power_medium')->nullable(); // [0-20], NULL
-      $table->integer('power_strong')->nullable(); // [0-20], NULL
+			$table->integer('movement')->nullable(); // 0+ у существ, NULL у артефактов, -1 у летающих
+			$table->integer('power_weak')->nullable(); // [0-20], NULL
+			$table->integer('power_medium')->nullable(); // [0-20], NULL
+			$table->integer('power_strong')->nullable(); // [0-20], NULL
 
-      $table->string('image', 255)->nullable();
+			$table->string('image', 255)->nullable();
 
-      $table->text('text')->nullable();
-      $table->text('flavor')->nullable();
-      $table->text('erratas')->nullable();
-      $table->text('comments')->nullable();
+			$table->text('text')->nullable();
+			$table->text('flavor')->nullable();
+			$table->text('erratas')->nullable();
+			$table->text('comments')->nullable();
 
-      $table->timestamps();
+			$table->timestamps();
     });
 	}
 

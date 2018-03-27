@@ -14,10 +14,10 @@
 Route::get('/', 'MainpageController@index')->name('mainpage');
 Route::get('/home', 'HomeController@index')->name('home');
 
-
 Route::get('/search/autocomplete', 'SearchController@autocomplete');
-Route::get('/search', 'SearchController@index');
+Route::get('/search', 'SearchController@simple');
 Route::get('/search/advanced', 'SearchController@advanced');
+Route::get('/search/show', 'SearchController@show');
 
 Auth::routes();
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');

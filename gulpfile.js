@@ -1,17 +1,17 @@
-var gulp 					= require('gulp'),
-		sass 					= require('gulp-sass'),
+var gulp 				= require('gulp'),
+		sass 			= require('gulp-sass'),
 		browsersync 	= require('browser-sync').create(),
-		concat 				= require('gulp-concat'),
-		uglify 				= require('gulp-uglify'),
-		cleancss 			= require('gulp-clean-css'),
-		rename 				= require('gulp-rename'),
+		concat 			= require('gulp-concat'),
+		uglify 			= require('gulp-uglify'),
+		cleancss 		= require('gulp-clean-css'),
+		rename 			= require('gulp-rename'),
 		autoprefixer 	= require('gulp-autoprefixer'),
-		notify 				= require("gulp-notify"),
-		rsync 				= require('gulp-rsync'),
-		imagemin 			= require('gulp-imagemin'),
-		cache 				= require('gulp-cache'),
-		del 					= require('del'),
-		ftp 					= require('vinyl-ftp');
+		notify 			= require("gulp-notify"),
+		rsync 			= require('gulp-rsync'),
+		imagemin 		= require('gulp-imagemin'),
+		cache 			= require('gulp-cache'),
+		del 			= require('del'),
+		ftp 			= require('vinyl-ftp');
 
 gulp.task('default', ['watch']);
 

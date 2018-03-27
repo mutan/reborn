@@ -1,7 +1,4 @@
 /* Custom vars */
-
-/* $body-bg: #000;
-$body-color: #111; */
 $fa-font-path: "../fonts";
 
 @import "node_modules/bootstrap/scss/bootstrap";
@@ -10,16 +7,11 @@ $fa-font-path: "../fonts";
 
 
 /* Расширенный поиск */
-#extended-search-header {
+/* #extended-search-header {
 	cursor: pointer;
 	text-decoration: underline;
-}
+} */
 
-
-
-.pagination {
-   justify-content: center;
-}
 
 body {
 	padding-bottom: 20px;
@@ -47,6 +39,11 @@ label {
 .archetype {
 	margin-left: -0.5rem;
 	margin-right: -0.5rem;
+}
+
+/* Центри */
+.pagination {
+   justify-content: center;
 }
 
 /* Таблица с картами. */
