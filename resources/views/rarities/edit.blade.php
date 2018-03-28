@@ -21,7 +21,15 @@
 					@if ($errors->has('name'))
 					<div class="invalid-feedback">{{ $errors->first('name') }}</div>
 					@endif
-				</div>	
+				</div>
+
+				<div class="form-group">
+					<label for="image">Изображение</label>
+					<input type="text" name="image" class="form-control {{ $errors->has('image') ? ' is-invalid' : '' }}" id="image" value="{{ $rarity->image }}">
+					@if ($errors->has('image'))
+					<div class="invalid-feedback">{{ $errors->first('image') }}</div>
+					@endif
+				</div>
 
 				<div class="form-group">
 					<button type="submit" class="btn btn-block btn-outline-secondary">

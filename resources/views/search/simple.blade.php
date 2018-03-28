@@ -16,7 +16,7 @@
 
 			@else
 
-				<p class="text-center">Найдено {{ $cards->total() }} карт.</p>
+				<p class="text-center">Найдено карт: {{ $cards->total() }}</p>
 				<div class="row">
 					@foreach($cards as $card)
 					<div class="col-sm-6 col-md-4 col-lg-3">

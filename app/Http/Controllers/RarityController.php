@@ -38,7 +38,7 @@ class RarityController extends Controller
 	 */
 	public function store(StoreRarityRequest $request)
 	{
-		$rarity = new Rarity( $request->only(['name']) );
+		$rarity = new Rarity( $request->only(['name', 'image']) );
 		$rarity->save();
 
 		Session::flash('message', 'Запись "' . $rarity->name . '" успешно добавлена');
@@ -79,6 +79,7 @@ class RarityController extends Controller
 	public function update(StoreRarityRequest $request, Rarity $rarity)
 	{
 		$rarity->name = $request->name;
+		$rarity->image = $request->image;
 		$rarity->save();
 
 		Session::flash('message', 'Запись "' . $rarity->name . '" успешно обновлена');
@@ -97,7 +98,7 @@ class RarityController extends Controller
 		try {
 			$rarity->delete();
 			Session::flash('message', 'Запись "' . $rarity->name . '" успешно удалена');
-			return redirect('/raritys');
+			return redirect('/rarities');
 		} catch (\Illuminate\Database\QueryException $e) {
 			return back()->withErrors([
 				"Удаление невозможно: запись \"" . $rarity->name . "\" используется в одной из карт."

@@ -28,8 +28,6 @@
 					<input type="text" name="image" class="form-control {{ $errors->has('image') ? ' is-invalid' : '' }}" id="image" value="{{ $element->image }}">
 					@if ($errors->has('image'))
 					<div class="invalid-feedback">{{ $errors->first('image') }}</div>
-					@else
-					<small id="imageHelpBlock" class="form-text text-muted">XX-NNN.jpg, где XX номер выпуска, NNN номер карты</small>
 					@endif
 				</div>
 

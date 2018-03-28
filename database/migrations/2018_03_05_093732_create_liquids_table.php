@@ -16,6 +16,7 @@ class CreateLiquidsTable extends Migration
         Schema::create('liquids', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 50)->unique();
+            $table->string('image', 255)->nullable();
             $table->timestamps();
         });
     }

@@ -20,7 +20,8 @@ class RaritiesTableSeeder extends Seeder
 		foreach ($data as $obj) {
 			Rarity::create([
 				'id' => $obj->id,
-				'name' => $obj->name
+				'name' => $obj->name,
+				'image' => $obj->image
 			]);
 		}
 	}

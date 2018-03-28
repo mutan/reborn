@@ -18,6 +18,11 @@ class Card extends Model
 		return "/images/" . $this->image;
 	}
 
+	public function power()
+	{
+		return $this->power_weak . "-" . $this->power_medium . "-" . $this->power_strong;
+	}
+
 	public function edition()
 	{
 		return $this->belongsTo(Edition::class);

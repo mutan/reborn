@@ -17,6 +17,7 @@
           <tr>
             <th class="text-muted">id</th>
             <th>Название</th>
+            <th><i class="fa fa-btn fa-image"></th>
             <th class="text-center">Действия</th>
           </tr>
         </thead>
@@ -25,6 +26,7 @@
           <tr>
             <td class="text-muted">{{ $rarity->id }}</td>
             <td>{{ $rarity->name }}</td>
+            <td><img src="{{ $rarity->imagePath() }}" alt="{{ $rarity->name }}" title="{{ $rarity->name }}" class="image-fluid"></td>
             <td class="text-center">
               <a class="btn btn-sm btn-outline-secondary" alt="Редактировать" title="Редактировать" href="{{ url('rarities/' . $rarity->id . '/edit') }}"><i class="fa fa-btn fa-edit"></i></a>
               <a class="btn btn-sm btn-outline-secondary" alt="Удалить" title="Удалить" href="{{ url('rarities/' . $rarity->id) }}" data-method="delete" data-token="{{csrf_token()}}" data-confirm="Действительно удалить?"><i class="fa fa-btn fa-trash"></i></a>

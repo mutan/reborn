@@ -29,7 +29,7 @@
 
 				<div class="form-row">
 
-					<div class="form-group col-sm-6">
+					<div class="form-group col-sm-4">
 						<label for="code">Код</label>
 						<input type="text" name="code" class="form-control {{ $errors->has('code') ? ' is-invalid' : '' }}" id="code" value="{{ $edition->code }}">
 						@if ($errors->has('code'))
@@ -39,13 +39,21 @@
 						@endif
 					</div>
 
-					<div class="form-group col-sm-6">
+					<div class="form-group col-sm-4">
 						<label for="quantity">Кол-во</label>
 						<input type="number" name="quantity" class="form-control {{ $errors->has('quantity') ? ' is-invalid' : '' }}" id="quantity" value="{{ $edition->quantity }}">
 						@if ($errors->has('quantity'))
 						<div class="invalid-feedback">{{ $errors->first('quantity') }}</div>
 						@else
 						<small id="quantityHelpBlock" class="form-text text-muted">Только цифры.</small>
+						@endif
+					</div>
+
+					<div class="form-group col-sm-4">
+						<label for="image">Изображение</label>
+						<input type="text" name="image" class="form-control {{ $errors->has('image') ? ' is-invalid' : '' }}" id="image" value="{{ $edition->image }}">
+						@if ($errors->has('image'))
+						<div class="invalid-feedback">{{ $errors->first('image') }}</div>
 						@endif
 					</div>
 

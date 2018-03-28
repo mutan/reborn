@@ -31,7 +31,9 @@
 					<td>{{ $card->movement }}</td>
 					<td>{{ $card->fullType() }}</td>
 					<td>{{ $card->cost }}</td>
-					<td>{{ $card->rarity->name }}</td>
+					<td>
+						<img src="{{ $card->rarity->imagePath() }}" alt="{{ $card->rarity->name }}" title="{{ $card->rarity->name }}" class="img-fluid">
+					</td>
 					<td>{{ $card->edition->name }}</td>
 				</tr>
 				@endforeach

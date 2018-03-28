@@ -8,7 +8,6 @@ use App\Http\Requests\StoreElementRequest;
 
 class ElementController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *

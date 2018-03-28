@@ -10,27 +10,25 @@ function clearForm(form) {
 
     field_type = elements[i].type.toLowerCase();
 
-    //alert(field_type);
-
     switch(field_type) {
       case "text": 
       case "password": 
       case "textarea":
       case "hidden":
-        elements[i].value = ""; 
-        break;
+      elements[i].value = ""; 
+      break;
       case "radio":
       case "checkbox":
-        if (elements[i].checked) {
+      if (elements[i].checked) {
         elements[i].checked = false; 
-        }
-        break;
+      }
+      break;
       case "select-one":
       case "select-multiple":
-        elements[i].selectedIndex = -1;
-        break;
+      elements[i].selectedIndex = -1;
+      break;
       default: 
-        break;
+      break;
     }
   }
 }
@@ -72,7 +70,6 @@ $(function(){
 
 /* Автодополнение поля поиска */
 /* http://api.jqueryui.com/autocomplete/ */
-
 $(function() {
   $("#search-field").autocomplete({
     minLength: 2,
@@ -97,30 +94,29 @@ $(function () {
 })
 
 /*
-  Source: https://gist.github.com/soufianeEL/3f8483f0f3dc9e3ec5d9
-  Exemples : 
-  <a href="posts/2" data-method="delete" data-token="{{csrf_token()}}"> 
-  - Or, request confirmation in the process -
-  <a href="posts/2" data-method="delete" data-token="{{csrf_token()}}" data-confirm="Are you sure?">
-  */
+Source: https://gist.github.com/soufianeEL/3f8483f0f3dc9e3ec5d9
+Exemples : 
+<a href="posts/2" data-method="delete" data-token="{{csrf_token()}}"> 
+- Or, request confirmation in the process -
+<a href="posts/2" data-method="delete" data-token="{{csrf_token()}}" data-confirm="Are you sure?">
+*/
+$(function() {
 
-  $(function() {
+  var laravel = {
+    initialize: function() {
+      this.methodLinks = $('a[data-method]');
+      this.token = $('a[data-token]');
+      this.registerEvents();
+    },
 
-    var laravel = {
-      initialize: function() {
-        this.methodLinks = $('a[data-method]');
-        this.token = $('a[data-token]');
-        this.registerEvents();
-      },
+    registerEvents: function() {
+      this.methodLinks.on('click', this.handleMethod);
+    },
 
-      registerEvents: function() {
-        this.methodLinks.on('click', this.handleMethod);
-      },
-
-      handleMethod: function(e) {
-        var link = $(this);
-        var httpMethod = link.data('method').toUpperCase();
-        var form;
+    handleMethod: function(e) {
+      var link = $(this);
+      var httpMethod = link.data('method').toUpperCase();
+      var form;
 
       // If the data-method attribute is not PUT or DELETE,
       // then we don't know what to do. Just ignore.

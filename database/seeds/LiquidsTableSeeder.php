@@ -20,7 +20,8 @@ class LiquidsTableSeeder extends Seeder
 		foreach ($data as $obj) {
 			Liquid::create([
 				'id' => $obj->id,
-				'name' => $obj->name
+				'name' => $obj->name,
+				'image' => $obj->image
 			]);
 		}
 	}

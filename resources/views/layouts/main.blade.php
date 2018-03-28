@@ -19,29 +19,29 @@
 
 <body>
 
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-md navbar-dark">
     <div class="container">
       <a class="navbar-brand" href="/">Reborn Cards Database</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navContent" aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div class="collapse navbar-collapse" id="navContent">
 
-        <form id="search-form" action="{{ url('search') }}" method="GET" class="form-inline my-2 my-md-0">
+        {{-- <form id="search-form" action="{{ url('search') }}" method="GET" class="form-inline my-2 my-md-0">
           <div class="input-group">
             <input id="search-field" name="name" class="form-control" type="text" placeholder="Поиск карт" aria-label="Search">
             <div class="input-group-append">
-              <button class="btn btn-outline-secondary" type="submit"><i class="fa fa-btn fa-search"></i></button>
+              <button class="btn btn-outline-light" type="submit"><i class="fa fa-btn fa-search"></i></button>
             </div>
           </div>
-        </form>
+        </form> --}}
 
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
             <a class="nav-link" href="#">Колоды</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item active">
             <a class="nav-link" href="#">Карты</a>
           </li>
         </ul>
@@ -51,7 +51,7 @@
           @auth
           @if ( auth()->user()->hasRoles('admin') )
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdown01" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link active dropdown-toggle" href="#" id="dropdown01" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Редактировать
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
@@ -73,7 +73,7 @@
           @if (Route::has('login'))
           @auth
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="dropdown02" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link active dropdown-toggle" href="#" id="dropdown02" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               {{ auth()->user()->name }}
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdown02">
@@ -94,13 +94,20 @@
     </div>
   </nav>
 
-  <div class="container">
-    <main role="main">
+  <main role="main" class="container" id="main">
+    @include('layouts.messages')
+    @yield('content')
+  </main>
 
-      @include('layouts.messages')
-      @yield('content')
-    </main>
-  </div>
+  <footer class="footer pt-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <p>Права на <a href="https://vk.com/kkireborn">ККИ Reborn</a> принадлежат ее создателям. Данный сайт не является официальным сайтом игры.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <!-- webpack -->
   <script src="/js/app.min.js"></script>

@@ -39,7 +39,7 @@ class LiquidController extends Controller
 	 */
 	public function store(StoreLiquidRequest $request)// liquids
 	{
-		$liquid = new Liquid( $request->only(['name']) );
+		$liquid = new Liquid( $request->only(['name', 'image']) );
 		$liquid->save();
 
 		Session::flash('message', 'Запись "' . $liquid->name . '" успешно добавлена');
@@ -80,6 +80,7 @@ class LiquidController extends Controller
 	public function update(StoreLiquidRequest $request, Liquid $liquid) // liquids/{liquid}
 	{
 		$liquid->name = $request->name;
+		$liquid->image = $request->image;
 		$liquid->save();
 
 		Session::flash('message', 'Запись "' . $liquid->name . '" успешно обновлена');

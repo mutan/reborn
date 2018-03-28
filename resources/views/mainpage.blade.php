@@ -3,17 +3,78 @@
 @section('content')
 <div class="container">
 
-	<div class="row ">
-		<div class="col-md-12">
-			<p>Карта дня</p>
-			<p>Колоды</p>
-		</div>
-	</div>
-
-
-
 	<div class="row">
+		<div class="col-xl-4">
+
+			<h3>Поиск карт</h3>
+
+			<form id="search-form" action="{{ url('search') }}" method="GET" class="form-inline my-2 my-md-0">
+				<div class="input-group">
+					<input id="search-field" name="name" class="form-control" type="text" placeholder="Начните вводить название" aria-label="Search">
+					<div class="input-group-append">
+						<button class="btn btn-outline-secondary" type="submit"><i class="fa fa-btn fa-search"></i></button>
+					</div>
+				</div>
+			</form>
+
+			<a id="advancedSearch" href="/search/advanced">Расширенный поиск</a>
+			<hr>
+
+			<h3>Последние турниры</h3>
+
+			<p><a href="#">Стандартный турнир 28-01-2018</a></p>
+
+			<table class="table table-sm">
+				<thead>
+					<tr>
+						<th>Место</th>
+						<th>Колода</th>
+						<th>Игрок</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1 место</td>
+						<td>ВВ Небеса</td>
+						<td>Иванов Петя</td>
+					</tr>
+					<tr>
+						<td>2 место</td>
+						<td>ВВ Битки</td>
+						<td>Петров Вася</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<p><a href="#">Стандартный турнир 28-01-2018</a></p>
+
+			<table class="table table-sm">
+				<thead>
+					<tr>
+						<th>Место</th>
+						<th>Колода</th>
+						<th>Игрок</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>1 место</td>
+						<td>ВВ Небеса</td>
+						<td>Иванов Петя</td>
+					</tr>
+					<tr>
+						<td>2 место</td>
+						<td>ВВ Битки</td>
+						<td>Петров Вася</td>
+					</tr>
+				</tbody>
+			</table>
+			
+		</div>
+
 		<div class="col-xl-8">
+
+			<h3>Метагейм: стандарт</h3>
 
 			<div class="row">
 
@@ -152,7 +213,12 @@
 		</div>
 	</div>
 
-
+	<div class="row">
+		<div class="col-md-12">
+			<p>Карта дня</p>
+			<p>Колоды</p>
+		</div>
+	</div>
 
 </div>
 @endsection

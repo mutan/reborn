@@ -1,26 +1,57 @@
 /* Custom vars */
 $fa-font-path: "../fonts";
+$reborn-bg-color: #389bde; // rgb(242, 103, 57)
 
 @import "node_modules/bootstrap/scss/bootstrap";
 @import "node_modules/font-awesome/scss/font-awesome";
 @import "node_modules/jquery-ui-dist/jquery-ui.min";
 
 
-/* Расширенный поиск */
-/* #extended-search-header {
-	cursor: pointer;
-	text-decoration: underline;
-} */
 
 
-body {
-	padding-bottom: 20px;
+
+#advancedSearch {
+	font-size: 0.9rem;
+	line-height: 1.15;
 }
 
+
+
+
+
+/* Sticky footer styles */
+html {
+	position: relative;
+	min-height: 100%;
+}
+body {
+	margin-bottom: 80px; /* Margin bottom by footer height */
+}
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	background-color: #464548;
+	p {
+		color: #aaa;
+		font-size: 0.8rem;
+		a {
+			color: #aaa;
+			text-decoration: underline;
+		}
+	}
+}
+
+/* Панель навигации */
 .navbar {
 	margin-bottom: 20px;
+	background-color: $reborn-bg-color;
+}
+#search-field {
+	border-color: $dark;
 }
 
+/* Лейблы к формам */
 label {
 	font-weight: 400;
 	font-size: 0.9rem;
@@ -41,9 +72,9 @@ label {
 	margin-right: -0.5rem;
 }
 
-/* Центри */
+/* Центрирование пагинации */
 .pagination {
-   justify-content: center;
+	justify-content: center;
 }
 
 /* Таблица с картами. */

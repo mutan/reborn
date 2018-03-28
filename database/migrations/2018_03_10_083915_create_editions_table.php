@@ -16,6 +16,7 @@ class CreateEditionsTable extends Migration
         Schema::create('editions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 50)->unique();
+            $table->string('image', 255)->nullable();
             $table->string('code', 5)->unique();
             $table->integer('quantity')->unsigned();
             $table->text('description');
