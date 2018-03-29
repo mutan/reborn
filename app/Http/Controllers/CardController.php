@@ -17,6 +17,16 @@ use App\Http\Requests\StoreCardRequest;
 class CardController extends Controller
 {
     /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('can:access-cards', ['except' => ['show']]);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -117,12 +127,15 @@ class CardController extends Controller
      */
     public function update(StoreCardRequest $request, Card $card)
     {
-        //dd( $request->input('lives', '') );
+        //dd( $request->input('flavor') );
 
 
         $card->update($request->only([
             'name', 'image', 'edition_id', 'rarity_id', 'cost', 'number', 'lives', 'movement', 'power_weak', 'power_medium', 'power_strong', 'text', 'flavor', 'erratas', 'comments'
         ]));
+
+        dd( $card );
+        
         $card->artists()->sync($request->artist);
         $card->liquids()->sync($request->liquid);
         $card->elements()->sync($request->element);
@@ -132,7 +145,7 @@ class CardController extends Controller
 
         Session::flash('message', 'Запись "' . $card->name . '" успешно обновлена');
 
-        return redirect('/cards');
+        return redirect('/cards/' . $card->id);
     }
 
     /**

@@ -22,8 +22,12 @@ Route::get('/search/show', 'SearchController@show');
 Auth::routes();
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-Route::group(['middleware' => 'can:access-cards'], function () {
-	Route::resource('cards', 'CardController');
+
+/* All cards routes
+ * Gate 'access-cards' applies to CardController in its constructor, except 'show' method
+ */
+Route::resource('cards', 'CardController');
+Route::middleware('can:access-cards')->group(function () {
 	Route::resource('editions', 'EditionController');
 	Route::resource('rarities', 'RarityController');
 	Route::resource('liquids', 'LiquidController');
@@ -33,7 +37,3 @@ Route::group(['middleware' => 'can:access-cards'], function () {
 	Route::resource('subtypes', 'SubtypeController');
 	Route::resource('artists', 'ArtistController');
 });
-
-
-
-

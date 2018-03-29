@@ -96,7 +96,7 @@
 
 					<div class="form-group col-md">
 						<label for="lives">Жизни</label>
-						<input type="text" name="lives" class="form-control {{ $errors->has('lives') ? ' is-invalid' : '' }}" id="lives" value="{{ $card->lives }}">
+						<input type="text" name="lives" class="form-control {{ $errors->has('lives') ? ' is-invalid' : '' }}" id="lives" value="{{ old('lives', $card->lives) }}">
 						@if ($errors->has('lives'))
 						<div class="invalid-feedback">{{ $errors->first('lives') }}</div>
 						@endif

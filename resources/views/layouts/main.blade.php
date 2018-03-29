@@ -83,8 +83,7 @@
             </div>
           </li>
           @else
-          <li class="nav-item"><a class="nav-link" href="{{ route('login') }}">Вход</a></li>
-          <li class="nav-item"><a class="nav-link" href="{{ route('register') }}">Регистрация</a></li>
+          <li class="nav-item"><a class="nav-link active" href="{{ route('login') }}">Вход</a></li>
           @endauth
           @endif
         </ul>
