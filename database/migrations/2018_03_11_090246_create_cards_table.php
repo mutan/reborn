@@ -21,19 +21,14 @@ class CreateCardsTable extends Migration
 			$table->integer('edition_id')->unsigned();
 			$table->foreign('edition_id')->references('id')->on('editions')->onDelete('NO ACTION');
 
-			// liquids: many-to-many
-			// elements: many-to-many
-			// supertypes: many-to-many
-			// types: many-to-many
-			// subtypes: many-to-many
-			// artists: many-to-many
+			// liquids, elements, supertypes, types, subtypes, artists: many-to-many
 
 			$table->string('name', 50)->index();
 			$table->integer('cost')->unsigned();
 			$table->integer('number')->unsigned();
 
-			$table->integer('lives')->nullable();
-			$table->integer('movement')->nullable(); // 0+ у существ, NULL у артефактов, -1 у летающих
+			$table->integer('lives');
+			$table->string('movement', 1); // 0+ у существ, N у артефактов, F у летающих
 			$table->integer('power_weak')->nullable(); // [0-20], NULL
 			$table->integer('power_medium')->nullable(); // [0-20], NULL
 			$table->integer('power_strong')->nullable(); // [0-20], NULL

@@ -127,14 +127,30 @@ class CardController extends Controller
      */
     public function update(StoreCardRequest $request, Card $card)
     {
-        //dd( $request->input('flavor') );
+        $data = $request->only([
+            'name', 'image', 'cost', 'number', 'lives',
+            'edition_id', 'rarity_id',
+            'movement', 'power_weak', 'power_medium', 'power_strong',
+            'text', 'flavor', 'erratas', 'comments'
+        ]);
 
+        // Fields [movement, power_weak, power_medium, power_strong, image] are strings and should be able to be stored to DB as NULLs
+        $data['movement'] =
+            ( isset($data['movement']) && !empty($data['movement']) ) ? $data['movement'] : NULL;
 
-        $card->update($request->only([
-            'name', 'image', 'edition_id', 'rarity_id', 'cost', 'number', 'lives', 'movement', 'power_weak', 'power_medium', 'power_strong', 'text', 'flavor', 'erratas', 'comments'
-        ]));
+        $data['power_weak'] =
+            ( isset($data['power_weak']) && !empty($data['power_weak']) ) ? $data['power_weak'] : NULL;
 
-        dd( $card );
+        $data['power_medium'] =
+            ( isset($data['power_medium']) && !empty($data['power_medium']) ) ? $data['power_medium'] : NULL;
+
+        $data['power_strong'] =
+            ( isset($data['power_strong']) && !empty($data['power_strong']) ) ? $data['power_strong'] : NULL;
+
+        $data['image'] =
+            ( isset($data['image']) && !empty($data['image']) ) ? $data['image'] : NULL;
+
+        $card->update($data);
         
         $card->artists()->sync($request->artist);
         $card->liquids()->sync($request->liquid);

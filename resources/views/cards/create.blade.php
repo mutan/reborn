@@ -18,7 +18,6 @@
 			<form action="{{ url('cards')}}" method="POST" class="form-horizontal">
 				{{ csrf_field() }}
 
-
 				<!-- Название Выпуск Номер НАЧАЛО -->
 				<div class="form-row">
 
@@ -107,6 +106,8 @@
 						<input type="text" name="movement" class="form-control {{ $errors->has('movement') ? ' is-invalid' : '' }}" id="movement" value="{{ old('movement') }}">
 						@if ($errors->has('movement'))
 						<div class="invalid-feedback">{{ $errors->first('movement') }}</div>
+						@else
+						<small id="movementHelpBlock" class="form-text text-muted">0+ у существ, N у артефактов, F у летающих</small>
 						@endif
 					</div>
 

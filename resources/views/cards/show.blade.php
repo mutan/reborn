@@ -63,7 +63,17 @@
             <td>
               <img src="/icons/power.png" alt="Обычный удар" title="Обычный удар"> {{ $card->power() }} 
               <img src="/icons/lives-16x16.png" alt="Жизни" title="Жизни"> {{ $card->lives }} 
-              <img src="/icons/movement-16x16.png" alt="Движение" title="Движение"> {{ $card->movement }} 
+              <img src="/icons/movement-16x16.png" alt="Движение" title="Движение">
+              @switch($card->movement)
+                  @case('F')
+                    <img src="/icons/flying.png" class="img-fluid" alt="Полет" title="Полет">
+                    @break
+                  @case('N')
+                    –
+                    @break
+                  @default
+                    {{ $card->movement }}
+              @endswitch
             </td>
           </tr>
           <tr>

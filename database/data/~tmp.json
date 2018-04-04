@@ -1,0 +1,31 @@
+<img src='/icons/tap-16x16.png'>
+<img src='/icons/insttap-16x16.png'>
+
+<img src='/icons/counter-16x16.png'>
+
+
+,
+	{
+		"id": ,
+		"cost": ,
+		"liquids": [],
+		"name": "",
+		"elements": [],
+		"image": "01-000.jpg",
+		"lives": ,
+		"movement": ,
+		"rarity": ,
+		"power_weak": ,
+		"power_medium": ,
+		"power_strong": ,
+		"supertypes": [],
+		"types": ["Существо"],
+		"subtypes": [],
+		"text": "<p></p>",
+		"flavor": "<p>«»</p>",
+		"number": ,
+		"artists": [],
+		"edition": 1,
+		"erratas": "",
+		"comments": ""
+	}

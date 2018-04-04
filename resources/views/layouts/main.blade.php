@@ -21,7 +21,10 @@
 
   <nav class="navbar navbar-expand-md navbar-dark">
     <div class="container">
-      <a class="navbar-brand" href="/">Reborn Cards Database</a>
+      <a class="navbar-brand" href="/">
+        <span class="d-none d-sm-block">Reborn Cards Database</span>
+        <span class="d-block d-sm-none">Reborn CDB</span>
+      </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navContent" aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>

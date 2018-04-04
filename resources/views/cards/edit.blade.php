@@ -12,7 +12,7 @@
 
 			<a class="btn btn-sm btn-outline-secondary" href="{{ url('cards')}}" role="button"><i class="fa fa-btn fa-arrow-left"></i> Назад к списку</a>
 
-			<h3 class="text-center mt-3">Редактировать карту</h3>
+			<h3 class="text-center mt-3">Редактировать карту: {{ $card->name }}</h3>
 			<hr>
 
 			<form action="{{ url('cards/' . $card->id) }}" method="POST" class="form-horizontal">
@@ -107,6 +107,8 @@
 						<input type="text" name="movement" class="form-control {{ $errors->has('movement') ? ' is-invalid' : '' }}" id="movement" value="{{ $card->movement }}">
 						@if ($errors->has('movement'))
 						<div class="invalid-feedback">{{ $errors->first('movement') }}</div>
+						@else
+						<small id="movementHelpBlock" class="form-text text-muted">0+ у существ, N у артефактов, F у летающих</small>
 						@endif
 					</div>
 
