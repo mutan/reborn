@@ -238,6 +238,30 @@
 		"edition": 1,
 		"erratas": "",
 		"comments": ""
+	},
+	{
+		"id": 11,
+		"cost": 8,
+		"liquids": ["Светлая"],
+		"name": "Хранительница Гваингварда",
+		"elements": ["Светлая"],
+		"image": "01-011.jpg",
+		"lives": 20,
+		"movement": 2,
+		"rarity": 4,
+		"power_weak": 4,
+		"power_medium": 5,
+		"power_strong": 6,
+		"supertypes": [],
+		"types": ["Существо"],
+		"subtypes": [],
+		"text": "<p></p>",
+		"flavor": "<p>«»</p>",
+		"number": ,
+		"artists": [],
+		"edition": 1,
+		"erratas": "",
+		"comments": ""
 	}
 
 

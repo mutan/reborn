@@ -15,7 +15,7 @@
 
 			@else
 
-				<p class="text-center">Найдено {{ $cards->total() }} карт.</p>
+				<p class="text-center">Найдено карт: {{ $cards->total() }}</p>
 
 				@includeIf('search._' .  $view)
 
