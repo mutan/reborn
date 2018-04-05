@@ -27,10 +27,12 @@ class SearchController extends Controller
 			abort(400, 'Неверный запрос.');
 		}
 
-		$term = $request->input('term');
-
-		$cards = Card::where('name', 'LIKE', '%'.$term.'%')
-			->take(5)->orderBy('name')->pluck('name')->toArray();
+		$cards = Card::where('name', 'LIKE', '%'. $request->input('term') .'%')
+			->distinct()
+			->take(5)
+			->orderBy('name')
+			->pluck('name')
+			->toArray();
 
 		return response()->json($cards);
 	}
@@ -43,13 +45,11 @@ class SearchController extends Controller
 	 */
 	public function simple(Request $request)
 	{
-		if( null != $request->input('name') ) {
-			$cards = Card::where('name', 'LIKE', '%'. $request->input('name') .'%')
-				->with(['edition'])
-				->orderBy('name')
-				->paginate(12)
-				->appends($request->except('page'));
-		}
+		$cards = Card::where('name', 'LIKE', '%'. $request->input('name') .'%')
+			->with(['edition'])
+			->orderBy('name')
+			->paginate(24)
+			->appends($request->except('page'));
 
 		return view('search.simple', compact('cards'));
 	}
