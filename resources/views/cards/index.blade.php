@@ -12,7 +12,7 @@
 
       @include('layouts.errors')
 
-      @include('search._table')
+      @include('cards._show_as_table')
 
     </div>
   </div>

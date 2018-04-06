@@ -38,7 +38,7 @@ class SearchController extends Controller
 	}
 
 	/**
-	 * Search and show results
+	 * Show simple search results
 	 *
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
@@ -51,7 +51,7 @@ class SearchController extends Controller
 			->paginate(24)
 			->appends($request->except('page'));
 
-		return view('search.simple', compact('cards'));
+		return view('cards.search_simple_results', compact('cards'));
 	}
 
 	/**
@@ -79,7 +79,7 @@ class SearchController extends Controller
 		$power_strong = Card::orderBy('power_strong')->distinct()->pluck('power_strong')->toArray();	
 
 		return view(
-			'search.advanced',
+			'cards.search_advanced_form',
 			compact('editions', 'rarities', 'liquids', 'elements', 'supertypes', 'types', 'subtypes', 'artists', 'cost', 'lives', 'movement', 'power_weak', 'power_medium', 'power_strong')
 		);
 	}
@@ -92,8 +92,6 @@ class SearchController extends Controller
 	 */
 	public function show(Request $request)
 	{
-
-		//dd( $request->input('power_weak') );
 
 		if ( count($request->all()) > 0 ) {
 
@@ -220,6 +218,6 @@ class SearchController extends Controller
 				->appends($request->except('page'));
 		}
 
-		return view('search.show',compact('cards', 'view'));
+		return view('cards.search_advanced_results',compact('cards', 'view'));
 	}
 }

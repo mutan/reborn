@@ -13,4 +13,9 @@ class Edition extends Model
 	{
 		return $this->hasMany(Card::class);
 	}
+	public function formats()
+	{
+		return $this->hasMany(Format::class);
+	}
+
 }
