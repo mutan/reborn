@@ -1,0 +1,15 @@
+
+Card
+	one-to-many Rarity
+	one-to-many Edition many-to-many Format
+
+	many-to-many Liquids
+	many-to-many Elements
+	many-to-many Supertypes
+	many-to-many Types
+	many-to-many Subtypes
+	many-to-many Artists
+
+Deck
+
+User many-to-many Roles

@@ -17,10 +17,10 @@ class CreateCardElementTable extends Migration
             $table->increments('id');
 
             $table->integer('card_id')->unsigned()->index();
-            $table->foreign('card_id')->references('id')->on('cards')->onDelete('no action');
+            $table->foreign('card_id')->references('id')->on('cards')->onDelete('cascade');
 
             $table->integer('element_id')->unsigned()->index();
-            $table->foreign('element_id')->references('id')->on('elements')->onDelete('no action');
+            $table->foreign('element_id')->references('id')->on('elements')->onDelete('cascade');
         });
     }
 

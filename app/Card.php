@@ -4,6 +4,14 @@ namespace App;
 
 class Card extends Model
 {
+
+	/* HELPER METHODS */
+
+	public function formatsIds()
+	{
+		return $this->edition->formats->pluck('id')->toArray();
+	}	
+
 	public function fullType()
 	{
 		$supertypes = implode(" ", $this->supertypes->pluck('name')->toArray() );
@@ -22,6 +30,8 @@ class Card extends Model
 	{
 		return $this->power_weak . "-" . $this->power_medium . "-" . $this->power_strong;
 	}
+
+	/* RELATIONSHIPS */
 
 	public function edition()
 	{

@@ -2,12 +2,12 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
 class Format extends Model
 {
+	/* RELATIONSHIPS */
+
 	public function editions()
 	{
-		return $this->hasMany(Edition::class);
+		return $this->belongsToMany(Edition::class);
 	}
 }

@@ -20,7 +20,7 @@ class CreateCardSubtypeTable extends Migration
             $table->foreign('card_id')->references('id')->on('cards')->onDelete('cascade');
 
             $table->integer('subtype_id')->unsigned()->index();
-            $table->foreign('subtype_id')->references('id')->on('subtypes')->onDelete('no action');
+            $table->foreign('subtype_id')->references('id')->on('subtypes')->onDelete('cascade');
         });
     }
 

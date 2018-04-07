@@ -27,10 +27,7 @@ class User extends Authenticatable
 		'password', 'remember_token',
 	];
 
-	public function roles()
-	{
-		return $this->belongsToMany(Role::class);
-	}
+	/* HELPER METHODS */
 
 	/**
 	* @param string|array $roles
@@ -61,4 +58,10 @@ class User extends Authenticatable
 		return null !== $this->roles()->where('name', $role)->first();
 	}
 
+	/* RELATIONSHIPS */
+
+	public function roles()
+	{
+		return $this->belongsToMany(Role::class);
+	}
 }

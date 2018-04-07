@@ -19,7 +19,7 @@ class UsersTableSeeder extends Seeder
       ['name' => 'admin', 'description' => 'Может редактировать карты ...'],
     ]);
 
-    DB::table('users')->truncate();
+    //DB::table('users')->truncate();
 
   	$role_player = Role::where('name', 'player')->first();
   	$role_admin  = Role::where('name', 'admin')->first();

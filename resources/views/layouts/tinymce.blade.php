@@ -2,7 +2,7 @@
 
 <script>
 	tinymce.init({
-		selector: "textarea", // #tinymce
+		selector: ".tinymce",
 		menubar : false,
 		branding: false,
 		plugins : 'advlist autolink link code image lists charmap print preview',

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Edition;
 use Session;
+use App\Edition;
 use App\Http\Requests\StoreEditionRequest;
 
 class EditionController extends Controller

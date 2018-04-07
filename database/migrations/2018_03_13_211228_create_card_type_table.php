@@ -20,7 +20,7 @@ class CreateCardTypeTable extends Migration
             $table->foreign('card_id')->references('id')->on('cards')->onDelete('cascade');
 
             $table->integer('type_id')->unsigned()->index();
-            $table->foreign('type_id')->references('id')->on('types')->onDelete('no action');
+            $table->foreign('type_id')->references('id')->on('types')->onDelete('cascade');
         });
     }
 

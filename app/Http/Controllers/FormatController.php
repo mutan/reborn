@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Session;
 use App\Format;
-use Illuminate\Http\Request;
+use App\Edition;
+use App\Http\Requests\StoreFormatRequest;
 
 class FormatController extends Controller
 {
@@ -14,7 +16,11 @@ class FormatController extends Controller
      */
     public function index()
     {
-        //
+        $formats = Format::with(['editions'])
+            ->orderBy('id')
+            ->get();
+
+        return view('formats.index', compact('formats'));
     }
 
     /**
@@ -24,18 +30,25 @@ class FormatController extends Controller
      */
     public function create()
     {
-        //
+        $editions = Edition::orderBy('id')->get();
+        return view('formats.create', compact('editions'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreFormatRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreFormatRequest $request)
     {
-        //
+        $format = new Format( $request->only(['name', 'banned', 'description']) );
+        $format->save();
+        $format->editions()->sync($request->edition);
+
+        Session::flash('message', 'Запись "' . $format->name . '" успешно добавлена');
+
+        return redirect('/formats');
     }
 
     /**
@@ -46,7 +59,7 @@ class FormatController extends Controller
      */
     public function show(Format $format)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -57,19 +70,29 @@ class FormatController extends Controller
      */
     public function edit(Format $format)
     {
-        //
+        $editions = Edition::orderBy('id')->get();
+
+        return view('formats.edit', compact('format', 'editions'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreFormatRequest  $request
      * @param  \App\Format  $format
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Format $format)
+    public function update(StoreFormatRequest $request, Format $format)
     {
-        //
+        $format->name = $request->name;
+        $format->banned = $request->banned;
+        $format->description = $request->description;
+        $format->save();
+        $format->editions()->sync($request->edition);
+
+        Session::flash('message', 'Запись "' . $format->name . '" успешно обновлена');
+
+        return redirect('/formats');
     }
 
     /**
@@ -80,6 +103,14 @@ class FormatController extends Controller
      */
     public function destroy(Format $format)
     {
-        //
+        try {
+            $format->delete();
+            Session::flash('message', 'Запись "' . $format->name . '" успешно удалена');
+            return redirect('/formats');
+        } catch (\Illuminate\Database\QueryException $e) {
+            return back()->withErrors([
+                "Удаление невозможно: запись \"" . $format->name . "\" используется в одной из карт."
+            ]);
+        }
     }
 }

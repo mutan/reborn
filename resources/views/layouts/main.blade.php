@@ -22,23 +22,17 @@
   <nav class="navbar navbar-expand-md navbar-dark">
     <div class="container">
       <a class="navbar-brand" href="/">
-        <span class="d-none d-sm-block">Reborn Cards Database</span>
-        <span class="d-block d-sm-none">Reborn CDB</span>
+        <span class="d-none d-xl-block">Reborn Cards Database xl</span>
+        <span class="d-none d-lg-block d-xl-none">Reborn Cards Database lg</span>
+        <span class="d-none d-md-block d-lg-none">Reborn Cards Database md</span>
+        <span class="d-none d-sm-block d-md-none">Reborn Cards Database sm</span>
+        <span class="d-block d-sm-none">Reborn CDB xs</span>
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navContent" aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navContent">
-
-        {{-- <form id="search-form" action="{{ url('search') }}" method="GET" class="form-inline my-2 my-md-0">
-          <div class="input-group">
-            <input id="search-field" name="name" class="form-control" type="text" placeholder="Поиск карт" aria-label="Search">
-            <div class="input-group-append">
-              <button class="btn btn-outline-light" type="submit"><i class="fa fa-btn fa-search"></i></button>
-            </div>
-          </div>
-        </form> --}}
 
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
@@ -58,6 +52,8 @@
               Редактировать
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="/formats">Форматы турниров</a>
+              <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="/cards">Карты</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="/editions">Выпуски</a>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Session;
 use App\Card;
+use App\Format;
 use App\Edition;
 use App\Rarity;
 use App\Liquid;
@@ -91,9 +92,11 @@ class CardController extends Controller
      */
     public function show(Card $card)
     {
-        $card->load('edition', 'rarity', 'liquids', 'elements', 'supertypes', 'types', 'subtypes', 'artists');
+        $card->load('edition.formats', 'rarity', 'liquids', 'elements', 'supertypes', 'types', 'subtypes', 'artists');
 
-        return view('cards.show', compact('card'));
+        $formats = Format::get(['id', 'name']);
+
+        return view('cards.show', compact('card', 'formats'));
     }
 
     /**
