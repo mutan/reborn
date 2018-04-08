@@ -18,8 +18,11 @@ Auth::routes();
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 /* All cards routes */
-/* Gate 'access-cards' applies to CardController in its constructor, except 'show' method */
+/* Gate 'access-cards' applies to CardController in its constructor, except 'show' method 
+
+*/
 Route::resource('cards', 'CardController');
+Route::resource('decks', 'DeckController');
 Route::middleware('can:access-cards')->group(function () {
 	Route::resource('formats', 'FormatController');
 	Route::resource('editions', 'EditionController');

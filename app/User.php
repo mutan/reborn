@@ -64,4 +64,9 @@ class User extends Authenticatable
 	{
 		return $this->belongsToMany(Role::class);
 	}
+
+	public function decks()
+	{
+		return $this->hasMany(Deck::class);
+	}
 }

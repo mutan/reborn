@@ -45,16 +45,6 @@
 				</div>
 
 				<div class="form-group">
-					<label for="banned">Забаненные карты</label>
-					<textarea type="text" name="banned" class="form-control {{ $errors->has('banned') ? ' is-invalid' : '' }}" id="banned" rows="2">{{ old('banned') }}</textarea>
-					@if ($errors->has('banned'))
-					<div class="invalid-feedback">{{ $errors->first('banned') }}</div>
-					@else
-					<small id="bannedHelpBlock" class="form-text text-muted">Точные названия карт, разделенные запятой БЕЗ ПРОБЕЛОВ</small>
-					@endif
-				</div>
-
-				<div class="form-group">
 					<label for="description">Описание</label>
 					<textarea type="text" name="description" class="form-control {{ $errors->has('description') ? ' is-invalid' : '' }}" id="description" rows="3">{{ old('description') }}</textarea>
 					@if ($errors->has('description'))

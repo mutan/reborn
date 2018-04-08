@@ -33,6 +33,11 @@ class Card extends Model
 
 	/* RELATIONSHIPS */
 
+	public function decks()
+	{
+		return $this->belongsToMany(Deck::class)->withPivot('quantity');
+	}
+
 	public function edition()
 	{
 		return $this->belongsTo(Edition::class);

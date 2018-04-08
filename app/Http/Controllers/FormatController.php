@@ -42,7 +42,7 @@ class FormatController extends Controller
      */
     public function store(StoreFormatRequest $request)
     {
-        $format = new Format( $request->only(['name', 'banned', 'description']) );
+        $format = new Format( $request->only(['name', 'description']) );
         $format->save();
         $format->editions()->sync($request->edition);
 
@@ -85,7 +85,6 @@ class FormatController extends Controller
     public function update(StoreFormatRequest $request, Format $format)
     {
         $format->name = $request->name;
-        $format->banned = $request->banned;
         $format->description = $request->description;
         $format->save();
         $format->editions()->sync($request->edition);

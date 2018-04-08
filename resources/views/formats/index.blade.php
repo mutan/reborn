@@ -18,7 +18,6 @@
             <th>Название</th>
             <th>Выпуски</th>
             <th>Описание</th>
-            <th>Забаненные карты</th>
             <th class="text-center">Действия</th>
           </tr>
         </thead>
@@ -31,8 +30,7 @@
                 {{ $edition->name }} <img src="{{ $edition->imagePath() }}" alt="{{ $edition->name }}" title="{{ $edition->name }}" class="image-fluid"><br>
               @endforeach
             </td>
-            <td style="min-width: 40%">{!! $format->description !!}</td>
-            <td>{{ $format->banned }}</td>
+            <td style="min-width: 50%">{!! $format->description !!}</td>
             <td class="text-center">
               <a class="btn btn-sm btn-outline-secondary" alt="Редактировать" title="Редактировать" href="{{ url('formats/' . $format->id . '/edit') }}"><i class="fa fa-btn fa-edit"></i></a>
               <a class="btn btn-sm btn-outline-secondary" alt="Удалить" title="Удалить" href="{{ url('formats/' . $format->id) }}" data-method="delete" data-token="{{csrf_token()}}" data-confirm="Действительно удалить?"><i class="fa fa-btn fa-trash"></i></a>

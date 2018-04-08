@@ -30,12 +30,6 @@ class StoreFormatRequest extends FormRequest
             'name' => [
                 'required', 'max:100', Rule::unique('formats')->ignore($format_id)
             ],
-            'banned' => [
-                /*'regex:/,\S/',*/
-/*                Rule::exists('cards')->where(function ($query) {
-                    $query->where('account_id', 1);
-                }),*/
-            ],
         ];
     }
 
@@ -50,8 +44,6 @@ class StoreFormatRequest extends FormRequest
             'name.required' => 'Не может быть пустым',
             'name.max' => 'Не может быть длиннее 100 символов',
             'name.unique' => 'Такое название уже есть в базе данных. Название должно быть уникальным.',
-            'banned.regex' => 'Не должно быть пробелов после запятой',
-            'banned.exists' => 'В базе карт нет карт с названием «:input»',
         ];
     }
 }
