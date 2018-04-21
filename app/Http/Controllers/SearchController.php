@@ -2,15 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Card;
-use App\Edition;
-use App\Rarity;
-use App\Liquid;
-use App\Element;
-use App\Supertype;
-use App\Type;
-use App\Subtype;
-use App\Artist;
+use App\{Card, Edition, Rarity, Liquid, Element, Supertype, Type, Subtype, Artist};
 use Illuminate\Http\Request;
 
 class SearchController extends Controller

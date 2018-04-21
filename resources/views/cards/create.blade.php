@@ -239,7 +239,7 @@
 
 					<div class="form-group col-md-6">
 						<label for="text">Текст карты</label>
-						<textarea type="text" name="text" class="form-control {{ $errors->has('text') ? ' is-invalid' : '' }}" id="text" rows="3">{{ old('text') }}</textarea>
+						<textarea type="text" name="text" class="form-control tinymce {{ $errors->has('text') ? ' is-invalid' : '' }}" id="text" rows="3">{{ old('text') }}</textarea>
 						@if ($errors->has('text'))
 						<div class="invalid-feedback">{{ $errors->first('text') }}</div>
 						@else
@@ -249,7 +249,7 @@
 
 					<div class="form-group col-md-6">
 						<label for="flavor">Художественный текст</label>
-						<textarea type="text" name="flavor" class="form-control {{ $errors->has('flavor') ? ' is-invalid' : '' }}" id="flavor" rows="3">{{ old('flavor') }}</textarea>
+						<textarea type="text" name="flavor" class="form-control tinymce {{ $errors->has('flavor') ? ' is-invalid' : '' }}" id="flavor" rows="3">{{ old('flavor') }}</textarea>
 						@if ($errors->has('flavor'))
 						<div class="invalid-feedback">{{ $errors->first('flavor') }}</div>
 						@else
@@ -259,7 +259,7 @@
 
 					<div class="form-group col-lg-6">
 						<label for="text">Эрраты</label>
-						<textarea type="erratas" name="erratas" class="form-control {{ $errors->has('erratas') ? ' is-invalid' : '' }}" id="erratas" rows="3">{{ old('erratas') }}</textarea>
+						<textarea type="erratas" name="erratas" class="form-control tinymce {{ $errors->has('erratas') ? ' is-invalid' : '' }}" id="erratas" rows="3">{{ old('erratas') }}</textarea>
 						@if ($errors->has('erratas'))
 						<div class="invalid-feedback">{{ $errors->first('erratas') }}</div>
 						@else
@@ -269,7 +269,7 @@
 
 					<div class="form-group col-lg-6">
 						<label for="comments">Комментарии по правилам</label>
-						<textarea type="comments" name="comments" class="form-control {{ $errors->has('comments') ? ' is-invalid' : '' }}" id="comments" rows="3">{{ old('comments') }}</textarea>
+						<textarea type="comments" name="comments" class="form-control tinymce {{ $errors->has('comments') ? ' is-invalid' : '' }}" id="comments" rows="3">{{ old('comments') }}</textarea>
 						@if ($errors->has('comments'))
 						<div class="invalid-feedback">{{ $errors->first('comments') }}</div>
 						@else
