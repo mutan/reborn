@@ -17,12 +17,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
-/* All cards routes */
-/* Gate 'access-cards' applies to CardController in its constructor, except 'show' method 
-
-*/
-Route::resource('cards', 'CardController');
 Route::resource('decks', 'DeckController');
+
+/* Cards routes */
+/* Gate 'access-cards' applies to CardController in its constructor, except 'show' method */
+Route::resource('cards', 'CardController');
 Route::middleware('can:access-cards')->group(function () {
 	Route::resource('formats', 'FormatController');
 	Route::resource('editions', 'EditionController');
@@ -35,7 +34,7 @@ Route::middleware('can:access-cards')->group(function () {
 	Route::resource('artists', 'ArtistController');
 });
 
-/* All search routes */
+/* Search routes */
 Route::get('/search/autocomplete', 'SearchController@autocomplete');
 Route::get('/search', 'SearchController@simple');
 Route::get('/search/advanced', 'SearchController@advanced');

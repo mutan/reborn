@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Deck;
-use App\Card;
-use App\Format;
+use App\{Deck, Card, Format};
 use Session;
 use Validator;
 use Illuminate\Http\Request;

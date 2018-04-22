@@ -66,13 +66,34 @@ class SearchController extends Controller
 		$cost = Card::orderBy('cost')->distinct()->pluck('cost')->toArray();
 		$lives = Card::orderBy('lives')->distinct()->pluck('lives')->toArray();
 		$movement = Card::orderBy('movement')->distinct()->pluck('movement')->toArray();
-		$power_weak = Card::orderBy('power_weak')->distinct()->pluck('power_weak')->toArray();	
-		$power_medium = Card::orderBy('power_medium')->distinct()->pluck('power_medium')->toArray();	
-		$power_strong = Card::orderBy('power_strong')->distinct()->pluck('power_strong')->toArray();	
+
+		$power_weak = Card::orderBy('power_weak')
+            ->distinct()->pluck('power_weak')->toArray();
+
+		$power_medium = Card::orderBy('power_medium')
+            ->distinct()->pluck('power_medium')->toArray();
+
+		$power_strong = Card::orderBy('power_strong')
+            ->distinct()->pluck('power_strong')->toArray();
 
 		return view(
 			'cards.search_advanced_form',
-			compact('editions', 'rarities', 'liquids', 'elements', 'supertypes', 'types', 'subtypes', 'artists', 'cost', 'lives', 'movement', 'power_weak', 'power_medium', 'power_strong')
+			compact(
+			    'editions',
+                'rarities',
+                'liquids',
+                'elements',
+                'supertypes',
+                'types',
+                'subtypes',
+                'artists',
+                'cost',
+                'lives',
+                'movement',
+                'power_weak',
+                'power_medium',
+                'power_strong'
+            )
 		);
 	}
 

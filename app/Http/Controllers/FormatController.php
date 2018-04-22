@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Session;
-use App\Format;
-use App\Edition;
+use App\{Format, Edition};
 use App\Http\Requests\StoreFormatRequest;
 
 class FormatController extends Controller
@@ -31,6 +30,7 @@ class FormatController extends Controller
     public function create()
     {
         $editions = Edition::orderBy('id')->get();
+
         return view('formats.create', compact('editions'));
     }
 
@@ -102,6 +102,8 @@ class FormatController extends Controller
      */
     public function destroy(Format $format)
     {
+        //TODO
+        //
         try {
             $format->delete();
             Session::flash('message', 'Запись "' . $format->name . '" успешно удалена');

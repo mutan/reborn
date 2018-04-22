@@ -3,16 +3,7 @@
 namespace App\Http\Controllers;
 
 use Session;
-use App\Card;
-use App\Format;
-use App\Edition;
-use App\Rarity;
-use App\Liquid;
-use App\Element;
-use App\Supertype;
-use App\Type;
-use App\Subtype;
-use App\Artist;
+use App\{Card, Format, Edition, Rarity, Liquid, Element, Supertype, Type, Subtype, Artist};
 use App\Http\Requests\StoreCardRequest;
 
 class CardController extends Controller
@@ -69,7 +60,10 @@ class CardController extends Controller
     public function store(StoreCardRequest $request)
     {
         $card  = new Card( $request->only([
-            'name', 'image', 'edition_id', 'rarity_id', 'cost', 'number', 'lives', 'movement', 'power_weak', 'power_medium', 'power_strong', 'text', 'flavor', 'erratas', 'comments'
+            'name', 'image', 'edition_id', 'rarity_id',
+            'cost', 'number', 'lives', 'movement',
+            'power_weak', 'power_medium', 'power_strong',
+            'text', 'flavor', 'erratas', 'comments'
         ]) );
         $card->save();
         $card->artists()->sync($request->artist);
@@ -92,7 +86,10 @@ class CardController extends Controller
      */
     public function show(Card $card)
     {
-        $card->load('edition.formats', 'rarity', 'liquids', 'elements', 'supertypes', 'types', 'subtypes', 'artists');
+        $card->load(
+            'edition.formats', 'rarity', 'liquids', 'elements',
+            'supertypes', 'types', 'subtypes', 'artists'
+        );
 
         $formats = Format::get(['id', 'name']);
 

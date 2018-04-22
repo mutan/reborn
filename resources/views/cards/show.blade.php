@@ -20,16 +20,14 @@
       <div class="row">
 
         <div class="col-md-4">
-
-
-              <img src="{{ $card->imagePath() }}" class="img-fluid" alt="{{ $card->name }}" title="{{ $card->name }}">
+            <img src="{{ $card->imagePath() }}" class="img-fluid" alt="{{ $card->name }}" title="{{ $card->name }}">
 
              
 
               <p class="text-center mt-3">Легальность в форматах</p>
                 @foreach($formats as $format)
 
-                    @if( in_array($format->id, $card->formatsIds()) )
+                    @if( $card->isLegal($format) )
                       <span class="text-success">{{ $format->name }} – карта легальна</span><br>
                     @else
                       <span class="text-danger">{{ $format->name }} – карта нелегальна</span><br>

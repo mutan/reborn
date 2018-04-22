@@ -10,7 +10,24 @@ class Card extends Model
 	public function formatsIds()
 	{
 		return $this->edition->formats->pluck('id')->toArray();
-	}	
+	}
+
+	//TODO
+	public function isLegal(Format $format)
+    {
+        $formats = $this->edition->formats->pluck('id')->toArray();
+
+        return in_array($format->id, $formats);
+    }
+
+    public function isBanned()
+    {
+        //check if card is in formats banned list
+        return false;
+    }
+
+
+
 
 	public function fullType()
 	{

@@ -1,3 +1,33 @@
+TODO: Tournament
+
+
+Deck
+Format
+    add banned cards
+
+Home
+Mainpage
+
+Card
+    show view
+
+
+
+Search DONE
+
+Edition DONE
+Rarity DONE
+Element DONE
+Liquid DONE
+Supertype DONE
+Type DONE
+Subtype DONE
+Artist DONE
+
+
+
+
+MODELS:
 
 Card
 	one-to-many Rarity

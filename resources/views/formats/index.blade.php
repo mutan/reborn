@@ -27,7 +27,7 @@
             <td>{{ $format->name }}</td>
             <td>
               @foreach($format->editions as $edition)
-                {{ $edition->name }} <img src="{{ $edition->imagePath() }}" alt="{{ $edition->name }}" title="{{ $edition->name }}" class="image-fluid"><br>
+                <img src="{{ $edition->imagePath() }}" alt="{{ $edition->name }}" title="{{ $edition->name }}" class="image-fluid"> {{ $edition->name }}<br>
               @endforeach
             </td>
             <td style="min-width: 50%">{!! $format->description !!}</td>
