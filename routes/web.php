@@ -18,6 +18,7 @@ Auth::routes();
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 Route::resource('decks', 'DeckController');
+//Route::get('decks/{id}/cards', 'DeckController@cards');
 
 /* Cards routes */
 /* Gate 'access-cards' applies to CardController in its constructor, except 'show' method */

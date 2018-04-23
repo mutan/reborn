@@ -40,6 +40,6 @@ Card
 	many-to-many Subtypes
 	many-to-many Artists
 
-Deck
+Deck one-to-many Format
 
 User many-to-many Roles

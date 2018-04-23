@@ -16,7 +16,7 @@ class DeckController extends Controller
 	 */
 	public function index()
 	{
-		$decks = Deck::all();
+		$decks = Deck::with('format')->get();
 
 		return view('decks.index', compact('decks'));
 	}
@@ -41,81 +41,10 @@ class DeckController extends Controller
 	 */
 	public function store(Request $request)
 	{
-		$deck = $request->only(['name', 'description', 'format_id']);
-		$cards = $request->input('cards') ?? []; // ????
-
-		$cards = explode("\n", $cards);
-		$cards = array_map('trim', $cards);
-
-		/* First validator */
-		/* Validate if a string is properly formatted */
-		$rules = [];
-		$messages =	[];
-
-		foreach($cards as $key => $value)
-		{
-			$rules[$key] = 'regex:/^[1-3]+\s[а-яА-Я\s]+/u';
-			$messages[$key] = 'Неправильный формат строки «:input»';
-		}
-
-		$validator = Validator::make($cards, $rules, $messages);
-		if ($validator->fails()) {
-			return redirect('decks/create')
-				->withErrors($validator)
-				->withInput();
-		}
-
-		/* Parse string with single card. Make array with keys 'quantity' and 'name' */
-		$cards = array_map( function($item) {
-			$x = 0;
-			$number = '';
-			while ($item[$x] != " ") {
-				$number .= $item[$x];
-				$x++;
-			}
-			$name = mb_substr($item, $x+1);
-			return ['quantity' => $number, 'name' => $name];
-		}, $cards);
-
-		/* Second validator */
-		/* Validate form input, and $deck['cards'] */
-		$validator = Validator::make($deck,
-			[
-				'name' => 'required|max:50',
-				'description' => 'required',
-				'format_id' => 'required',
-				'cards.*.name' => 'exists:cards,name',
-			],
-			[
-				'name.required'  => 'Не может быть пустым.',
-				'name.max'  => 'Не может быть длиннее 50 символов',
-				'description.required' => 'Не может быть пустым.',
-				'format_id.required' => 'Не может быть пустым.',
-				'exists' => 'Карта «:input» не найдена в базе',
-			]
-		);
-		if ($validator->fails()) {
-			return redirect('decks/create')
-				->withErrors($validator)
-				->withInput();
-		}
-		
-		//dd( $cards );
-		$pivot = [];
-		foreach ($cards as $key => $value) {
-			$id = Card::where('name', $value['name'])->pluck('id')->first();
-			$pivot[$id] = [ 'quantity' => $value['quantity'] ];
-		}
-		dd($auth);
-
-
-		$deck = new Deck( $deck );
+		$deck = new Deck( $request->only(['name', 'description', 'format_id']) );
+        $deck->user_id = auth()->user()->id;
 		$deck->save();
 
-		$deck->cards()->sync($pivot);
-		//$deck->cards()->sync([1 => ['quantity' => 2] ]);
-
-		dd(auth()->user()->id);
 		Session::flash('message', 'Запись "' . $deck->name . '" успешно добавлена');
 
 		return redirect('/decks');
@@ -129,7 +58,7 @@ class DeckController extends Controller
 	 */
 	public function show(Deck $deck)
 	{
-		//
+		return view('decks.show', compact('deck'));
 	}
 
 	/**
