@@ -9,6 +9,17 @@ use Illuminate\Http\Request;
 
 class DeckController extends Controller
 {
+  /**
+   * Instantiate a new controller instance.
+   *
+   * @return void
+   */
+  public function __construct()
+  {
+    // TODO user can see, edit etc his decks
+    $this->middleware('can:access-cards', ['except' => ['show']]);
+  }
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -61,6 +72,25 @@ class DeckController extends Controller
 		return view('decks.show', compact('deck'));
 	}
 
+  /**
+   * Attach card to deck.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @param  \App\Deck  $deck
+   * @return \Illuminate\Http\Response
+   */
+	public function addCard(Request $request, Deck $deck)
+  {
+    $card_id = Card::where('name', $request->input('name'))->get(['id'])->first()->id;
+
+    //dd();
+    $deck->cards()->attach($card_id, ['quantity' => $request->input('quantity')]);
+
+    //return redirect('/decks/' . $deck->id);
+    return view('decks.temp');
+  }
+
+
 	/**
 	 * Show the form for editing the specified resource.
 	 *
@@ -69,7 +99,9 @@ class DeckController extends Controller
 	 */
 	public function edit(Deck $deck)
 	{
-		//
+    $formats = Format::get(['id', 'name']);
+
+    return view('decks.edit', compact('deck', 'formats'));
 	}
 
 	/**
@@ -81,7 +113,14 @@ class DeckController extends Controller
 	 */
 	public function update(Request $request, Deck $deck)
 	{
-		//
+    $deck->name = $request->name;
+    $deck->description = $request->description;
+    $deck->format_id = $request->format_id;
+    $deck->save();
+
+    Session::flash('message', 'Запись "' . $deck->name . '" успешно обновлена');
+
+    return redirect('/decks');
 	}
 
 	/**
@@ -92,6 +131,11 @@ class DeckController extends Controller
 	 */
 	public function destroy(Deck $deck)
 	{
-		//
+    $deck->delete();
+    Session::flash('message', 'Запись "' . $deck->name . '" успешно удалена');
+
+    // check pivot fields detach
+
+    return redirect('/decks');
 	}
 }

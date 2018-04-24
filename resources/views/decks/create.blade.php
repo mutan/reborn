@@ -6,6 +6,8 @@
 	<div class="row justify-content-center">
 		<div class="col-md-6">
 
+			<a class="btn btn-sm btn-outline-secondary" href="{{ url('decks')}}" role="button"><i class="fa fa-btn fa-arrow-left"></i> Назад к списку</a>
+
 			<h3 class="text-center mt-3">Добавить колоду</h3>
 			<hr>
 

@@ -6,6 +6,8 @@
 	<div class="row justify-content-center">
 		<div class="col-md-12">
 
+			<a class="btn btn-sm btn-outline-secondary" href="{{ url('decks/create')}}" role="button"><i class="fa fa-btn fa-plus"></i> Добавить</a>
+
 			<h3 class="text-center mt-3">Колоды</h3>
 			<hr>
 

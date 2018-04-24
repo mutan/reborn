@@ -11,12 +11,10 @@ class Deck extends Model
 		return $this->belongsToMany(Card::class)->withPivot('quantity');
 	}
 
-
-
-    public function format()
-    {
-        return $this->belongsTo(Format::class);
-    }
+  public function format()
+  {
+      return $this->belongsTo(Format::class);
+  }
 
 	public function user()
 	{

@@ -8,7 +8,7 @@
 
 <div class="container">
 	<div class="row justify-content-center">
-		<div class="col-md-6 justify-content-center">
+		<div class="col-md-6">
 
 			<a class="btn btn-sm btn-outline-secondary" href="{{ url('editions')}}" role="button"><i class="fa fa-btn fa-arrow-left"></i> Назад к списку</a>
 
