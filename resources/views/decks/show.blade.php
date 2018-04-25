@@ -6,12 +6,26 @@
     <div class="row justify-content-center">
       <div class="col-md-12">
 
+        @include('layouts.errors')
+
         <h4>{{ $deck->name }}</h4>
         <p>Формат: {{ $deck->format->name }}</p>
 
         <div class="row">
 
           <div class="col-md-4">
+
+            <p><strong>Существа</strong></p>
+            <p><strong>Артефакты</strong></p>
+
+            @foreach($deck->cards as $card)
+              {{ $card->pivot->quantity }}
+              <a href="/cards/{{ $card->id }}" data-toggle="card-popover" data-content="<img src='{{ $card->imagePath() }}' class='img-fluid' alt='{{ $card->name }}'>">
+                {{ $card->name }}
+              </a>
+              <a alt="Удалить" title="Удалить" href="{{ url('decks/' . $deck->id . '/remove-card/' . $card->id) }}" data-method="put" data-token="{{csrf_token()}}" data-confirm="Действительно удалить?"><i class="fa fa-times" style="color: grey; font-size:85%;"></i></a>
+              <br>
+            @endforeach
 
           </div>
 

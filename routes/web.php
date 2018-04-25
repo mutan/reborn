@@ -17,8 +17,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
+/* Decks routes */
 Route::resource('decks', 'DeckController');
 Route::post('decks/{deck}/add-card', 'DeckController@addCard');
+Route::put('decks/{deck}/remove-card/{card}', 'DeckController@removeCard');
 
 /* Cards routes */
 /* Gate 'access-cards' applies to CardController in its constructor, except 'show' method */

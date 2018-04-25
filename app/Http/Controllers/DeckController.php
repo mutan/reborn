@@ -69,6 +69,8 @@ class DeckController extends Controller
 	 */
 	public function show(Deck $deck)
 	{
+	  $deck->load('cards');
+
 		return view('decks.show', compact('deck'));
 	}
 
@@ -81,15 +83,47 @@ class DeckController extends Controller
    */
 	public function addCard(Request $request, Deck $deck)
   {
-    $card_id = Card::where('name', $request->input('name'))->get(['id'])->first()->id;
+    $editions = $deck->format->editions->pluck('id')->toArray();
+    $cardName = $request->input('name');
+    $card = Card::where('name', $cardName)
+              ->whereIn('edition_id', $editions)
+              ->get()
+              ->first();
 
-    //dd();
-    $deck->cards()->attach($card_id, ['quantity' => $request->input('quantity')]);
+    if(!$card) {
+      return back()->withErrors([
+        "В выпусках, входящих в формат «" . $deck->format->name . "», карта с названием «" . $cardName . "» не найдена"
+      ]);
+    }
 
-    //return redirect('/decks/' . $deck->id);
-    return view('decks.temp');
+    try {
+      $deck->cards()->attach($card->id, ['quantity' => $request->input('quantity')]);
+
+      Session::flash('message', 'Карта "' . $cardName . '" добавлена в колоду');
+
+      return redirect('/decks/' . $deck->id);
+    } catch (\Illuminate\Database\QueryException $e) {
+      return back()->withErrors([
+        "Добавление невозможно: карта «" . $cardName . "» уже есть в этой колоде. Если вам нужно изменить количество экземпляров этой карты, удалите ее, и добавьте заново."
+      ]);
+    }
   }
 
+  /**
+   * Detach card to deck.
+   *
+   * @param  \App\Deck  deck
+   * @param  \App\Card  card
+   * @return \Illuminate\Http\Response
+   */
+  public function removeCard(Deck $deck, Card $card)
+  {
+    $deck->cards()->detach($card->id);
+
+    Session::flash('message', 'Карта "' . $card->name . '" удалена из колоды');
+
+    return redirect('/decks/' . $deck->id);
+  }
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -135,6 +169,7 @@ class DeckController extends Controller
     Session::flash('message', 'Запись "' . $deck->name . '" успешно удалена');
 
     // check pivot fields detach
+    // $deck->cards->detach();
 
     return redirect('/decks');
 	}

@@ -23,6 +23,8 @@ class CreateCardDeckTable extends Migration
 
             $table->integer('deck_id')->unsigned()->index();
             $table->foreign('deck_id')->references('id')->on('decks')->onDelete('cascade');
+
+            $table->unique(['card_id', 'deck_id']);
         });
     }
 

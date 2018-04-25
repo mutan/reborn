@@ -24,7 +24,6 @@ class CreateDecksTable extends Migration
 
             $table->string('name', 50);
             $table->text('description');
-            $table->text('cards')->nullable();
 
             $table->timestamps();
         });
