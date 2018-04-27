@@ -23,7 +23,7 @@
               <a href="/cards/{{ $card->id }}" data-toggle="card-popover" data-content="<img src='{{ $card->imagePath() }}' class='img-fluid' alt='{{ $card->name }}'>">
                 {{ $card->name }}
               </a>
-              <a alt="Удалить" title="Удалить" href="{{ url('decks/' . $deck->id . '/remove-card/' . $card->id) }}" data-method="put" data-token="{{csrf_token()}}" data-confirm="Действительно удалить?"><i class="fa fa-times" style="color: grey; font-size:85%;"></i></a>
+              <a alt="Удалить" title="Удалить" href="{{ url('decks/' . $deck->id . '/remove-card/' . $card->id) }}" data-method="put" data-token="{{csrf_token()}}" data-confirm="Действительно удалить?"><i class="fa fa-times" style="color: grey; font-size:85php%;"></i></a>
               <br>
             @endforeach
 

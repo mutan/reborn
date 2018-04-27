@@ -166,10 +166,9 @@ class DeckController extends Controller
 	public function destroy(Deck $deck)
 	{
     $deck->delete();
-    Session::flash('message', 'Запись "' . $deck->name . '" успешно удалена');
+    $deck->cards()->detach();
 
-    // check pivot fields detach
-    // $deck->cards->detach();
+    Session::flash('message', 'Запись "' . $deck->name . '" успешно удалена');
 
     return redirect('/decks');
 	}
