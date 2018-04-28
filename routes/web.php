@@ -17,24 +17,30 @@ Route::get('/home', 'HomeController@index')->name('home');
 Auth::routes();
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
+
+Route::resource('formats', 'FormatController');
+Route::resource('tournaments', 'TournamentController');
+
+
+
 /* Decks routes */
+/* Authorization made by DeckPolicy and Gate 'moderate-decks'*/
 Route::resource('decks', 'DeckController');
 Route::post('decks/{deck}/add-card', 'DeckController@addCard');
 Route::put('decks/{deck}/remove-card/{card}', 'DeckController@removeCard');
 
 /* Cards routes */
-/* Gate 'access-cards' applies to CardController in its constructor, except 'show' method */
+/* Gate 'moderate-cards' applies to CardController in its constructor, except 'show' method */
 Route::resource('cards', 'CardController');
-Route::middleware('can:access-cards')->group(function () {
-	Route::resource('formats', 'FormatController');
-	Route::resource('editions', 'EditionController');
-	Route::resource('rarities', 'RarityController');
-	Route::resource('liquids', 'LiquidController');
-	Route::resource('elements', 'ElementController');
-	Route::resource('supertypes', 'SupertypeController');
-	Route::resource('types', 'TypeController');
-	Route::resource('subtypes', 'SubtypeController');
-	Route::resource('artists', 'ArtistController');
+Route::middleware('can:moderate-cards')->group(function () {
+  Route::resource('editions', 'EditionController');
+  Route::resource('rarities', 'RarityController');
+  Route::resource('liquids', 'LiquidController');
+  Route::resource('elements', 'ElementController');
+  Route::resource('supertypes', 'SupertypeController');
+  Route::resource('types', 'TypeController');
+  Route::resource('subtypes', 'SubtypeController');
+  Route::resource('artists', 'ArtistController');
 });
 
 /* Search routes */

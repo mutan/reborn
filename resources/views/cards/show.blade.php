@@ -6,10 +6,12 @@
   <div class="row justify-content-center">
     <div class="col-12 justify-content-center">
 
-      @can('access-cards')
+      @can('moderate-cards')
       <a class="btn btn-sm btn-outline-secondary" href="{{ url('cards')}}" role="button"><i class="fa fa-btn fa-arrow-left"></i> Список карт</a>
 
       <a class="btn btn-sm btn-outline-secondary" alt="Редактировать" title="Редактировать" href="{{ url('cards/' . $card->id . '/edit') }}" role="button"><i class="fa fa-btn fa-edit"></i> Редактировать</a>
+
+      <a class="btn btn-sm btn-outline-secondary" alt="Удалить" title="Удалить" href="{{ url('cards/' . $card->id) }}" data-method="delete" data-token="{{csrf_token()}}" data-confirm="Действительно удалить?"><i class="fa fa-btn fa-trash"></i> Удалить</a>
       @endcan
 
       <h3 class="text-center mt-3">Карта: {{ $card->name }}</h3>

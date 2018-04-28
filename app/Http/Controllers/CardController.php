@@ -15,7 +15,7 @@ class CardController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('can:access-cards', ['except' => ['show']]);
+        $this->middleware('can:moderate-cards', ['except' => ['show']]);
     }
 
     /**

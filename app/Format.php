@@ -10,4 +10,8 @@ class Format extends Model
 	{
 		return $this->belongsToMany(Edition::class);
 	}
+  public function tournaments()
+  {
+    return $this->hasMany(Tournaments::class);
+  }
 }

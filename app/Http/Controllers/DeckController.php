@@ -10,14 +10,11 @@ use Illuminate\Http\Request;
 class DeckController extends Controller
 {
   /**
-   * Instantiate a new controller instance.
-   *
-   * @return void
+   * DeckController constructor.
    */
   public function __construct()
   {
-    // TODO user can see, edit etc his decks
-    $this->middleware('can:access-cards', ['except' => ['show']]);
+    $this->middleware('auth', ['except' => ['index', 'show']]);
   }
 
 	/**
@@ -99,8 +96,6 @@ class DeckController extends Controller
     try {
       $deck->cards()->attach($card->id, ['quantity' => $request->input('quantity')]);
 
-      Session::flash('message', 'Карта "' . $cardName . '" добавлена в колоду');
-
       return redirect('/decks/' . $deck->id);
     } catch (\Illuminate\Database\QueryException $e) {
       return back()->withErrors([
@@ -119,8 +114,6 @@ class DeckController extends Controller
   public function removeCard(Deck $deck, Card $card)
   {
     $deck->cards()->detach($card->id);
-
-    Session::flash('message', 'Карта "' . $card->name . '" удалена из колоды');
 
     return redirect('/decks/' . $deck->id);
   }

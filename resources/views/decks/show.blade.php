@@ -23,7 +23,9 @@
               <a href="/cards/{{ $card->id }}" data-toggle="card-popover" data-content="<img src='{{ $card->imagePath() }}' class='img-fluid' alt='{{ $card->name }}'>">
                 {{ $card->name }}
               </a>
-              <a alt="Удалить" title="Удалить" href="{{ url('decks/' . $deck->id . '/remove-card/' . $card->id) }}" data-method="put" data-token="{{csrf_token()}}" data-confirm="Действительно удалить?"><i class="fa fa-times" style="color: grey; font-size:85php%;"></i></a>
+              @can('removeCard', $deck)
+                <a title="Удалить" href="{{ url('decks/' . $deck->id . '/remove-card/' . $card->id) }}" data-method="put" data-token="{{csrf_token()}}" data-confirm="Действительно удалить?"><i class="fa fa-times" style="color: grey; font-size:85php%;"></i></a>
+              @endcan
               <br>
             @endforeach
 
@@ -35,12 +37,11 @@
 
           <div class="col-md-4">
 
+            @can('addCard', $deck)
             <h5>Добавить карту</h5>
             <hr>
-
             <form action="{{ url('decks/' . $deck->id . '/add-card') }}" method="POST">
               {{ csrf_field() }}
-
               <div class="input-group input-group-sm">
                 <input id="search-for-deck" name="name" type="text" class="form-control col-8 border border-dark" placeholder="Начните вводить название">
                 <select name="quantity" class="form-control col-2 border border-dark" id="quantity">
@@ -54,13 +55,12 @@
                   </button>
                 </div>
               </div>
-
             </form>
+            @endcan
 
           </div>
 
         </div>
-
 
 
       </div>
