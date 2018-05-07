@@ -21,19 +21,20 @@ class CreateCardsTable extends Migration
 			$table->integer('edition_id')->unsigned();
 			$table->foreign('edition_id')->references('id')->on('editions')->onDelete('NO ACTION');
 
-			// liquids, elements, supertypes, types, subtypes, artists: many-to-many
+			// liquids, elements, supertypes, types, subtypes, artists – many-to-many
 
 			$table->string('name', 50)->index();
 			$table->integer('cost')->unsigned();
 			$table->integer('number')->unsigned();
 
-			$table->integer('lives');
-			$table->string('movement', 1); // 0+ у существ, N у артефактов, F у летающих
-			$table->integer('power_weak')->nullable(); // [0-20], NULL
-			$table->integer('power_medium')->nullable(); // [0-20], NULL
-			$table->integer('power_strong')->nullable(); // [0-20], NULL
+      $table->integer('lives')->unsigned();
+			$table->enum('flying', ['y', 'n']);
+			$table->integer('movement')->unsigned()->nullable(); // 0+ у наземных существ, NULL у летающих существ и артефактов
+			$table->integer('power_weak')->unsigned()->nullable(); // [0-20], NULL
+			$table->integer('power_medium')->unsigned()->nullable(); // [0-20], NULL
+			$table->integer('power_strong')->unsigned()->nullable(); // [0-20], NULL
 
-			$table->string('image', 255)->nullable();
+			$table->string('image', 50)->nullable();
 
 			$table->text('text')->nullable();
 			$table->text('flavor')->nullable();

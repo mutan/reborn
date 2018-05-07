@@ -24,7 +24,7 @@
                 {{ $card->name }}
               </a>
               @can('removeCard', $deck)
-                <a title="Удалить" href="{{ url('decks/' . $deck->id . '/remove-card/' . $card->id) }}" data-method="put" data-token="{{csrf_token()}}" data-confirm="Действительно удалить?"><i class="fa fa-times" style="color: grey; font-size:85php%;"></i></a>
+                <a title="Удалить" href="{{ url('decks/' . $deck->id . '/remove-card/' . $card->id) }}" data-method="put" data-token="{{csrf_token()}}" data-confirm="Действительно удалить?"><i class="fa fa-times" style="color: red; font-size:85php%;"></i></a>
               @endcan
               <br>
             @endforeach
