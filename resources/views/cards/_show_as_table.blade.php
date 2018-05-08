@@ -31,6 +31,12 @@
             </td>
             <td class="text-center">{{ $card->lives }}</td>
             <td class="text-center">
+              @if($card)
+
+              @endif
+
+
+
               @switch($card->movement)
                   @case('F')
                     <img src="/icons/flying.png" class="img-fluid" alt="Полет" title="Полет">

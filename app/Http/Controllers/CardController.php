@@ -59,12 +59,16 @@ class CardController extends Controller
      */
     public function store(StoreCardRequest $request)
     {
-        $card  = new Card( $request->only([
+        $data  = $request->only([
             'name', 'image', 'edition_id', 'rarity_id',
-            'cost', 'number', 'lives', 'movement',
+            'cost', 'number', 'lives', 'flying', 'movement',
             'power_weak', 'power_medium', 'power_strong',
             'text', 'flavor', 'erratas', 'comments'
-        ]) );
+        ]);
+
+        $data['flying'] = (bool)$request->get('flying', false);
+
+        $card  = new Card($data);
         $card->save();
         $card->artists()->sync($request->artist);
         $card->liquids()->sync($request->liquid);
@@ -128,13 +132,15 @@ class CardController extends Controller
     public function update(StoreCardRequest $request, Card $card)
     {
         $data = $request->only([
-            'name', 'image', 'cost', 'number', 'lives',
+            'name', 'image', 'cost', 'number', 'lives', 'flying',
             'edition_id', 'rarity_id',
             'movement', 'power_weak', 'power_medium', 'power_strong',
             'text', 'flavor', 'erratas', 'comments'
         ]);
 
-        // Fields [movement, power_weak, power_medium, power_strong, image] are strings and should be able to be stored to DB as NULLs
+        // Fields [flying, movement, power_weak, power_medium, power_strong, image] are strings and should be able to be stored to DB as NULLs
+        $data['flying'] = (bool)$request->get('flying', false);
+
         $data['movement'] =
             ( isset($data['movement']) && !empty($data['movement']) ) ? $data['movement'] : NULL;
 

@@ -35,6 +35,7 @@ class CardsTableSeeder extends Seeder
 				'rarity_id' => $obj->rarity,
 
 				'lives' => $obj->lives,
+				'flying' => $obj->flying,
 				'movement' => $obj->movement,
 				'power_weak' => $obj->power_weak,
 				'power_medium' => $obj->power_medium,

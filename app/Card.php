@@ -14,20 +14,23 @@ class Card extends Model
 
 	//TODO
 	public function isLegal(Format $format)
-    {
-        $formats = $this->edition->formats->pluck('id')->toArray();
+  {
+      $formats = $this->edition->formats->pluck('id')->toArray();
 
-        return in_array($format->id, $formats);
-    }
+      return in_array($format->id, $formats);
+  }
 
-    public function isBanned()
-    {
-        //check if card is in formats banned list
-        return false;
-    }
+  public function isBanned()
+  {
+      //check if card is in formats banned list
+      return false;
+  }
 
 
-
+  public function isFlying()
+  {
+    return $this->flying;
+  }
 
 	public function fullType()
 	{
@@ -43,7 +46,7 @@ class Card extends Model
 		return "/images/" . $this->image;
 	}
 
-	public function power()
+	public function fullPower()
 	{
 		return $this->power_weak . "-" . $this->power_medium . "-" . $this->power_strong;
 	}

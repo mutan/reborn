@@ -90,15 +90,14 @@
 				</div>
 				<!-- Изображение Редкость Стоимость КОНЕЦ -->
 
-				<!-- Жизни Движение Слабый ОУ Средний ОУ Сильный ОУ НАЧАЛО -->
+				<!-- Летающий Движение Жизни Слабый ОУ Средний ОУ Сильный ОУ НАЧАЛО -->
 				<div class="form-row">
 
-					<div class="form-group col-md-2">
-						<label for="lives">Жизни</label>
-						<input type="text" name="lives" class="form-control {{ $errors->has('lives') ? ' is-invalid' : '' }}" id="lives" value="{{ old('lives') }}">
-						@if ($errors->has('lives'))
-						<div class="invalid-feedback">{{ $errors->first('lives') }}</div>
-						@endif
+					<div class="form-group mx-auto mx-md-1 mt-md-3 pt-md-3 my-1">
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox" value="1" name="flying" id="flying">
+							<label class="form-check-label" for="flying">Летающий</label>
+						</div>
 					</div>
 
 					<div class="form-group col-md">
@@ -106,8 +105,14 @@
 						<input type="text" name="movement" class="form-control {{ $errors->has('movement') ? ' is-invalid' : '' }}" id="movement" value="{{ old('movement') }}">
 						@if ($errors->has('movement'))
 						<div class="invalid-feedback">{{ $errors->first('movement') }}</div>
-						@else
-						<small id="movementHelpBlock" class="form-text text-muted">0+ у существ, N у артефактов, F у летающих</small>
+						@endif
+					</div>
+
+					<div class="form-group col-md">
+						<label for="lives">Жизни</label>
+						<input type="text" name="lives" class="form-control {{ $errors->has('lives') ? ' is-invalid' : '' }}" id="lives" value="{{ old('lives') }}">
+						@if ($errors->has('lives'))
+							<div class="invalid-feedback">{{ $errors->first('lives') }}</div>
 						@endif
 					</div>
 
@@ -136,7 +141,7 @@
 					</div>
 
 				</div>
-				<!-- Жизни Движение Слабый ОУ Средний ОУ Сильный ОУ КОНЕЦ -->
+				<!-- Летающий Движение Жизни Слабый ОУ Средний ОУ Сильный ОУ КОНЕЦ -->
 
 				<!-- Стихии Жидкости Художники НАЧАЛО -->
 				<div class="form-row">

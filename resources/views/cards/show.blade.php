@@ -80,7 +80,7 @@
           <tr>
             <th>Обычный удар</th>
             <td>
-              <img src="/icons/power.png" alt="Обычный удар" title="Обычный удар"> {{ $card->power() }} 
+              <img src="/icons/power.png" alt="Обычный удар" title="Обычный удар"> {{ $card->fullPower() }}
               <img src="/icons/lives-16x16.png" alt="Жизни" title="Жизни"> {{ $card->lives }} 
               <img src="/icons/movement-16x16.png" alt="Движение" title="Движение">
               @switch($card->movement)

@@ -28,8 +28,8 @@ class CreateCardsTable extends Migration
 			$table->integer('number')->unsigned();
 
       $table->integer('lives')->unsigned();
-			$table->enum('flying', ['y', 'n']);
-			$table->integer('movement')->unsigned()->nullable(); // 0+ у наземных существ, NULL у летающих существ и артефактов
+			$table->boolean('flying');
+			$table->integer('movement')->unsigned()->nullable(); // 0+, NULL
 			$table->integer('power_weak')->unsigned()->nullable(); // [0-20], NULL
 			$table->integer('power_medium')->unsigned()->nullable(); // [0-20], NULL
 			$table->integer('power_strong')->unsigned()->nullable(); // [0-20], NULL
