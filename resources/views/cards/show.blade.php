@@ -7,11 +7,11 @@
     <div class="col-12 justify-content-center">
 
       @can('moderate-cards')
-      <a class="btn btn-sm btn-outline-secondary" href="{{ url('cards')}}" role="button"><i class="fa fa-btn fa-arrow-left"></i> Список карт</a>
+      <a class="btn btn-sm btn-outline-secondary" href="{{ url(route('cards.index'))}}" role="button"><i class="fa fa-btn fa-arrow-left"></i> Список карт</a>
 
-      <a class="btn btn-sm btn-outline-secondary" alt="Редактировать" title="Редактировать" href="{{ url('cards/' . $card->id . '/edit') }}" role="button"><i class="fa fa-btn fa-edit"></i> Редактировать</a>
+      <a class="btn btn-sm btn-outline-secondary" title="Редактировать" href="{{ url(route('cards.edit', ['card' => $card->id]))  }}" role="button"><i class="fa fa-btn fa-edit"></i> Редактировать</a>
 
-      <a class="btn btn-sm btn-outline-secondary" alt="Удалить" title="Удалить" href="{{ url('cards/' . $card->id) }}" data-method="delete" data-token="{{csrf_token()}}" data-confirm="Действительно удалить?"><i class="fa fa-btn fa-trash"></i> Удалить</a>
+      <a class="btn btn-sm btn-outline-secondary" title="Удалить" href="{{ url(route('cards.destroy', ['card' => $card->id])) }}" data-method="delete" data-token="{{csrf_token()}}" data-confirm="Действительно удалить?"><i class="fa fa-btn fa-trash"></i> Удалить</a>
       @endcan
 
       <h3 class="text-center mt-3">Карта: {{ $card->name }}</h3>
@@ -23,8 +23,6 @@
 
         <div class="col-md-4">
             <img src="{{ $card->imagePath() }}" class="img-fluid" alt="{{ $card->name }}" title="{{ $card->name }}">
-
-             
 
               <p class="text-center mt-3">Легальность в форматах</p>
                 @foreach($formats as $format)

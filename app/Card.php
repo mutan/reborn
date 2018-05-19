@@ -7,6 +7,7 @@ class Card extends Model
 
 	/* HELPER METHODS */
 
+  //TODO
 	public function formatsIds()
 	{
 		return $this->edition->formats->pluck('id')->toArray();
@@ -20,12 +21,12 @@ class Card extends Model
       return in_array($format->id, $formats);
   }
 
+  //TODO
   public function isBanned()
   {
       //check if card is in formats banned list
       return false;
   }
-
 
   public function isFlying()
   {

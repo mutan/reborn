@@ -14,7 +14,7 @@
 
 			<hr>
 
-			<form action="{{ url('search/show') }}" method="GET">
+			<form action="{{ url(route('search.show')) }}" method="GET">
 
 				<div class="row" id="extended-search">
 

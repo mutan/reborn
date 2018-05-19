@@ -47,4 +47,4 @@ Route::middleware('can:moderate-cards')->group(function () {
 Route::get('/search/autocomplete', 'SearchController@autocomplete');
 Route::get('/search', 'SearchController@simple');
 Route::get('/search/advanced', 'SearchController@advanced');
-Route::get('/search/show', 'SearchController@show');
+Route::get('/search/show', 'SearchController@show')->name('search.show');

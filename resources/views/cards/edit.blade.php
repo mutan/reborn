@@ -7,15 +7,15 @@
 @section('content')
 
 <div class="container">
-	<div class="row justify-content-center">
-		<div class="col-12 justify-content-center">
+	<div class="row">
+		<div class="col-12">
 
-			<a class="btn btn-sm btn-outline-secondary" href="{{ url('cards')}}" role="button"><i class="fa fa-btn fa-arrow-left"></i> Назад к списку</a>
+			<a class="btn btn-sm btn-outline-secondary" href="{{ url(route('cards.index'))}}" role="button"><i class="fa fa-btn fa-arrow-left"></i> Назад к списку</a>
 
 			<h3 class="text-center mt-3">Редактировать карту: {{ $card->name }}</h3>
 			<hr>
 
-			<form action="{{ url('cards/' . $card->id) }}" method="POST" class="form-horizontal">
+			<form action="{{ url(route('cards.update', ['card' => $card->id])) }}" method="POST" class="form-horizontal">
 				{{ method_field('PATCH') }}
 				{{ csrf_field() }}
 
@@ -24,7 +24,7 @@
 
 					<div class="form-group col-md-4">
 						<label for="name">Название</label>
-						<input type="text" name="name" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" id="name" value="{{ $card->name }}">
+						<input type="text" name="name" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" id="name" value="{{ old('lives', $card->name) }}">
 						@if ($errors->has('name'))
 						<div class="invalid-feedback">{{ $errors->first('name') }}</div>
 						@endif
@@ -45,7 +45,7 @@
 
 					<div class="form-group col-md">
 						<label for="number">Номер</label>
-						<input type="text" name="number" class="form-control {{ $errors->has('number') ? ' is-invalid' : '' }}" id="number" value="{{ $card->number }}">
+						<input type="text" name="number" class="form-control {{ $errors->has('number') ? ' is-invalid' : '' }}" id="number" value="{{ old('lives', $card->number) }}">
 						@if ($errors->has('number'))
 						<div class="invalid-feedback">{{ $errors->first('number') }}</div>
 						@endif
@@ -59,7 +59,7 @@
 
 					<div class="form-group col-md-4">
 						<label for="image">Изображение</label>
-						<input type="text" name="image" class="form-control {{ $errors->has('image') ? ' is-invalid' : '' }}" id="image" value="{{ $card->image }}">
+						<input type="text" name="image" class="form-control {{ $errors->has('image') ? ' is-invalid' : '' }}" id="image" value="{{ $errors->isNotEmpty() ? old('image') : $card->image }}">
 						@if ($errors->has('image'))
 						<div class="invalid-feedback">{{ $errors->first('image') }}</div>
 						@else
@@ -82,7 +82,7 @@
 
 					<div class="form-group col-md">
 						<label for="cost">Стоимость</label>
-						<input type="text" name="cost" class="form-control {{ $errors->has('cost') ? ' is-invalid' : '' }}" id="cost" value="{{ $card->cost }}">
+						<input type="text" name="cost" class="form-control {{ $errors->has('cost') ? ' is-invalid' : '' }}" id="cost" value="{{ old('lives', $card->cost) }}">
 						@if ($errors->has('cost'))
 						<div class="invalid-feedback">{{ $errors->first('cost') }}</div>
 						@endif
@@ -94,16 +94,28 @@
 				<!-- Летающий Движение Жизни Слабый ОУ Средний ОУ Сильный ОУ НАЧАЛО -->
 				<div class="form-row">
 
-					<div class="form-group mx-auto mx-md-1 mt-md-3 pt-md-3 my-1">
+{{--					<div class="form-group mx-auto mx-md-1 mt-md-3 pt-md-3 my-1">
 						<div class="form-check">
 							<input class="form-check-input" type="checkbox" value="1" name="flying" id="flying" @if( old('flying', $card->flying) ) checked="checked" @endif>
 							<label class="form-check-label" for="flying">Летающий</label>
+						</div>
+					</div>--}}
+
+					<div class="form-group col-md">
+						<label class="form-check-label">Летающий</label>
+						<div class="form-group mb-0">
+							<div class="form-check form-check-inline pt-2 mt-1">
+								<input class="form-check-input" type="radio" value="1" name="flying" id="flyingYes" @if( old('flying', $card->flying) == 1 ) checked="checked" @endif>
+								<label class="form-check-label mr-3" for="flyingYes">Да</label>
+								<input class="form-check-input" type="radio" value="0" name="flying" id="flyingNo" @if( old('flying', $card->flying) == 0 ) checked="checked" @endif>
+									<label class="form-check-label" for="flyingNo">Нет</label>
+							</div>
 						</div>
 					</div>
 
 					<div class="form-group col-md">
 						<label for="movement">Движение</label>
-						<input type="text" name="movement" class="form-control {{ $errors->has('movement') ? ' is-invalid' : '' }}" id="movement" value="{{ $card->movement }}">
+						<input type="text" name="movement" class="form-control {{ $errors->has('movement') ? ' is-invalid' : '' }}" id="movement" value="{{ $errors->isNotEmpty() ? old('movement') : $card->movement }}">
 						@if ($errors->has('movement'))
 						<div class="invalid-feedback">{{ $errors->first('movement') }}</div>
 						@endif
@@ -119,7 +131,7 @@
 
 					<div class="form-group col-md">
 						<label for="power_weak">Слабый ОУ</label>
-						<input type="text" name="power_weak" class="form-control {{ $errors->has('power_weak') ? ' is-invalid' : '' }}" id="power_weak" value="{{ $card->power_weak }}">
+						<input type="text" name="power_weak" class="form-control {{ $errors->has('power_weak') ? ' is-invalid' : '' }}" id="power_weak" value="{{ $errors->isNotEmpty() ? old('power_weak') : $card->power_weak }}">
 						@if ($errors->has('power_weak'))
 						<div class="invalid-feedback">{{ $errors->first('power_weak') }}</div>
 						@endif
@@ -127,7 +139,7 @@
 
 					<div class="form-group col-md">
 						<label for="power_medium">Средний ОУ</label>
-						<input type="text" name="power_medium" class="form-control {{ $errors->has('power_medium') ? ' is-invalid' : '' }}" id="power_medium" value="{{ $card->power_medium }}">
+						<input type="text" name="power_medium" class="form-control {{ $errors->has('power_medium') ? ' is-invalid' : '' }}" id="power_medium" value="{{ $errors->isNotEmpty() ? old('power_medium') : $card->power_medium }}">
 						@if ($errors->has('power_medium'))
 						<div class="invalid-feedback">{{ $errors->first('power_medium') }}</div>
 						@endif
@@ -135,7 +147,7 @@
 
 					<div class="form-group col-md">
 						<label for="power_strong">Сильный ОУ</label>
-						<input type="text" name="power_strong" class="form-control {{ $errors->has('power_strong') ? ' is-invalid' : '' }}" id="power_strong" value="{{ $card->power_strong }}">
+						<input type="text" name="power_strong" class="form-control {{ $errors->has('power_strong') ? ' is-invalid' : '' }}" id="power_strong" value="{{ $errors->isNotEmpty() ? old('power_strong') : $card->power_strong }}">
 						@if ($errors->has('power_strong'))
 						<div class="invalid-feedback">{{ $errors->first('power_strong') }}</div>
 						@endif
@@ -276,7 +288,7 @@
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<label for="text">Текст карты</label>
-							<textarea type="text" name="text" class="form-control tinymce {{ $errors->has('text') ? ' is-invalid' : '' }}" id="text" rows="3">{{ $card->text }}</textarea>
+							<textarea type="text" name="text" class="form-control tinymce {{ $errors->has('text') ? ' is-invalid' : '' }}" id="text" rows="3">{{ old('comments', $card->text) }}</textarea>
 							@if ($errors->has('text'))
 							<div class="invalid-feedback">{{ $errors->first('text') }}</div>
 							@else
@@ -286,7 +298,7 @@
 
 						<div class="form-group col-md-6">
 							<label for="flavor">Художественный текст</label>
-							<textarea type="text" name="flavor" class="form-control tinymce {{ $errors->has('flavor') ? ' is-invalid' : '' }}" id="flavor" rows="3">{{ $card->flavor }}</textarea>
+							<textarea type="text" name="flavor" class="form-control tinymce {{ $errors->has('flavor') ? ' is-invalid' : '' }}" id="flavor" rows="3">{{ old('comments', $card->flavor) }}</textarea>
 							@if ($errors->has('flavor'))
 							<div class="invalid-feedback">{{ $errors->first('flavor') }}</div>
 							@else
@@ -298,7 +310,7 @@
 					<div class="form-row">
 						<div class="form-group col-lg-6">
 							<label for="erratas">Эрраты</label>
-							<textarea type="erratas" name="erratas" class="form-control tinymce {{ $errors->has('erratas') ? ' is-invalid' : '' }}" id="erratas" rows="3">{{ $card->erratas }}</textarea>
+							<textarea type="erratas" name="erratas" class="form-control tinymce {{ $errors->has('erratas') ? ' is-invalid' : '' }}" id="erratas" rows="3">{{ old('comments', $card->erratas) }}</textarea>
 							@if ($errors->has('erratas'))
 							<div class="invalid-feedback">{{ $errors->first('erratas') }}</div>
 							@else
@@ -308,7 +320,7 @@
 
 						<div class="form-group col-lg-6">
 							<label for="comments">Комментарии по правилам</label>
-							<textarea type="comments" name="comments" class="form-control tinymce {{ $errors->has('comments') ? ' is-invalid' : '' }}" id="comments" rows="3">{{ $card->comments }}</textarea>
+							<textarea type="comments" name="comments" class="form-control tinymce {{ $errors->has('comments') ? ' is-invalid' : '' }}" id="comments" rows="3">{{ old('comments', $card->comments) }}</textarea>
 							@if ($errors->has('comments'))
 							<div class="invalid-feedback">{{ $errors->first('comments') }}</div>
 							@else

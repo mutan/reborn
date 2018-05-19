@@ -1,21 +1,21 @@
 @extends('layouts.main')
 
 @section('tinyMCE')
-@include('layouts.tinymce')
+	@include('layouts.tinymce')
 @endsection
 
 @section('content')
 
 <div class="container">
-	<div class="row justify-content-center">
-		<div class="col-12 justify-content-center">
+	<div class="row">
+		<div class="col-12">
 
-			<a class="btn btn-sm btn-outline-secondary" href="{{ url('cards')}}" role="button"><i class="fa fa-btn fa-arrow-left"></i> Назад к списку</a>
+			<a class="btn btn-sm btn-outline-secondary" href="{{ url(route('cards.index'))}}" role="button"><i class="fa fa-btn fa-arrow-left"></i> Назад к списку</a>
 
 			<h3 class="text-center mt-3">Добавить карту</h3>
 			<hr>
 
-			<form action="{{ url('cards')}}" method="POST" class="form-horizontal">
+			<form action="{{ url(route('cards.store'))}}" method="POST" class="form-horizontal">
 				{{ csrf_field() }}
 
 				<!-- Название Выпуск Номер НАЧАЛО -->

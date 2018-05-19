@@ -43,3 +43,26 @@ Card
 Deck one-to-many Format
 
 User many-to-many Roles
+
+
+
+
+
+CardController
+    StoreCardRequest
+Card Model
+migrations/create_cards_table
+cards/
+    index
+    create
+    show
+    edit
+    _show_as_images
+    _show_as_table
+    search_advanced_form
+    search_advanced_results
+    search_simple_results
+
+
+
+

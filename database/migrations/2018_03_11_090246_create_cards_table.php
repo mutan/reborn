@@ -18,6 +18,7 @@ class CreateCardsTable extends Migration
 
 			$table->integer('rarity_id')->unsigned();
 			$table->foreign('rarity_id')->references('id')->on('rarities')->onDelete('NO ACTION');
+
 			$table->integer('edition_id')->unsigned();
 			$table->foreign('edition_id')->references('id')->on('editions')->onDelete('NO ACTION');
 
@@ -42,6 +43,10 @@ class CreateCardsTable extends Migration
 			$table->text('comments')->nullable();
 
 			$table->timestamps();
+
+      $table->engine = 'InnoDB';
+      $table->charset = 'utf8';
+      $table->collation = 'utf8_general_ci';
     });
 	}
 
