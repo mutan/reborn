@@ -11,7 +11,7 @@ class Liquid extends Model
 		return "/icons/" . $this->image;
 	}
 	
-	/* Relationships */
+	/* RELATIONSHIPS */
 	
 	public function cards()
 	{

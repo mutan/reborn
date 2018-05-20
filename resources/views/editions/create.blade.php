@@ -10,12 +10,12 @@
 	<div class="row justify-content-center">
 		<div class="col-md-6 justify-content-center">
 
-			<a class="btn btn-sm btn-outline-secondary" href="{{ url('editions')}}" role="button"><i class="fa fa-btn fa-arrow-left"></i> Назад к списку</a>
+			<a class="btn btn-sm btn-outline-secondary" href="{{ route('editions.index')}}" role="button"><i class="fa fa-btn fa-arrow-left"></i> Назад к списку</a>
 
 			<h3 class="text-center mt-3">Добавить выпуск</h3>
 			<hr>
 
-			<form action="{{ url('editions')}}" method="POST" class="form-horizontal">
+			<form action="{{ route('editions.store')}}" method="POST" class="form-horizontal">
 				{{ csrf_field() }}
 
 				<div class="form-group">
@@ -28,7 +28,17 @@
 
 				<div class="form-row">
 
-					<div class="form-group col-sm-4">
+					<div class="form-group col-sm-3">
+						<label for="number">Номер</label>
+						<input type="number" name="number" class="form-control {{ $errors->has('number') ? ' is-invalid' : '' }}" id="number" value="{{ old('number') }}">
+						@if ($errors->has('number'))
+							<div class="invalid-feedback">{{ $errors->first('number') }}</div>
+						@else
+							<small id="codeHelpBlock" class="form-text text-muted">Только цифры</small>
+						@endif
+					</div>
+
+					<div class="form-group col-sm-3">
 						<label for="code">Код</label>
 						<input type="text" name="code" class="form-control {{ $errors->has('code') ? ' is-invalid' : '' }}" id="code" value="{{ old('code') }}">
 						@if ($errors->has('code'))
@@ -38,7 +48,7 @@
 						@endif
 					</div>
 
-					<div class="form-group col-sm-4">
+					<div class="form-group col-sm-3">
 						<label for="quantity">Кол-во</label>
 						<input type="number" name="quantity" class="form-control {{ $errors->has('quantity') ? ' is-invalid' : '' }}" id="quantity" value="{{ old('quantity') }}">
 						@if ($errors->has('quantity'))
@@ -48,7 +58,7 @@
 						@endif
 					</div>
 
-					<div class="form-group col-sm-4">
+					<div class="form-group col-sm-3">
 						<label for="image">Изображение</label>
 						<input type="text" name="image" class="form-control {{ $errors->has('image') ? ' is-invalid' : '' }}" id="image" value="{{ old('image') }}">
 						@if ($errors->has('image'))

@@ -64,5 +64,15 @@ cards/
     search_simple_results
 
 
+Done:
+    StoreRequest ALL
+    Models ALL
+    Migrations ALL
+
+
+    Controllers
+    Vies
+
+
 
 

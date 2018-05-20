@@ -9,7 +9,6 @@ use App\Http\Requests\StoreEditionRequest;
 class EditionController extends Controller
 {
 
-  //TODO , "number": 1
 	public function index()
 	{
 		$editions = Edition::all();
@@ -24,7 +23,7 @@ class EditionController extends Controller
 
 	public function store(StoreEditionRequest $request)
 	{
-		$edition = new Edition( $request->only(['name', 'image', 'code', 'quantity', 'description']) );
+		$edition = new Edition( $request->only(['name', 'number', 'image', 'code', 'quantity', 'description']) );
 		$edition->save();
 
 		Session::flash('message', 'Запись "' . $edition->name . '" успешно добавлена');
@@ -32,33 +31,20 @@ class EditionController extends Controller
 		return redirect('/editions');
 	}
 
-	public function show(Edition $edition)
+	public function show()
 	{
 		abort(404);
-		//return view('editions.show', compact('edition'));
 	}
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  \App\Edition  $edition
-	 * @return \Illuminate\Http\Response
-	 */
 	public function edit(Edition $edition)
 	{
 		return view('editions.edit', compact('edition'));
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  \App\Http\Requests\StoreEditionRequest  $request
-	 * @param  \App\Edition  $edition
-	 * @return \Illuminate\Http\Response
-	 */
 	public function update(StoreEditionRequest $request, Edition $edition)
 	{
 		$edition->name = $request->name;
+		$edition->number = $request->number;
 		$edition->image = $request->image;
 		$edition->code = $request->code;
 		$edition->quantity = $request->quantity;
@@ -70,12 +56,6 @@ class EditionController extends Controller
 		return redirect('/editions');
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  \App\Edition  $edition
-	 * @return \Illuminate\Http\Response
-	 */
 	public function destroy(Edition $edition)
 	{
 		try {

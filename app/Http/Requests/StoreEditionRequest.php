@@ -7,21 +7,11 @@ use Illuminate\Validation\Rule;
 
 class StoreEditionRequest extends FormRequest
 {
-	/**
-	 * Determine if the user is authorized to make this request.
-	 *
-	 * @return bool
-	 */
 	public function authorize()
 	{
 		return true;
 	}
 
-	/**
-	 * Get the validation rules that apply to the request.
-	 *
-	 * @return array
-	 */
 	public function rules()
 	{
 		$edition_id = $this->route('edition') ? $this->route('edition')->id : null;
@@ -33,17 +23,11 @@ class StoreEditionRequest extends FormRequest
 			'code' => [
 				'required', 'max:5', Rule::unique('editions')->ignore($edition_id)
 			],
-			'quantity' => [
-				'required', 'numeric'
-			]
+			'quantity' => ['required', 'numeric'],
+			'number' => ['required', 'numeric']
 		];
 	}
 
-	/**
-	 * Get the error messages for the defined validation rules.
-	 *
-	 * @return array
-	 */
 	public function messages()
 	{
 		return [
@@ -55,6 +39,8 @@ class StoreEditionRequest extends FormRequest
 			'code.max'  => 'Не может быть длиннее 5 символов',
 			'quantity.required' => 'Не может быть пустым',
 			'quantity.numeric' => 'Может содержать только цифры',
+      'number.required' => 'Не может быть пустым',
+      'number.numeric' => 'Может содержать только цифры'
 		];
 	}
 }
