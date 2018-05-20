@@ -46,7 +46,7 @@ class CardController extends Controller
             'text', 'flavor', 'erratas', 'comments'
         ]);
 
-        $data['flying'] = (bool)$request->get('flying', false);
+        $data['flying'] = (bool)$request->input('flying', false);
 
         $card  = new Card($data);
         $card->save();

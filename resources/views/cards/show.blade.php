@@ -24,19 +24,14 @@
         <div class="col-md-4">
             <img src="{{ $card->imagePath() }}" class="img-fluid" alt="{{ $card->name }}" title="{{ $card->name }}">
 
-              <p class="text-center mt-3">Легальность в форматах</p>
-                @foreach($formats as $format)
-
-                    @if( $card->isLegal($format) )
-                      <span class="text-success">{{ $format->name }} – карта легальна</span><br>
-                    @else
-                      <span class="text-danger">{{ $format->name }} – карта нелегальна</span><br>
-                    @endif
-
-                @endforeach
-
-
-
+            {{--<p class="text-center mt-3">Легальность в форматах</p>--}}
+            {{--@foreach($formats as $format)--}}
+                {{--@if( $card->isLegal($format) )--}}
+                  {{--<span class="text-success">{{ $format->name }} – карта легальна</span><br>--}}
+                {{--@else--}}
+                  {{--<span class="text-danger">{{ $format->name }} – карта нелегальна</span><br>--}}
+                {{--@endif--}}
+            {{--@endforeach--}}
 
         </div>
 
@@ -58,7 +53,7 @@
             <th>Стихии</th>
             <td>
               @foreach ($card->elements as $element) 
-                <img src="{{ $element->imagePath() }}" alt="{{ $element->name }}" title="{{ $element->name }}"> {{ $element->name }}
+                <img src="{{ $element->imagePath() }}" alt="{{ $element->name }}" title="{{ $element->name }}"> {{ $element->name }}<br>
               @endforeach
             </td>
           </tr>
@@ -76,21 +71,19 @@
             <td>{{ $card->fullType() }}</td>
           </tr>
           <tr>
-            <th>Обычный удар</th>
+            <th>Параметры</th>
             <td>
-              <img src="/icons/power.png" alt="Обычный удар" title="Обычный удар"> {{ $card->fullPower() }}
-              <img src="/icons/lives-16x16.png" alt="Жизни" title="Жизни"> {{ $card->lives }} 
-              <img src="/icons/movement-16x16.png" alt="Движение" title="Движение">
-              @switch($card->movement)
-                  @case('F')
-                    <img src="/icons/flying.png" class="img-fluid" alt="Полет" title="Полет">
-                    @break
-                  @case('N')
-                    –
-                    @break
-                  @default
-                    {{ $card->movement }}
-              @endswitch
+              <img src="/icons/lives-16x16.png" alt="Жизни" title="Жизни"> {{ $card->lives }}
+
+              @if($card->isFlying())
+                <img src="/icons/flying.png" class="img-fluid" alt="Полет" title="Полет">
+              @elseif($card->movement)
+                <img src="/icons/movement-16x16.png" alt="Движение" title="Движение"> {{ $card->movement }}
+              @endif
+
+              @if($card->fullPower())
+                <img src="/icons/power.png" alt="Обычный удар" title="Обычный удар"> {{ $card->fullPower() }}
+              @endif
             </td>
           </tr>
           <tr>

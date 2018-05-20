@@ -8,11 +8,8 @@ use App\Http\Requests\StoreEditionRequest;
 
 class EditionController extends Controller
 {
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
+
+  //TODO , "number": 1
 	public function index()
 	{
 		$editions = Edition::all();
@@ -20,22 +17,11 @@ class EditionController extends Controller
 		return view('editions.index', compact('editions'));
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return \Illuminate\Http\Response
-	 */
 	public function create()
 	{
 		return view('editions.create');
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @param  \App\Http\Requests\StoreEditionRequest  $request
-	 * @return \Illuminate\Http\Response
-	 */
 	public function store(StoreEditionRequest $request)
 	{
 		$edition = new Edition( $request->only(['name', 'image', 'code', 'quantity', 'description']) );
@@ -46,12 +32,6 @@ class EditionController extends Controller
 		return redirect('/editions');
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  \App\Edition  $edition
-	 * @return \Illuminate\Http\Response
-	 */
 	public function show(Edition $edition)
 	{
 		abort(404);

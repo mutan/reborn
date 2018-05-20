@@ -21,6 +21,7 @@ class EditionsTableSeeder extends Seeder
 			Edition::create([
 				'id' => $obj->id,
 				'name' => $obj->name,
+				'number' => $obj->number,
 				'image' => $obj->image,
 				'code' => $obj->code,
 				'quantity' => $obj->quantity,
