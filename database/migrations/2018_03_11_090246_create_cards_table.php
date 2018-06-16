@@ -17,10 +17,10 @@ class CreateCardsTable extends Migration
 			$table->increments('id');
 
 			$table->integer('rarity_id')->unsigned();
-			$table->foreign('rarity_id')->references('id')->on('rarities')->onDelete('NO ACTION');
+			$table->foreign('rarity_id')->references('id')->on('rarities');
 
 			$table->integer('edition_id')->unsigned();
-			$table->foreign('edition_id')->references('id')->on('editions')->onDelete('NO ACTION');
+			$table->foreign('edition_id')->references('id')->on('editions');
 
 			// liquids, elements, supertypes, types, subtypes, artists – many-to-many
 

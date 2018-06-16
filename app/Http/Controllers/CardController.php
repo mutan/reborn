@@ -17,7 +17,7 @@ class CardController extends Controller
     public function index()
     {
         $cards = Card::with(['edition', 'rarity', 'supertypes', 'types', 'subtypes'])
-            ->orderBy('name')
+            ->orderBy('number')
             ->get();
 
         return view('cards.index', compact('cards'));
