@@ -28,7 +28,6 @@ class StoreCardRequest extends FormRequest
 			'liquid' => ['required'],
 			'element' => ['required'],
 			'type' => ['required'],
-			'subtype' => ['required'],
 			'artist' => ['required'],
 		];
 	}
@@ -56,7 +55,6 @@ class StoreCardRequest extends FormRequest
 			'liquid.required'  => $required_ru,
 			'element.required'  => $required_ru,
 			'type.required'  => $required_ru,
-			'subtype.required'  => $required_ru,
 			'artist.required'  => $required_ru,
 		];
 	}

@@ -15,31 +15,36 @@ class Card extends Model
 
 	//TODO
 	public function isLegal(Format $format)
-  {
+    {
       $formats = $this->edition->formats->pluck('id')->toArray();
 
       return in_array($format->id, $formats);
-  }
+    }
 
-  //TODO
-  public function isBanned()
-  {
+    //TODO
+    public function isBanned()
+    {
       //check if card is in formats banned list
       return false;
-  }
+    }
 
-  public function isFlying()
-  {
+    public function isFlying()
+    {
     return $this->flying;
-  }
+    }
 
 	public function fullType()
 	{
 		$supertypes = implode(" ", $this->supertypes->pluck('name')->toArray() );
 		$types = implode(" ", $this->types->pluck('name')->toArray() );
 		$subtypes = implode(" ", $this->subtypes->pluck('name')->toArray() );
+		if ($subtypes) {
+		    $subtypes = " – " . $subtypes;
+        }
 
-		return $supertypes . " " . $types . " – " . $subtypes;
+        $fullType = $supertypes . " " . $types . $subtypes;
+
+		return $fullType;
 	}
 
 	public function imagePath()
@@ -49,6 +54,9 @@ class Card extends Model
 
 	public function fullPower()
 	{
+	    if (!$this->power_weak) {
+	        return false;
+        }
 		return $this->power_weak . "-" . $this->power_medium . "-" . $this->power_strong;
 	}
 
