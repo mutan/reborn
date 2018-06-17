@@ -94,12 +94,13 @@
 				<!-- Летающий Движение Жизни Слабый ОУ Средний ОУ Сильный ОУ НАЧАЛО -->
 				<div class="form-row">
 
-{{--					<div class="form-group mx-auto mx-md-1 mt-md-3 pt-md-3 my-1">
-						<div class="form-check">
-							<input class="form-check-input" type="checkbox" value="1" name="flying" id="flying" @if( old('flying', $card->flying) ) checked="checked" @endif>
-							<label class="form-check-label" for="flying">Летающий</label>
-						</div>
-					</div>--}}
+                    <div class="form-group col-md">
+                        <label for="lives">Жизни</label>
+                        <input type="text" name="lives" class="form-control {{ $errors->has('lives') ? ' is-invalid' : '' }}" id="lives" value="{{ old('lives', $card->lives) }}">
+                        @if ($errors->has('lives'))
+                            <div class="invalid-feedback">{{ $errors->first('lives') }}</div>
+                        @endif
+                    </div>
 
 					<div class="form-group col-md">
 						<label class="form-check-label">Летающий</label>
@@ -118,14 +119,6 @@
 						<input type="text" name="movement" class="form-control {{ $errors->has('movement') ? ' is-invalid' : '' }}" id="movement" value="{{ $errors->isNotEmpty() ? old('movement') : $card->movement }}">
 						@if ($errors->has('movement'))
 						<div class="invalid-feedback">{{ $errors->first('movement') }}</div>
-						@endif
-					</div>
-
-					<div class="form-group col-md">
-						<label for="lives">Жизни</label>
-						<input type="text" name="lives" class="form-control {{ $errors->has('lives') ? ' is-invalid' : '' }}" id="lives" value="{{ old('lives', $card->lives) }}">
-						@if ($errors->has('lives'))
-							<div class="invalid-feedback">{{ $errors->first('lives') }}</div>
 						@endif
 					</div>
 

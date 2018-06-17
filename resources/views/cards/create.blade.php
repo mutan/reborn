@@ -93,31 +93,31 @@
 				<!-- Летающий Движение Жизни Слабый ОУ Средний ОУ Сильный ОУ НАЧАЛО -->
 				<div class="form-row">
 
-          <div class="form-group col-md">
-            <label class="form-check-label">Летающий</label>
-            <div class="form-group mb-0">
-              <div class="form-check form-check-inline pt-2 mt-1">
-                <input class="form-check-input" type="radio" value="1" name="flying" id="flyingYes" @if( old('flying') == 1 ) checked="checked" @endif>
-                <label class="form-check-label mr-3" for="flyingYes">Да</label>
-                <input class="form-check-input" type="radio" value="0" name="flying" id="flyingNo" @if( old('flying') == 0 ) checked="checked" @endif>
-                <label class="form-check-label" for="flyingNo">Нет</label>
-              </div>
-            </div>
-          </div>
+					<div class="form-group col-md">
+						<label for="lives">Жизни</label>
+						<input type="text" name="lives" class="form-control {{ $errors->has('lives') ? ' is-invalid' : '' }}" id="lives" value="{{ old('lives') }}">
+						@if ($errors->has('lives'))
+							<div class="invalid-feedback">{{ $errors->first('lives') }}</div>
+						@endif
+					</div>
+
+					<div class="form-group col-md">
+						<label class="form-check-label">Летающий</label>
+						<div class="form-group mb-0">
+						  <div class="form-check form-check-inline pt-2 mt-1">
+							<input class="form-check-input" type="radio" value="1" name="flying" id="flyingYes" @if( old('flying') == 1 ) checked="checked" @endif>
+							<label class="form-check-label mr-3" for="flyingYes">Да</label>
+							<input class="form-check-input" type="radio" value="0" name="flying" id="flyingNo" @if( old('flying') == 0 ) checked="checked" @endif>
+							<label class="form-check-label" for="flyingNo">Нет</label>
+						  </div>
+						</div>
+					</div>
 
 					<div class="form-group col-md">
 						<label for="movement">Движение</label>
 						<input type="text" name="movement" class="form-control {{ $errors->has('movement') ? ' is-invalid' : '' }}" id="movement" value="{{ old('movement') }}">
 						@if ($errors->has('movement'))
 						<div class="invalid-feedback">{{ $errors->first('movement') }}</div>
-						@endif
-					</div>
-
-					<div class="form-group col-md">
-						<label for="lives">Жизни</label>
-						<input type="text" name="lives" class="form-control {{ $errors->has('lives') ? ' is-invalid' : '' }}" id="lives" value="{{ old('lives') }}">
-						@if ($errors->has('lives'))
-							<div class="invalid-feedback">{{ $errors->first('lives') }}</div>
 						@endif
 					</div>
 
